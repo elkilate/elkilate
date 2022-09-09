@@ -1,0 +1,382 @@
+.header {
+  background-color: $color-b;
+  grid-row: 1;
+  grid-column: full-start / full-end;
+  display: flex;
+  // justify-content: space-around;
+  align-items: center;
+  padding: 0 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 10rem;
+
+  @include respond(b2) {
+    height: 8rem;
+  }
+  @include respond(tab) {
+    padding: 0;
+  }
+  a:first-child {
+    display: flex;
+    margin: 0;
+    height: auto;
+  }
+  &__logo {
+    width: 7rem;
+    height: 7rem;
+    margin: auto;
+    margin-right: 2rem;
+
+    @include respond(b2) {
+      height: 6rem;
+      width: 6rem;
+    }
+  }
+  &__name {
+    text-decoration: none;
+    color: currentColor;
+
+    // @include respond(phone-l) {
+    //     margin-top: 1rem;
+    // }
+    @include respond(tab) {
+      font-size: 3rem;
+      margin-top: 0;
+    }
+
+    &--p {
+      @include respond(b4) {
+        font-size: 2.6rem;
+      }
+      @include respond(tab) {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  &--p {
+    justify-content: unset;
+    padding: 0;
+
+    @include respond(tab) {
+      justify-content: center;
+    }
+
+    @include respond(phone-l) {
+      height: 10rem;
+    }
+
+    & > h1.heading-primary--pr {
+      margin-top: 0;
+      margin-left: 5rem;
+
+      @include respond(b10) {
+        margin-left: 2.2rem;
+      }
+
+      @include respond(tab) {
+        margin: auto;
+      }
+    }
+
+    nav.navigation {
+      margin-left: auto;
+      margin-right: 5rem;
+
+      @include respond(b10) {
+        margin-right: 2.4rem;
+      }
+      @include respond(tab) {
+        margin: 0;
+      }
+    }
+  }
+}
+.nav-main {
+  list-style: none;
+  margin-top: 0.8rem;
+  padding: 0 2rem;
+  li {
+    position: relative;
+    display: inline-block;
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+    & a:link,
+    & a:visited {
+      color: $color-w;
+      padding: 1rem 0;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+    }
+
+    & a:hover,
+    & a:active {
+      color: $color-primary;
+      font-weight: 700;
+    }
+    & a::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1.3px;
+      width: 100%;
+      background-color: $color-primary;
+      margin-top: 3.2rem;
+      transform: scaleX(0);
+      transition: all 0.3s;
+    }
+    & a:hover::after {
+      transform: scaleX(1);
+      animation: animate__slideInLeft;
+    }
+    &:active::after {
+      background-color: $color-primary;
+    }
+
+    & > a.l-p {
+      font-size: 1.2rem;
+
+      @include respond(b4) {
+        font-size: 1rem;
+      }
+
+      @include respond(tab) {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &--p {
+    margin-top: 0;
+
+    @include respond(b4) {
+      padding: 0;
+      margin-right: 1rem;
+    }
+
+    @include respond(tab) {
+      margin-right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      order: 2;
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+    }
+
+    & li a.current {
+      color: $color-primary;
+      font-weight: 700;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &.nav--filters {
+    @include respond(b4) {
+      display: flex;
+      flex-direction: column;
+    }
+    @include respond(phone-l) {
+      padding: 0;
+      padding-left: 1rem;
+      & > li {
+        margin-right: 0;
+      }
+    }
+    @include respond(b7) {
+      margin-top: 0;
+      padding: 0 1rem;
+
+      flex-shrink: 1;
+
+      & > li {
+        margin: 0;
+      }
+    }
+  }
+}
+.nav-snd {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  li {
+    padding: 0 2rem;
+    svg {
+      height: 2rem;
+      width: 2rem;
+      transition: all 0.2s;
+      fill: $color-w;
+      &:hover {
+        fill: $color-primary-l;
+      }
+      @include respond(b4) {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+    }
+
+    @include respond(b6) {
+      justify-content: space-between;
+
+      &.nav-snd__item {
+        padding: 0 0;
+
+        &:last-of-type {
+          margin-right: 2rem;
+        }
+      }
+    }
+  }
+
+  &--p {
+    @include respond(tab) {
+      display: flex;
+      // flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+      order: 1;
+    }
+
+    li.nav-snd__item {
+      padding: 0;
+      margin-right: 2rem;
+    }
+  }
+}
+.hero-text-box {
+  position: absolute;
+  width: 120rem;
+  @include centerE;
+  @include respond(big-desk) {
+    width: 110rem;
+  }
+  @include respond(b2) {
+    & > .btn {
+      margin-top: 4rem;
+    }
+  }
+  @include respond(b2-66) {
+    width: 105rem;
+  }
+  @include respond(b3) {
+    width: 100rem;
+  }
+  @include respond(tab-land) {
+    width: 90rem;
+  }
+  @include respond(b4) {
+    width: 70rem;
+
+    & > h2.heading-snd {
+      font-size: 6rem;
+    }
+    & > .btn {
+      margin-top: 3rem;
+    }
+  }
+  @include respond(b5) {
+    & > h2.heading-snd {
+      font-size: 5rem;
+    }
+  }
+  @include respond(b6) {
+    width: 100%;
+    padding: 5rem;
+  }
+  @include respond(b7) {
+    & > h2.heading-snd {
+      font-size: 4rem;
+    }
+  }
+
+  a {
+    @include respond(tab-land) {
+      margin-top: 2rem;
+      margin-right: 2rem;
+    }
+  }
+}
+.hero-text-box_gold {
+  position: absolute;
+  width: 120rem;
+  @include centerE;
+  @include respond(big-desk) {
+    width: 80%;
+
+    & > h1.heading-primary {
+      font-size: 3.2rem;
+      margin: 1.2rem 0;
+    }
+    & > a.btn {
+      font-size: 1.2rem;
+    }
+  }
+  @include respond(b2) {
+    & > h1.heading-primary {
+      padding: 2rem;
+    }
+  }
+  @include respond(b2-66) {
+    & > h1.heading-primary {
+      padding: 3rem;
+    }
+    & > a.btn {
+      margin-top: 2rem;
+    }
+  }
+  @include respond(b3) {
+    width: 90rem;
+    & > h1.heading-primary {
+      padding: 0;
+    }
+  }
+  @include respond(b4) {
+    width: 90%;
+    margin-top: -5rem;
+  }
+  @include respond(b5) {
+    width: 90%;
+    // margin-top: -10rem;
+  }
+  @include respond(phone-l) {
+    margin-top: 2rem;
+    padding: 0 3rem;
+
+    & > h1.heading-primary {
+      font-size: 3rem;
+    }
+    & > a.btn {
+      margin-top: 1.5rem;
+    }
+  }
+
+  &--price {
+    margin-top: 1rem;
+  }
+}
+.gold {
+  &__header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+    // display: grid;
+    grid-row: 1;
+    grid-column: full-start / full-end;
+    width: 100%;
+    position: relative;
+  }
+}

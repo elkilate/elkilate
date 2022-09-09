@@ -1,0 +1,82 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container py-3 full-height shpFee">
+  <div class="row my-5">
+    <h1 class="display-2">Tarifas de envío</h1>
+  </div>
+  {{#with success_msg}}
+  <div class="row">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{this}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+  </div>
+  {{/with}}
+  {{#each errors}}
+  <div class="row">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>ERROR!</strong> {{this}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+  </div>
+  {{/each}}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card pb-2" id="feeListCard">
+        <div class="card-header ps-5">Tarifas Registradas</div>
+        <div class="card-body p-0 pb-3">
+          <div class="container fee-list" id="fee-list">
+            <div class="row g-0 fee-list__heading" id="feeListHeading">
+              <div class="col fee-list__title">Desde</div>
+              <div class="col fee-list__title">Hasta</div>
+              <div class="col fee-list__title">Tarifa</div>
+            </div>
+            {{#each fees}}
+            <div class="row g-0 fee-list__fee">
+              <div class="col fee-list__value">$ {{priceToString this.lowerLimit}}</div>
+              <div class="col fee-list__value">$ {{priceToString this.upperLimit}}</div>
+              <div class="col fee-list__value">$ {{priceToString this.value}}</div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card pb-2" id="createFeeCard">
+        <div class="card-header ps-5">Crear nueva tarifa</div>
+        <div class="card-body">
+          <form class="container" action="/admin/shipping-fee" method="POST">
+            <div class="row mb-3">
+              <div class="col">
+                <label for="lowlimit" class="form-label">Mínimo</label>
+                <input type="number" name="lowlimit" id="lowlimit" class="form-control">
+              </div>
+              <div class="col">
+                <label for="uplimit" class="form-label">Máximo</label>
+                <input type="number" name="uplimit" id="uplimit" class="form-control">
+              </div>
+              <div class="col">
+                <label for="fee" class="form-label">Tarifa</label>
+                <input type="number" name="fee" id="fee" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-auto ms-auto">
+                <button type="submit" class="btn btn-primary">Crear</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

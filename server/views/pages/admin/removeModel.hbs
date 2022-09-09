@@ -1,0 +1,71 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container pdSearch">
+  <div class="row">
+    <div class="col pdSearch__content">
+      {{#if uniques}}
+      <h1 class="display-2 py-4">Eliminar modelo unico.</h1>
+      {{else}}
+      <h1 class="display-2 py-4">Eliminar modelo.</h1>
+      {{/if}}
+    </div>
+    {{#unless uniques}}
+    {{#unless model}}
+    <div class="col-auto m-auto">
+      <a href="/admin/models/remove-all" class="btn btn-danger btn-lg">Eliminar todos.</a>
+    </div>
+    {{/unless}}
+    {{/unless}}
+  </div>
+  {{#unless model}}
+  <div class="row">
+    <div class="col">
+      <p class="pdSearch__notice mb-2">Ingrese la busqueda que desea realizar</p>
+      {{#if uniques}}
+      {{> includes/components/admSearchBar action="/admin/model/unique/search" extraClasses="my-3"}}
+      {{else}}
+      {{> includes/components/admSearchBar action="/admin/model/search" extraClasses="my-3"}}
+      {{/if}}
+      <ul class="products__list" id="productListContainer">
+        {{#each models}}
+        <li class="product__bigBox my-5">
+          <img src="{{this.thumbImg}}" alt="{{this.name}}" class="product__thumb">
+          <a href="/admin/model/{{#if ../uniques}}unique/{{/if}}edit/{{this._id}}" class="product__title product__title--big">{{this.name}} <span
+              class="count">({{this.products.length}})</span><span class="wg">({{getModelAvailableWeight this}}
+              gr)</span></a>
+          <p class="product__model product__model--big">{{this.code}}</p>
+          <a href="/admin/model/{{#if ../uniques}}unique/{{/if}}remove/{{this._id}}" class="btn btn-danger product__btn">Eliminar</a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  {{/unless}}
+  <div class="row">
+    <div class="col">
+      {{#with model}}
+      <p class="h--4">¿Esta seguro de que desea eliminar este modelo?</p>
+      <p class="rmConfirm__notice mb-4">Eliminar este modelo tambien eliminara {{products.length}} productos.</p>
+      <form method="POST" action="/admin/model{{#if ../uniques}}/unique{{/if}}/remove/{{this._id}}?_method=DELETE" class="rmConfirm">
+        <img src="{{this.thumbImg}}" alt="{{this.name}}" class="img-fluid rmConfirm__img">
+        <p class="rmConfirm__title">{{this.name}}</p>
+        <p class="rmConfirm__model">{{this.code}}</p>
+        <a href="/admin/model{{#if ../uniques}}/unique{{/if}}/remove" class="btn btn-lg btn-primary btn-cancel">Cancelar</a>
+        <button type="submit" class="btn btn-lg btn-danger btn-confirm">Confirmar</button>
+      </form>
+      {{/with}}
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

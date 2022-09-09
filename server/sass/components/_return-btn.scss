@@ -1,0 +1,64 @@
+.return-btn {
+  --radius: 4rem;
+
+  position: fixed;
+  bottom: 13%;
+  right: var(--radius);
+  width: var(--radius);
+  height: var(--radius);
+  border-radius: 50%;
+  cursor: pointer;
+  visibility: hidden;
+  background-color: #eeeeee;
+  transition: all .2s linear;
+  @include shadow-standard;
+
+  &:active {
+    transform: scale(.9);
+    @include shadow-pressed;
+  }
+
+  @include respond(b3) {
+    --radius: 4.8rem;
+  }
+
+  @include respond(tab-land) {
+    --radius: 5.2rem;
+  }
+
+  @include respond(tab) {
+    --radius: 5.6rem;
+  }
+
+  @include respond(phone-l) {
+    right: calc(var(--radius) - 2rem);
+  }
+
+  span.icon {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    transform: rotate(180deg);
+    transition: -webkit-mask 0.2s linear;
+    transition: mask 0.2s linear;
+    transition: mask 0.2s linear, -webkit-mask 0.2s linear;
+    -webkit-mask: url('/img/cd-icon-arrow.svg');
+    mask: url('/img/cd-icon-arrow.svg');
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 50%;
+    mask-size: 50%;
+
+    &:hover {
+      -webkit-mask-size: 60%;
+      mask-size: 60%;
+    }
+  }
+
+  &.visible {
+    visibility: visible;
+  }
+}

@@ -1,0 +1,82 @@
+{{#> layouts/default}}
+
+{{#*inline "head-block"}}
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" defer>
+  <link type="text/css" rel="stylesheet" href="/css/style.css" title="mainSS" defer>
+{{/inline}}
+
+{{#*inline "header-block"}}
+{{> includes/header}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="sbrev">
+  <div class="sbrev__header">Enviar comentarios.</div>
+  <main class="sbrev__main">
+    <form action="/api/comment/{{sale._id}}" method="POST" class="sbrev__form">
+      <div class="form__group">
+        <label for="name" class="form__label">Nombre:</label>
+        <input type="text" class="form__input" name="name" id="name" value="{{sale.customer.name}} {{sale.customer.lastname}}" readonly required>
+      </div>
+      <div class="form__group">
+        <label for="city" class="form__label">City:</label>
+        <input type="text" class="form__input" name="city" id="city" value="{{sale.customer.address.city}}" required>
+      </div>
+      <div class="form__group">
+        <label for="content" class="form__label">Comentario:</label>
+        <textarea class="form__input" name="content" id="content" rows="6" required></textarea>
+      </div>
+      <div class="form__group">
+        <button class="form__btn" type="submit">Enviar</button>
+      </div>
+    </form>
+    <aside class="sbrev__summary">
+      <div class="head">Resumen de compra</div>
+      <div class="dets">
+        <div class="dets__item">
+          <p class="title">Método de pago:</p>
+          <p class="value">{{sale.payment.method}}</p>
+        </div>
+        <div class="dets__item">
+          <p class="title">Envío:</p>
+          <p class="value">
+            {{#if sale.shipment}}
+              $ {{priceToString sale.payment.shipmentFee}}
+            {{else}}
+              No
+            {{/if}}</p>
+        </div>
+        <div class="dets__item">
+          <p class="title">Total:</p>
+          <p class="value">$ {{priceToString sale.payment.total}}</p>
+        </div>
+      </div>
+      <div class="list">
+        {{#each sale.contents.items}}
+        <div class="list__item">
+          <img src="{{this.thumbImg}}" alt="this.title" class="thumb">
+          <div class="middle">
+            <div class="title">{{this.title}}</div>
+            <div class="code">{{this.code}}</div>
+          </div>
+          <div class="right">
+            <div class="p">$ {{priceToString this.price}}</div>
+            <div class="w">{{priceToString this.weight}} gr</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </aside>
+  </main>
+</div>
+{{/inline}}
+
+{{#*inline "ctc-block"}}
+{{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=526182814235" iconId='i-whatsapp'}}
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/default}}

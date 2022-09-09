@@ -1,0 +1,88 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container srs">
+  <div class="row my-4">
+    <h1 class="display-2">Buscar venta por fecha.</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      <form action="/admin/sale/search-date" method="GET" class="srsForm">
+        <div class="row mb-4">
+          <div class="h--4">Ingrese la fecha a buscar</div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-4">
+            <label for="year" class="form-label">Año</label>
+            <input type="number" name="year" id="year" class="form-control" placeholder="Ingrese el año" required>
+          </div>
+          <div class="col-4">
+            <label for="month" class="form-label">Mes</label>
+            <input type="number" name="month" id="month" class="form-control" placeholder="Ingrese el mes (número)"
+              required>
+          </div>
+          <div class="col-4">
+            <label for="day" class="form-label">Dia</label>
+            <input type="number" name="day" id="day" class="form-control" placeholder="Ingrese el día" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-check">
+              <input type="radio" name="nonExact" id="after" value="after" class="form-check-input">
+              <label for="after" class="form-check-label">
+                Buscar despues de esta fecha
+              </label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-check">
+              <input type="radio" name="nonExact" id="before" value="before" class="form-check-input">
+              <label for="before" class="form-check-label">
+                Buscar antes de esta fecha
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <button class="btn btn-lg btn-primary submit" type="submit">Buscar</button>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-8 m-auto">
+        {{#if noResult}}
+        <p class="h--4">No se han encontrado resultados...</p>
+        {{/if}}
+        <div class="srsSearch">
+          <div class="srsSearch__content py-3">
+            {{#each sales}}
+            <div class="srsSearch__sale py-3 px-4">
+              <a href="/admin/sale/{{this._id}}" class="title">{{this.order.address.street}}
+                No.{{this.order.address.extNumber}}, {{this.order.address.neighborhood}} {{this.order.address.postalCode}}</a>
+              <div class="date">Fecha: {{this.patLocaleString}}</div>
+              <div class="id">{{this._id}}</div>
+              <div class="customer">
+                <div class="customer-name">Nombre: {{this.order.customer.firstName}} {{this.order.customer.lastName}}</div>
+                <div class="customer-email">Email: {{this.order.customer.email}}</div>
+              </div>
+              <div class="contents">
+                <div class="contents-weight">Peso: {{this.weight}}gr</div>
+                <div class="contents-earnings">Costo: ${{priceToString this.totalPayed}}</div>
+              </div>
+              <a href="/admin/sale/{{this._id}}" class="btn btn-lg btn-primary mt-auto">Detalles</a>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/saleByDate.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

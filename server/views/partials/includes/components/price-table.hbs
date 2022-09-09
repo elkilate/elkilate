@@ -1,0 +1,49 @@
+<div class="price" id="price_table">
+  {{> includes/components/bg-video mp4Src="/img/video.mp4" webmSrc="/img/video.webm"}}
+  <h2 class="price__heading">Compramos tus minerales</h2>
+  <p class="price__p">A partir de 3 toneladas</p>
+  <div class="selector price__selector">
+    {{!-- <svg class="selector__control selector__control--l">
+      <use href="/img/sprite.svg#i-navigate_before"></use>
+    </svg> --}}
+    <p class="selector__name" data-currency-code="XAG">Plata</p>
+    {{!-- <svg class="selector__control selector__control--r">
+      <use href="/img/sprite.svg#i-navigate_next"></use>
+    </svg> --}}
+  </div>
+  <p class="price__title price__title--m">
+    Mineral
+  </p>
+  <p class="price__title price__title--p">
+    Peso
+  </p>
+  <p class="price__title price__title--b">
+    Compra
+  </p>
+  {{#each rates as |rate i|}}
+  <div class="price__table" id="{{rate.currencyCode}}" data-rate-per-gram="{{rate.ratePerGram}}"
+    data-rate-per-ounce="{{rate.ratePerOunce}}" data-rate-per-kilo="{{rate.ratePerKilo}}">
+    <div class="price__metal">
+      <h4 class="price__name">
+        {{mineralNameSwitch rate.currencyCode}}
+      </h4>
+      <img src="/img/silver_256.png" alt="plata.png" class="price__img">
+    </div>
+    <div class="price__control">
+      <label for="{{rate.currencyCode}}_select" class="price__label">
+        <select class="price__select" name="{{rate.currencyCode}}_select" id="{{rate.currencyCode}}_select" data-currency-code="{{rate.currencyCode}}">
+          <option value="gr">Gr</option>
+          <option value="kg">Kg</option>
+          <option value="oz">Oz</option>
+        </select>
+        <svg class="select-toggler">
+          <use href="/img/sprite.svg#triangle-down"></use>
+        </svg>
+      </label>
+    </div>
+    <div class="price__buy" id="{{rate.currencyCode}}_buy"></div>
+  </div>
+  {{/each}}
+  <div class="price__sub">* En concentrados se descontará humedad y en piedra se descontarán 50 kilos por tonelada de merma.</div>
+  <div class="price__sub">* Pago del 80% en un pre-análisis y el resto al resultado del análisis final.</div>
+</div>

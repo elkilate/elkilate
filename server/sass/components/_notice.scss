@@ -1,0 +1,27 @@
+.notice {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  background-color: $color-primary-d;
+  padding: .5rem 0;
+
+  &__content,
+  .dismiss {
+    color: #333;
+  }
+
+  &__content {
+    font-size: 1.6rem;
+    margin: 0 auto;
+    font-weight: 700;
+  }
+  .dismiss {
+    margin-right: 10rem;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 2rem;
+  }
+}

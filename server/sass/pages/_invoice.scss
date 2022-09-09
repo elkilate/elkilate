@@ -1,0 +1,14 @@
+.iv {
+  .invoice-card {
+    pointer-events: none;
+
+    &::after {
+      display: none !important;
+    }
+  }
+
+  .product-list {
+    max-height: 30rem;
+    overflow: auto;
+  }
+}

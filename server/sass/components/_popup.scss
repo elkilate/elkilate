@@ -1,0 +1,38 @@
+.popup {
+  --popup-width: 600px;
+  --popup-height: 400px;
+  --popup-bg-color: whitesmoke;
+
+  background-color: var(--popup-bg-color);
+  width: var(--popup-width);
+  padding: 1.5rem 2rem;
+  min-height: var(--popup-height);
+  border-radius: 1rem;
+  color: #333;
+  text-align: center;
+
+  &__heading {
+    color: #ccc;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    display: block;
+    width: 100%;
+    font-size: 1.8rem;
+  }
+
+  &__small {
+    font-size: 1.2rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      color: $color-secondary;
+    }
+  }
+}

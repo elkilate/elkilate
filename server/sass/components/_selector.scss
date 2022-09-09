@@ -1,0 +1,23 @@
+.selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &__control {
+    height: 4.5rem;
+    width: 4.5rem;
+    fill: $color-w;
+  }
+
+  &__name {
+    display: none;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 0 auto;
+
+    &.active {
+      display: block;
+    }
+  }
+}

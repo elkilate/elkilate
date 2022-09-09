@@ -1,0 +1,384 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container sl">
+  {{#if err}}
+  <div class="alert alert-danger alert-dismissible fade show my-4" role="alert">
+    {{err}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  {{#each errors}}
+    <div class="alert alert-danger alert-dismissible fade show my-4" role="alert">
+      {{.}}
+      <button
+        class="btn-close"
+        type="button"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  {{/each}}
+  {{#if success_msg}}
+  <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+    {{success_msg}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col">
+      <h1 class="display-3 py-4">Detalles de Venta</h1>
+    </div>
+  </div>
+  {{#with sale}}
+  <div class="row mb-4 px-4">
+    <div class="col">
+      <div class="slControls">
+        <div class="row">
+          <div class="col">
+            <p class="slControls__heading px-4">Acciones</p>
+          </div>
+        </div>
+        <div class="row">
+          <form action="/admin/comments/mail/{{_id}}" method="POST" class="col-auto">
+            <button class="btn btn-primary btn-lg" id="sendMail" type="submit"
+              {{#if hasComment}}disabled{{/if}}>Enviar correo de comentario</button>
+          </form>
+          <form action="/admin/sale/{{_id}}/delivered?_method=put" method="POST" class="col-auto">
+            <button class="btn btn-primary btn-lg" id="setDelivered" type="submit" {{#if
+              state.delivered}}disabled{{/if}}>Marcar como entregada</button>
+          </form>
+          <form action="/admin/sale/{{_id}}/refunded?_method=put" method="POST" class="col-auto">
+            <button class="btn btn-primary btn-lg" id="setRefunded" type="submit" {{#if
+              state.refunded}}disabled{{/if}}>Marcar
+              como rembolsada</button>
+          </form>
+          <form action="/admin/sale/{{_id}}/remove?_method=delete" method="POST" class="col-auto">
+            <button class="btn btn-danger btn-lg" id="remove" type="submit">Eliminar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    {{!-- Sale Details --}}
+    <div class="col-md-6 my-3">
+      <div class="slDetails px-4 py-3">
+        <div class="row">
+          <div class="col">
+            <p class="slDetails__heading px-4">Detalles</p>
+          </div>
+        </div>
+        {{!-- Payment Details --}}
+        <div class="row">
+          <div class="col">
+            <p class="slDetails__subheading px-2">Pago</p>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12">
+            <div class="slDetails__detail">
+              <div class="title">Metodo:</div>
+              <div class="value">{{payment.method}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <div class="slDetails__detail">
+              <div class="title">Id del Pago:</div>
+              <div class="value">
+                {{#if payment.stripeId}}
+                {{payment.stripeId}}
+                {{else}}
+                {{payment.paypal.paymentId}}
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Subtotal:</div>
+              <div class="value">$ {{priceToString payment.subtotal}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Pagada el:</div>
+              <div class="value capitalize">{{numberToLocaleDateString payment.pat}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Descuento:</div>
+              <div class="value">$ {{priceToString payment.discount}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Tipos de joyeria:</div>
+              <div class="value">{{contents.categories}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Envio:</div>
+              <div class="value">$ {{priceToString payment.shipmentFee}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Precios aplicados</div>
+              <div class="value">{{getAppliedPrices contents.prices}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Total:</div>
+              <div class="value">$ {{priceToString payment.total}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Peso Total:</div>
+              <div class="value">{{contents.weight}}gr</div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+        {{!-- Customer Details --}}
+        <div class="row">
+          <div class="col">
+            <p class="slDetails__subheading px-2">Cliente</p>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Nombre:</div>
+              <div class="value">{{customer.name}} {{customer.lastname}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Correo:</div>
+              <div class="value">{{customer.email}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Telefono:</div>
+              <div class="value">{{customer.phone}}</div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+        {{!-- Address Details --}}
+        <div class="row">
+          <div class="col">
+            <p class="slDetails__subheading px-2">Domicilio</p>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Calle:</div>
+              <div class="value">{{customer.address.street}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Colonia o Fracc:</div>
+              <div class="value">{{customer.address.nbhood}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Numero exterior:</div>
+              <div class="value">{{customer.address.extNumber}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Numero Interior:</div>
+              <div class="value">{{#if customer.address.intNumber}}{{customer.address.intNumber}}{{else}}N/A{{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Ciudad:</div>
+              <div class="value">{{customer.address.city}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Estado:</div>
+              <div class="value">{{customer.address.state}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <div class="title">Codigo Postal:</div>
+              <div class="value">{{customer.address.zip}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <div class="slDetails__detail">
+              <div class="title">Referencias:</div>
+              <div class="value">{{#if customer.address.refs}}{{customer.address.refs}}{{else}}N/A{{/if}}</div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+        {{!-- Sale Shipping Details --}}
+        <div class="row">
+          <div class="col">
+            <p class="slDetails__subheading px-2">Detalles de envio</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <p class="title">
+                Requiere envío:
+              </p>
+              <p class="value">
+                {{#if shipment}}
+                  Sí
+                {{else}}
+                  No
+                {{/if}}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="slDetails__detail">
+              <p class="title">
+                Recoger en sucursal:
+              </p>
+              <p class="value">
+                {{#if pickUp}}
+                  Sí
+                {{else}}
+                  No
+                {{/if}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <div class="slDetails__detail">
+              <p class="title">
+                Se enviara fuera de Durango:
+              </p>
+              {{#if payment.shipmentFee}}
+                <p class="value">
+                  Sí
+                </p>
+              {{else}}
+                <p class="value">
+                  No
+                </p>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+
+        <hr>
+        {{!-- Sale State Details --}}
+        <div class="row">
+          <div class="col">
+            <p class="slDetails__subheading px-2">Estado de la Venta</p>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <div class="slDetails__detail">
+              <div class="title">Pagada:</div>
+              <div class="value">{{#if state.payed}}Si{{else}}No{{/if}}</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="slDetails__detail">
+              <div class="title">Entregada:</div>
+              <div class="value">{{#if state.delivered}}Si{{else}}No{{/if}}</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="slDetails__detail">
+              <div class="title">Reembolsada:</div>
+              <div class="value">{{#if state.refunded}}Si{{else}}No{{/if}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{!-- Order Contents --}}
+    <div class="col-md-6 my-3">
+      <div class="slContents px-2 py-3">
+        <div class="row">
+          <div class="col">
+            <p class="slContents__heading px-4">Contenidos</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="slContents__content">
+              {{#each contents.items}}
+              <div class="slContents__item">
+                <img src="{{this.thumbImg}}" alt="{{this.title}}" class="thumbImg">
+                <div class="title">{{this.title}}</div>
+                <div class="code">{{this.code}}</div>
+                <div class="price">$ {{priceToString this.price}}</div>
+                <div class="wg d-flex justify-content-evenly align-items-center"><span class="sub">Peso:</span>
+                  {{this.weight}}gr</div>
+                <div class="sz d-flex justify-content-evenly align-items-center"><span class="sub">Longitud:</span>
+                  {{this.size}}cm</div>
+                <div class="qty d-flex justify-content-evenly align-items-center"><span class="sub">Cantidad:</span>
+                  {{this.qty}} pieza(s)</div>
+                <div class="category d-flex justify-content-evenly align-items-center"><span
+                    class="sub">Categoria:</span><span>{{this.ctg}}</span></div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/sale.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

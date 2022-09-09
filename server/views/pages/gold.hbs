@@ -1,0 +1,110 @@
+{{#> layouts/default currPage="goldBuy"}}
+
+{{#*inline "header-block"}}
+{{> includes/header}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container">
+    <div class="gold__header">
+        {{> includes/components/bg-video mp4Src="/img/video.mp4" webmSrc="/img/video.webm"}}
+
+        <div class="hero-text-box_gold">
+            <h2 class="heading-3rd">BIENVENIDO</h2>
+            <h1 class="heading-primary mt-0"> "El mejor precio y la mejor calidad, EL VERDADERO VALOR DEL ORO" </h1>
+            <a class="btn btn__main" href="#contact">Contacto </a>
+            <a class="btn btn__snd" href="#priceBox">Tabla de Valores</a>
+        </div>
+    </div>
+    {{> includes/components/price-box}}
+
+    {{#if centAvailable}}
+    {{> includes/components/price-box-m priceTitle='Centenario' isCent=true}}
+    {{/if}}
+
+    {{#if ozAvailable}}
+    {{> includes/components/price-box-m priceTitle='Onza Troy' isOz=true}}
+    {{/if}}
+
+    <div class="cotiz" id="cotizador">
+        <div class="cotiz__title h--2">Cotiza el valor de tu pieza de oro</div>
+        <div class="cotiz__indication">Selecciona el kilataje y la unidad de peso que deseas usar, luego ingresa el peso de tu pieza y da clic en cotizar.</div>
+        <div class="cotiz__options">
+            <div class="cotiz__opt">
+                <p>Kilataje</p>
+                <select name="karatSelect" id="karatSelect">
+                    <option value="8">8K</option>
+                    <option value="12">12K</option>
+                    <option value="14">14K</option>
+                    <option value="18">18K</option>
+                    {{!-- <option value="20">20K</option> --}}
+                    <option value="22">22K</option>
+                    <option value="24">24K</option>
+                </select>
+            </div>
+            <div class="cotiz__opt">
+                <p>Unidad de Peso</p>
+                <select name="weightUnit" id="weightUnit">
+                    <option value="g">Gramo</option>
+                    <option value="oz">Onza</option>
+                    <option value="kg">Kilogramo</option>
+                </select>
+            </div>
+        </div>
+        <div class="cotiz__controls">
+            <input type="number" id="userInput" title="Peso en la unidad seleccionada"/>
+            <button id="calculate">Cotizar</button>
+        </div>
+        <div class="cotiz__results">
+            <div class="cotiz__result">El valor de tu pieza es: <span id="result">$ 0,000</span></div>
+            <div class="cotiz__notice">El precio del oro fino el dia de hoy es: <span id="goldPrice">$ 0,000</span></div>
+            <div class="cotiz__notice">El precio por gramo es: <span id="pricePer">$ 0,000</span></div>
+        </div>
+    </div>
+    <div class="republica">
+        <div class="republica__logo-name">
+            <h2 class="heading-7 republica__h2">
+                <img src="/img/icon/fLogo_tr.svg" alt="elkilate-logo" class="republica__logo header__logo">
+                <span style="color: #f7b46d">E</span>l&nbsp;
+                <span style="color: #f7b46d">K</span>ilate
+            </h2>
+        </div>
+        <div class="republica__text">
+            <p></p>
+        </div>
+        <div class="republica__stadistic">
+            <div class="count">
+                <div class="num">2</div>
+                <h5 class="heading-5">Sucursales</h5>
+            </div>
+            <div class="count">
+                <div class="num">32</div>
+                <h5 class="heading-5">Servicio a Todos los Estados</h5>
+            </div>
+            <div class="count">
+                <div class="num">21</div>
+                <h5 class="heading-5">Años de Servicio</h5>
+            </div>
+        </div>
+    </div>
+    {{> includes/components/contact-form mail="elkilateoro24k@gmail.com" page='oro'}}
+
+    {{#if wasMailSent}}
+    <div class="toast visible">
+        <div class="toast__msg">Tu mensaje fue enviado correctamente.</div>
+        <div class="toast__dismiss">&times;</div>
+    </div>
+    {{/if}}
+</div>
+
+{{/inline}}
+
+{{#*inline "ctc-block"}}
+{{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=+5216182816253&text=Hola buenas, requiero informacion sobre la compra de oro" iconId='i-whatsapp'}}
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/gold.js" defer></script>
+{{/inline}}
+
+{{/layouts/default}}

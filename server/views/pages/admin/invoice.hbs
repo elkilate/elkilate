@@ -1,0 +1,400 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container iv mb-5 full-height">
+  {{#each errors}}
+  <div class="alert alert-danger alert-dismissible fade show my-4" role="alert">
+    {{this}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/each}}
+  {{#if success}}
+  <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+    {{success}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col">
+      <h1 class="display-3 py-4">Detalles de Venta</h1>
+    </div>
+  </div>
+  {{#with sale}}
+  <div class="row mb-4 px-4">
+    <div class="col">
+      <div class="slControls">
+        <div class="row">
+          <div class="col">
+            <p class="slControls__heading px-4">Acciones</p>
+          </div>
+        </div>
+        <div class="row">
+          <form action="/admin/invoice/{{_id}}/delivered?_method=put" method="POST" class="col-auto">
+            <button type="submit" class="btn btn-primary btn-lg"
+              id="setDelivered"{{#if invoice.delivered}} disabled{{/if}}>Marcar factura como entregada</button>
+          </form>
+          <form action="/admin/sale/{{_id}}/remove?_method=delete" method="POST" class="col-auto">
+            <button type="submit" class="btn btn-danger btn-lg"
+              id="removeSale">Eliminar Venta</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 my-3">
+      {{#with invoice}}
+      <div class="row mb-5">
+        <div class="col">
+          <div class="card" id="invoicing-info">
+            <div class="card-header h2 py-3">Informacion de facturación</div>
+            <div class="card-body fs-4 px-4">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Nombre o razón social:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{business_name}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">RFC:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{RFC}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Dirección:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{address}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Correo Electrónico:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{email}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Telefóno:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{phone}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Uso de CFDI:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end text-uppercase">{{CFDI}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Factura entregada:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{#if delivered}}Sí{{else}}No{{/if}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/with}}
+      {{#with customer}}
+      <div class="row">
+        <div class="col">
+          <div class="card" id="sale-info">
+            <div class="card-header h2 py-3">Informacion del cliente</div>
+            <div class="card-body fs-4 px-4">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Nombre:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{name}} {{lastname}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Telefóno:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{phone}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Correo Electrónico:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{email}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Dirección:</p>
+                </div>
+              </div>
+              {{#with address}}
+                <div class="row mb-3 px-5 justify-content-between">
+                  <div class="col-4">
+                    <p class="card-text fw-bold">Calle:</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text text-end">{{street}}</p>
+                  </div>
+                </div>
+                <div class="row mb-3 px-5 justify-content-between">
+                  <div class="col-4">
+                    <p class="card-text fw-bold">Colonia:</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text text-end">{{nbhood}}</p>
+                  </div>
+                </div>
+                <div class="row mb-3 px-5 justify-content-between">
+                  <div class="col-4">
+                    <p class="card-text fw-bold">Número exterior:</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text text-end">{{extNumber}}</p>
+                  </div>
+                </div>
+                {{#if intNumber}}
+                <div class="row mb-3 px-5 justify-content-between">
+                  <div class="col-4">
+                    <p class="card-text fw-bold">Número interior:</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text text-end">{{intNumber}}</p>
+                  </div>
+                </div>
+                {{/if}}
+                <div class="row mb-3 px-5 justify-content-between">
+                  <div class="col-4">
+                    <p class="card-text fw-bold">Código postal:</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text text-end">{{zip}}</p>
+                  </div>
+                </div>
+                <div class="row mb-3 px-5 justify-content-between">
+                  <div class="col-4">
+                    <p class="card-text fw-bold">Estado:</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text text-end">{{state}}</p>
+                  </div>
+                </div>
+                <div class="row mb-3 px-5 justify-content-between">
+                  <div class="col-4">
+                    <p class="card-text fw-bold">Ciudad:</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text text-end">{{city}}</p>
+                  </div>
+                </div>
+                {{#if refs}}
+                <div class="row mb-3 px-5 justify-content-between">
+                  <div class="col-4">
+                    <p class="card-text fw-bold">Referencias:</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text text-end">{{street}}</p>
+                  </div>
+                </div>
+                {{/if}}
+              {{/with}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/with}}
+    </div>
+    <div class="col-sm-6 my-3">
+      {{#with payment}}
+      <div class="row mb-5">
+        <div class="col">
+          <div class="card" id="sale-info">
+            <div class="card-header h2 py-3">Informacion del pago</div>
+            <div class="card-body fs-4 px-4">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Método:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{method}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Id del pago:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">
+                    {{#if stripeId}}
+                      {{stripeId}}
+                    {{else}}
+                      {{paypal.paymentId}}
+                    {{/if}}
+                  </p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Pagada el:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end text-capitalize">{{numberToLocaleDateString pat}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Subtotal:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">${{priceToString subtotal}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Descuento:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end text-capitalize">-${{priceToString discount}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Envío:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end text-capitalize">${{priceToString shipmentFee}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Total:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end text-capitalize">${{priceToString total}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/with}}
+      {{#with contents}}
+      <div class="row mb-5">
+        <div class="col">
+          <div class="card" id="sale-info">
+            <div class="card-header h2 py-3">Contenidos</div>
+            <div class="card-body fs-4 px-4">
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Peso total:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{priceToString weight}}gr</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Categorias:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{categories}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <p class="card-text fw-bold">Precios aplicados:</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text text-end">{{getAppliedPrices prices}}</p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col">
+                  <p class="card-text fw-bold">Productos:</p>
+                </div>
+              </div>
+              <div class="row product-list">
+                <div class="col">
+                  {{#each items}}
+                  <div class="row mb-4">
+                    <div class="col">
+                      <div class="card overflow-hidden w-100">
+                        <div class="row g-0">
+                          <div class="col-3">
+                            <img src="{{this.thumbImg}}" alt="{{this.title}}" style="max-width: 100%;">
+                          </div>
+                          <div class="col-9">
+                            <div class="card-body text-center fs-5">
+                              <div class="row mb-3">
+                                <div class="col-6">
+                                  <p class="card-text">{{this.title}}</p>
+                                </div>
+                                <div class="col-6">
+                                  <p class="card-text fw-bold">{{this.code}}</p>
+                                </div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-4">
+                                  <p class="card-text fw-bold">${{priceToString this.price}}</p>
+                                </div>
+                                <div class="col-4">
+                                  <p class="card-text"><span class="fw-bold">Peso:</span> {{priceToString weight}}gr</p>
+                                </div>
+                                <div class="col-4">
+                                  <p class="card-text"><span class="fw-bold">Longitud:</span> {{size}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-6">
+                                  <p class="card-text"><span class="fw-bold">Cantidad:</span> {{qty}} pieza(s)</p>
+                                </div>
+                                <div class="col-6">
+                                  <p class="card-text"><span class="fw-bold">Categoria:</span> {{ctg}}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/with}}
+    </div>
+  </div>
+  {{/with}}
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/invoice.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

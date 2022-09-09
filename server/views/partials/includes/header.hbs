@@ -1,0 +1,17 @@
+<div class="header{{#if isStore}} header--p{{/if}}">
+    <h1 class="heading-primary heading-primary--pr{{!--  mt-fix --}}">
+        <a href="/">
+            <img src="/img/icon/fLogo_tr.svg" alt="elkilate-logo" class="header__logo">
+        </a>
+        <a href="/" class="header__name {{#if isStore}}header__name--p{{/if}}">
+            <span style="color: #f7b46d">E</span>l
+            <span style="color: #f7b46d">K</span>ilate
+        </a>
+    </h1>
+    
+    {{#if isStore}}
+    {{> includes/navigation_search}}
+    {{else}}
+    {{> includes/navigation_base}}
+    {{/if}}
+</div>

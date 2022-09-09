@@ -1,0 +1,23 @@
+{{#> layouts/default}}
+
+{{#*inline "content-block"}}
+<div class="errContainer">
+  <h1 class="h--1">Error interno.</h1>
+  <p class="error__notice">Ha ocurrido un error en el servidor.</p>
+  {{#if important}}
+  <h2 class="h--3">{{important}}</h2>
+  {{/if}}
+  {{#if msg}}
+  <p class="error__msg">{{msg}}</p>
+  {{/if}}
+  {{#if err}}
+  <p class="error__err">{{err}}</p>
+  {{/if}}
+</div>
+{{/inline}}
+
+{{#*inline "footer-block"}}
+
+{{/inline}}
+
+{{/layouts/default}}

@@ -1,0 +1,205 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container stk">
+  <p class="stk__heading display-3 my-4">Inventario.</p>
+  <div class="row py-2">
+    <div class="col stkStats">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a href class="nav-link stk-selector active" data-target-stock="g10k">Oro (10K)</a>
+            </li>
+            <li class="nav-item">
+              <a href class="nav-link stk-selector" data-target-stock="g14k">Oro (14K)</a>
+            </li>
+            <li class="nav-item">
+              <a href class="nav-link stk-selector" data-target-stock="g18k">Oro (18K)</a>
+            </li>
+            <li class="nav-item">
+              <a href class="nav-link stk-selector" data-target-stock="slv">Plata</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body stk-display active" data-stock="g10k">
+          <div class="row">
+            <p class="stkStats__title">Oro 10K</p>
+          </div>
+          <div class="row">
+            {{#with gold10kStock}}
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Disponible</h5>
+              <div class="stkStats__value">{{getAvailableWeight this}} gr</div>
+            </div>
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Registrado</h5>
+              <div class="stkStats__value">{{getTotalWeight this}} gr</div>
+            </div>
+            {{/with}}
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Vendido (Mes)</h5>
+              <div class="stkStats__value">{{gold10kMonthWgSold}} gr</div>
+            </div>
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Vendido (Semana)</h5>
+              <div class="stkStats__value">{{gold10kWeekWgSold}} gr</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body stk-display" data-stock="g14k">
+          <div class="row">
+            <p class="stkStats__title">Oro 14K</p>
+          </div>
+          <div class="row">
+            {{#with gold14kStock}}
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Disponible</h5>
+              <div class="stkStats__value">{{getAvailableWeight this}} gr</div>
+            </div>
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Registrado</h5>
+              <div class="stkStats__value">{{getTotalWeight this}} gr</div>
+            </div>
+            {{/with}}
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Vendido (Mes)</h5>
+              <div class="stkStats__value">{{gold14kMonthWgSold}} gr</div>
+            </div>
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Vendido (Semana)</h5>
+              <div class="stkStats__value">{{gold14kWeekWgSold}} gr</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body stk-display" data-stock="g18k">
+          <div class="row">
+            <p class="stkStats__title">Oro 18K</p>
+          </div>
+          <div class="row">
+            {{#with gold18kStock}}
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Disponible</h5>
+              <div class="stkStats__value">{{getAvailableWeight this}} gr</div>
+            </div>
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Registrado</h5>
+              <div class="stkStats__value">{{getTotalWeight this}} gr</div>
+            </div>
+            {{/with}}
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Vendido (Mes)</h5>
+              <div class="stkStats__value">{{gold18kMonthWgSold}} gr</div>
+            </div>
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Vendido (Semana)</h5>
+              <div class="stkStats__value">{{gold18kWeekWgSold}} gr</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body stk-display" data-stock="slv">
+          <div class="row">
+            <p class="stkStats__title">Plata</p>
+          </div>
+          <div class="row">
+            {{#with silverStock}}
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Disponible</h5>
+              <div class="stkStats__value">{{getAvailableWeight this}} gr</div>
+            </div>
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Registrado</h5>
+              <div class="stkStats__value">{{getTotalWeight this}} gr</div>
+            </div>
+            {{/with}}
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Vendido (Mes)</h5>
+              <div class="stkStats__value">{{silverMonthWgSold}} gr</div>
+            </div>
+            <div class="col-3 py-3">
+              <h5 class="stkStats__heading">Vendido (Semana)</h5>
+              <div class="stkStats__value">{{silverWeekWgSold}} gr</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row py-2 my-3">
+    <div class="col-md-8 sales sales-default py-3 px-5">
+      <div class="sales__heading h--4">
+        <span class="title">Ventas</span>
+        <a href="/admin/sales" class="all">Ver todas</a>
+      </div>
+      <div class="sales__container">
+        {{#each sales}}
+        <a href="/admin/sale/{{this._id}}" class="sales__sale py-3 px-4 mb-4">
+          <div class="customer">
+            <span class="title">Cliente: </span><span class="value">{{this.customer.firstname}}
+              {{this.customer.lastname}}</span>
+          </div>
+          <div class="content">
+            <span class="title">Cantidad (gr):</span> <span class="value">{{this.contents.weight}}</span>
+          </div>
+          <div class="content">
+            <span class="title">Cantidad($):</span> <span class="value">{{this.payment.total}}</span>
+          </div>
+          <div class="date">
+            <span class="title">Fecha:</span> <span class="value">{{numberToLocaleDateString this.payment.pat}}</span>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="row stkStock mt-3 mb-5">
+    <div class="col-md-6 stkStock__models p-4">
+      <div class="stkStock__heading h--4">
+        <span class="title">Modelos</span>
+        <a href="/admin/models" class="all">Ver todos</a>
+      </div>
+      <div class="stkStock__content">
+        {{#each models}}
+        <div class="stkStock__model mb-3 model" data-code="{{this.code}}">
+          <img src="{{this.thumbImg}}" alt="{{this.name}}" class="img-fluid">
+          <a href="/admin/model/edit/{{this._id}}" class="title">{{this.name}}</a>
+          <div class="code">{{this.code}}</div>
+          <div class="count">{{this.productCount}} articulos</div>
+          <div class="category">{{parseCategory this.category}}</div>
+          <div class="available">{{checkAvailability this.available}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="col-md-5 stkStock__products p-4">
+      <div class="stkStock__heading h--4">
+        <span class="title">Productos</span>
+        <div id="modelTag">N/A</div>
+      </div>
+      <div class="stkStock__content" id="productContainer">
+        <p class="noSelection">Seleccione un modelo.</p>
+        <!-- Content retrieved through JS -->
+        {{!-- <div class="stkStock__product mb-3 product">
+          <a href="/admin/product/update/someid" class="code">P-001-001</a>
+          <div class="qty">
+            <div class="title">Cantidad:</div> 4
+          </div>
+          <div class="wg">
+            <div class="title">Peso:</div> 4gr
+          </div>
+          <div class="sz">
+            <div class="title">Longitud:</div> 5cm
+          </div>
+          <div class="available">Disponible</div>
+        </div> --}}
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/stock.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

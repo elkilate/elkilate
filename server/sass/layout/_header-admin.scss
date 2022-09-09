@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  height: 4rem;
+  background-color: #222;
+  align-items: center;
+
+  &__title {
+    margin: auto 3rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    .text {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-left: .7rem;
+    }
+  }
+
+  &__logo {
+    width: 2.6rem;
+  }
+
+  &__nav {
+    margin-left: auto;
+    margin-right: 5rem;
+
+    a {
+      font-size: 1.4rem;
+      color: $color-w;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.header__link--d {
+        color: #222;
+      }
+    }
+  }
+
+  &__toggle-btn {
+    color: $color-w;
+
+    &:hover {
+      color: #666;
+    }
+  }
+}

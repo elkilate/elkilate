@@ -1,0 +1,46 @@
+.republica{
+    background-color: $color-b;
+    grid-column: full-start / full-end;
+    padding-top: 2rem;
+    &__text{
+        font-size: 2.5rem;
+        text-align: center;
+        color: $color-primary; 
+
+        @include respond(big-desk) {
+            padding: 0 4rem;
+        }
+        @include respond(b2-66){
+            padding: 0 5rem;
+        }        
+        @include respond(tab){
+            font-size: 2rem;
+            width: 100%;
+            // padding: 0 5rem;
+        }
+    }
+    &__stadistic{
+        display: flex; 
+        justify-content: center;
+        .count{
+            font-size: 4rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 5rem; 
+            color: $color-primary-l;
+            @include respond(tab){
+                font-size: 2rem;                
+            }
+
+        }
+    }
+    &__logo {
+        width: 5rem !important;
+        height: 5rem !important;
+        margin: initial !important;
+        margin-right: 2rem !important;
+    }
+    &__h2 {
+        font-size: 4.2rem;
+    }
+}

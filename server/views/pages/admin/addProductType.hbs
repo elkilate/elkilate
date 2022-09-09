@@ -1,0 +1,46 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container apdt">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-2 py-5">Añadir Nuevo Tipo de Prenda.</h1>
+    </div>
+  </div>
+
+  {{#if err}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <span>{{err}}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+  {{/if}}
+
+  <div class="row">
+    <div class="col-6 m-auto">
+      <form action="/admin/product/type/add?reloadOnSave=true" method="POST" class="apdtForm">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" name="name" id="name" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label for="code" class="form-label">Codigo</label>
+            <input type="text" name="code" id="code" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-auto apdtForm__submit">
+            <button type="submit" class="btn btn-primary btn-lg">Añadir</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

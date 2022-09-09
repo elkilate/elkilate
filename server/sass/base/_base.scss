@@ -1,0 +1,79 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  min-height: 100%;
+  width: 100%;
+
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+  @include respond(tab) {
+    font-size: 52.1%;
+  }
+  @include respond(phone-l) {
+    font-size: 50%;
+  }
+  @include respond(phone-m) {
+    font-size: 45%;
+  }
+  @include respond(phone-s) {
+    font-size: 40%;
+  }
+  @include respond(big-desk) {
+    font-size: 75%;
+  }
+}
+body {
+  // background-color: #465;
+  // background-color: whitesmoke;
+  font-family: $font-primary;
+  color: $color-grey-light-1;
+  font-weight: 300;
+  line-height: 1.6;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+.body {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(6rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(-webkit-min-content, 16rem) [col-end]
+    )
+    [center-end]
+    minmax(6rem, 1fr) [full-end];
+  grid-template-columns:
+    [full-start] minmax(6rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 16rem) [col-end]
+    )
+    [center-end]
+    minmax(6rem, 1fr) [full-end];
+
+  @include respond(b2-66) {
+    grid-template-columns:
+      [full-start] minmax(4rem, 1fr) [center-start] repeat(
+        8,
+        [col-start] minmax(-webkit-min-content, 12rem) [col-end]
+      )
+      [center-end]
+      minmax(4rem, 1fr) [full-end];
+    grid-template-columns:
+      [full-start] minmax(4rem, 1fr) [center-start] repeat(
+        8,
+        [col-start] minmax(min-content, 12rem) [col-end]
+      )
+      [center-end]
+      minmax(4rem, 1fr) [full-end];
+  }
+}

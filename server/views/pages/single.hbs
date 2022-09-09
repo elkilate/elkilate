@@ -1,0 +1,223 @@
+{{#> layouts/default hasBodyClass=true currPage="singleDetails"}}
+
+{{#*inline "header-block"}}
+{{> includes/header isStore=true}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<section class="section-details">
+    <div class="slider">
+        <div class="slider__container">
+            {{#if model.gallery}}
+            {{#each model.gallery}}
+            <div class="slider__slide" id="slSlide-{{@index}}">
+                <img src="{{this}}" alt="{{this}}" class="slider__img" id="slImg-{{@index}}" />
+                <div class="slider__zoom" id="zoomView-{{@index}}"></div>
+            </div>
+            {{/each}}
+            {{else}}
+            <div class="slider__slide">
+                <p class="slide__p">Sin Imagenes</p>
+            </div>
+            {{/if}}
+        </div>
+        <span class="slider__control slider__control--l" id="slControl-p">
+            <svg class="slider__svg slider__svg--l">
+                <use href="/img/sprite.svg#i-navigate_before"></use>
+            </svg>
+        </span>
+        <span class="slider__control slider__control--r" id="slControl-n">
+            <svg class="slider__svg slider__svg--r">
+                <use href="/img/sprite.svg#i-navigate_next"></use>
+            </svg>
+        </span>
+        {{!-- <div class="slider__controls">
+            <span class="slider__control slider__control--l" id="slControl-p">
+                <svg class="slider__svg slider__svg--l">
+                    <use href="/img/sprite.svg#i-navigate_before"></use>
+                </svg>
+            </span>
+            <span class="slider__control slider__control--r" id="slControl-n">
+                <svg class="slider__svg slider__svg--r">
+                    <use href="/img/sprite.svg#i-navigate_next"></use>
+                </svg>
+            </span>
+        </div> --}}
+        <ul class="slider__gallery">
+            {{#if model.gallery}}
+            {{#each model.gallery}}
+            <li class="slider__item" id="slGal-{{@index}}" data-points-to="{{@index}}">
+                <img src="{{this}}" alt="{{model.name}}" class="slider__gallery-img">
+            </li>
+            {{/each}}
+            {{else}}
+            <li class="slider__item">
+                <p class="slider__p">Sin Imagenes</p>
+            </li>
+            {{/if}}
+        </ul>
+    </div>
+    <div class="details">
+        <div class="details__tittle">
+            <h5 class="heading-6">{{model.name}}</h5>
+            {{#if prod.reviews}}
+            <div class="overview">
+                <svg>
+                    <use href="/img/sprite.svg#star"></use>
+                </svg>
+                <svg>
+                    <use href="/img/sprite.svg#star"></use>
+                </svg>
+                <svg>
+                    <use href="/img/sprite.svg#star"></use>
+                </svg>
+                <svg>
+                    <use href="/img/sprite.svg#star"></use>
+                </svg>
+                <svg>
+                    <use href="/img/sprite.svg#star-outlined"></use>
+                </svg>
+                <p>({{prod.reviewCount}})</p>
+            </div>
+            {{/if}}
+            <div class="price">
+                <p class="cost">
+                    Precio: $
+                    <span class="value" id="priceTag" data-mineral-price="{{mineralPrice}}">
+                        {{#if firstProduct.price}}
+                        {{priceToString firstProduct.price}}
+                        {{else}}
+                        {{priceToString (setPrice firstProduct.weight mineralPrice)}}
+                        {{/if}}
+                    </span>
+                    MXN
+                </p>
+                <p class="weight">Peso: <span class="value" id="wtTag">{{firstProduct.weight}}</span>gr</p>
+                <p class="size">Tamaño: <span class="value" id="szTag">{{firstProduct.size}}</span></p>
+            </div>
+        </div>
+        <div class="details__select">
+            <form class="form" id="addToCartForm">
+                <div class="form__group">
+                    <div class="details__products">
+                        {{#each model.products}}
+                        <input type="radio" name="product" id="{{this.itemCode}}" value="{{this._id}}"
+                            class="details__radio" {{#if @first}}checked{{/if}} data-wt="{{this.weight}}"
+                            data-sz="{{this.size}}" {{#if this.price}} data-p="{{this.price}}" {{/if}} {{#if
+                            this.karat}} data-k="{{this.karat}}" {{/if}}>
+                        <label for="{{this.itemCode}}" class="details__product">
+                            <span class="title">{{this.itemCode}}</span>
+                        </label>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="form__group">
+                    <button class="btn-form" type="submit">Añadir al carrito</button>
+                </div>
+            </form>
+        </div>
+        <div class="details__info">
+            <div class="desc">
+                <div class="description">
+                    <div class="description__tittle">
+                        <h5 class="heading-6">Detalles</h5>
+                    </div>
+                    <div class="description__inf">
+                        <div class="desc-group">
+                            <p class="desc-group__name">Marca</p>
+                            <p class="desc-group__desc-name">El Kilate</p>
+                        </div>
+                        {{!-- <div class="desc-group">
+                            <p class="desc-group__name">Garantia</p>
+                            <p class="desc-group__desc-name">Cualquiera que sea el tipo de oro con el que esté
+                                elaborado tu joya, el tradicional oro amarillo, el delicado oro rosa o el versátil
+                                oro blanco,
+                                recibirás un certificado que garantiza su calidad y respalda sus 14 kilates.</p>
+                        </div> --}}
+                        {{!-- <div class="desc-group">
+                            <p class="desc-group__name">Color</p>
+                            <p class="desc-group__desc-name">Amarillo</p>
+                        </div> --}}
+                        <div class="desc-group">
+                            <p class="desc-group__name">Categoria</p>
+                            <p class="desc-group__desc-name">Joyeria de {{getCategory model.category}}</p>
+                        </div>
+                        {{#unless isSilver}}
+                        <div class="desc-group">
+                            <p class="desc-group__name">Quilataje</p>
+                            <p class="desc-group__desc-name" id="karatTag">
+                                {{#if firstProduct.karat}}
+                                {{firstProduct.karat}}
+                                {{else}}
+                                {{model.karat}}
+                                {{/if}}
+                            </p>
+                        </div>
+                        {{/unless}}
+                        <div class="desc-group">
+                            <p class="desc-group__name">Descripción</p>
+                            <p class="desc-group__desc-name">{{model.description}}</p>
+                        </div>
+                        <div class="desc-group">
+                            <p class="desc-group__name">Tipo de articulo</p>
+                            <p class="desc-group__desc-name">{{type}}</p>
+                        </div>
+                        {{!-- <div class="desc-group">
+                            <p class="desc-group__name">Envio</p>
+                            <p class="desc-group__desc-name">En un lapso de 4 a 7 días hábiles</p>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="info"></div>
+        </div>
+        <div class="details__icons">
+            {{!-- <div class="icon">
+                <svg>
+                    <use href="/img/sprite.svg#truck"></use>
+                </svg>
+                <p class="icon__text">ENVIO GRATUITO</p>
+            </div> --}}
+            {{!-- <div class="icon">
+                <svg>
+                    <use href="/img/sprite.svg#gift"></use>
+                </svg>
+                <p class="icon__text">CAJA DE REGALO</p>
+            </div> --}}
+            <div class="icon">
+                <svg>
+                    <use href="/img/sprite.svg#contract"></use>
+                </svg>
+                <p class="icon__text">COMPRA SEGURA</p>
+            </div>
+            <div class="icon">
+                <svg>
+                    <use href="/img/sprite.svg#review"></use>
+                </svg>
+                <p class="icon__text">SATISFACCION GARANTIZADA</p>
+            </div>
+            {{!-- <div class="icon">
+                <svg>
+                    <use href="/img/sprite.svg#warranty"></use>
+                </svg>
+                <p class="icon__text">1-AÑO DE GARANTIA</p>
+            </div> --}}
+        </div>
+        {{#each model.products}}
+        <pre style="font-size: 1.6rem; color: #333;">{{this.name}}</pre>
+        {{/each}}
+    </div>
+</section>
+{{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=526182814235&text=Hola, necesito
+informacion acerca de un articulo de joyeria." iconId='i-whatsapp'}}
+{{/inline}}
+
+{{#*inline "ctc-block"}}
+
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/single.js" type="module" defer></script>
+{{/inline}}
+
+{{/layouts/default}}

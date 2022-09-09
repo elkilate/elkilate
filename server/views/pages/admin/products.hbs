@@ -1,0 +1,85 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "header-block"}}
+{{> includes/header_admin}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container products__container">
+    {{#if msg}}
+    <div class="row my-3">
+        <div class="col my-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                El producto ha sido agregado correctamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    <div class="row py-5">
+        <div class="products col-md-7 mr-auto">
+            <h1 class="products__title my-3">Productos</h1>
+            <div class="products__actions mb-4">
+                <button class="btn products__action">Seleccionar todo</button>
+                <div class="dropdown sorting">
+                    <button class="btn dropdown-toggle products__action" id="sortingDropdown" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Ordenar por
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="sortingDropdown">
+                        <button class="dropdown-item sorting__option" type="button">Precio (Mayor a menor)</button>
+                        <button class="dropdown-item sorting__option" type="button">Precio (Menor a mayor)</button>
+                        <button class="dropdown-item sorting__option" type="button">Alfabetico (A-Z)</button>
+                        <button class="dropdown-item sorting__option" type="button">Alfabetico (Z-A)</button>
+                    </div>
+                </div>
+                <button class="btn products__action disabled">Volver seleccion "No disponible"</button>
+                <button class="btn products__action disabled">Eliminar Seleccion</button>
+            </div>
+            <ul class="products__list" id="productListContainer">
+                {{#each products}}
+                <li class="product__box">
+                    <img src="{{this.thumbImg}}" alt="{{this.title}}" class="product__thumb">
+                    <a href="/admin/product/edit/{{this._id}}" class="product__title">{{this.title}}</a>
+                    <p class="product__model">{{this.itemCode}}</p>
+                    <ul class="product__actions">
+                        <li class="action">
+                            <a href="/admin/product/edit/{{this._id}}">Editar</a>
+                        </li>
+                        <li class="action action--r">
+                            <a href="/admin/product/delete/{{this._id}}">Eliminar</a>
+                        </li>
+                    </ul>
+                    <label for="select-{{this.itemCode}}" class="btn btn-primary product__select">
+                        Seleccionar
+                        <input type="checkbox" class="selectProduct" id="select-{{this.itemCode}}" />
+                    </label>
+                </li>
+                {{/each}}
+            </ul>
+            <p class="nomore" id="nomoreTag">No hay mas productos para mostrar.</p>
+            <button class="btn btn-secondary btn-lg products__seemore" id="loadMore">Ver más</button>
+        </div>
+        <div class="actions col-md-4 ml-auto p-4">
+            <h3 class="actions__title mb-4">Acciones</h3>
+            <div class="actions__links">
+                <a href="/admin/add-product" class="btn btn-primary actions__link">Añadir Producto</a>
+                <a href="/admin/product/search" class="btn btn-primary actions__link">Buscar Producto</a>
+                <a href="/admin/product/edit" class="btn btn-primary actions__link">Editar Producto</a>
+                <a href="/admin/product/delete" class="btn btn-primary actions__link">Eliminar Producto</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/admproducts.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

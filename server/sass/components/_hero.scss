@@ -1,0 +1,52 @@
+.hero {
+  width: 100%;
+  // background-color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 15rem 18rem;
+  font-family: $font-primary;
+  background-image:
+    linear-gradient(rgba(50, 50, 50, .65), rgba(50, 50, 50, .65)),
+    url('../../img/Machine_1.jpg') ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  @include respond(tab) {
+    align-items: center;
+    padding-bottom: 20rem;
+  }
+
+  &__heading {
+    font-size: 6rem;
+
+    @include respond(tab) {
+      font-size: 5.48rem;
+    }
+  }
+
+  &__cta {
+    font-size: 2rem;
+    font-weight: 400;
+    background-color: darken($color-primary, 5%);
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-right: 22rem;
+
+    @include respond(tab) {
+      margin-right: 0;
+    }
+
+    &:link,
+    &:visited {
+      color: $color-w;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:active {
+      background-color: darken($color-primary, 10%);
+    }
+  }
+}

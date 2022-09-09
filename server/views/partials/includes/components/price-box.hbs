@@ -1,0 +1,43 @@
+<div id="priceBox" class="precios" data-rate-ounce="{{ratePerOunce}}" data-rate-gram="{{ratePerGram}}"
+    data-rate-kilo="{{ratePerKilo}}" data-rate-usd="{{rateUSD}}">
+    <h4 class="heading-44">
+        {{#if priceTitle}}
+        {{priceTitle}}
+        {{else}}
+        PRECIO ORO HOY
+        {{/if}}
+    </h4>
+    <div class="precios__box box">
+        <div class="box__controls">
+            <div class="box__control">
+                <p class="title">Moneda</p>
+                <select class="box__select" name="currencySelect" id="currencySelect">
+                    <option value="MXN">MXN Peso</option>
+                    <option value="USD">US Dolar</option>
+                </select>
+            </div>
+            <div class="box__control">
+                <p class="title">Unidad de Peso</p>
+                <select class="box__select" name="weightUnitSelect" id="weightUnitSelect">
+                    <option value="g">Gramo</option>
+                    <option value="oz">Onza</option>
+                    <option value="kg">Kilo</option>
+                </select>
+            </div>
+        </div>
+        <div class="box__price">
+            <div class="box__price-c">
+                COMPRA<h4 id="buyRate"></h4>
+            </div>
+            <div class="box__price-v">
+               VENTA<h4 id="sellRate"></h4>
+            </div>
+        </div>
+        <div class="box__notice">
+            <a class="txtToScroll txtToScroll--1" href="#cotizador">*Compramos tu oro en cualquier presentacion (Joyeria, pedaceria, barra, dore, etc.)* </a>
+            <a class="txtToScroll txtToScroll--2" href="#cotizador">*Compramos tu oro en cualquier presentacion (Joyeria, pedaceria, barra, dore, etc.)*</a>
+            <a class="txtToScroll txtToScroll--3" href="#cotizador">*Compramos tu oro en cualquier presentacion (Joyeria, pedaceria, barra, dore, etc.)*</a>
+            <a class="txtToScroll txtToScroll--4" href="#cotizador">*Compramos tu oro en cualquier presentacion (Joyeria, pedaceria, barra, dore, etc.)*</a>
+        </div>
+    </div>
+</div>

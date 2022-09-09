@@ -1,0 +1,55 @@
+.rmConfirm {
+  width: 100%;
+  height: 25rem;
+  display: grid;
+  grid-template-columns: [full-start] repeat(4, [col-start] 25% [col-end]) [full-end];
+  grid-template-rows: [top] repeat(2, [row-start] 50% [row-end]) [bot];
+
+  &__img {
+    max-height: 100%;
+    grid-row: top / bot;
+    grid-column: col-start 1 / col-end 1;
+  }
+
+  &__title,
+  &__model {
+    font-size: 1.8rem;
+    font-weight: 700;
+    grid-row: row-start 1 / row-end 1;
+    margin: auto;
+    margin-top: 2rem;
+  }
+
+  &__title {
+    grid-column: col-start 2 / col-end 3;
+    margin-left: 0;
+  }
+
+  &__model {
+    grid-column: col-start 4 / col-end 4;
+    margin-right: 2rem;
+  }
+
+  &__notice {
+    font-size: 1.6rem;
+    color: red;
+    padding: 0 1rem;
+  }
+
+  .btn {
+    margin: auto;
+    margin-bottom: 2rem;
+
+    &-cancel {
+      grid-row: row-start 2 / row-end 2;
+      grid-column: col-start 4 / col-end 4;
+      margin-left: 2rem;
+    }
+
+    &-confirm {
+      grid-row: row-start 2 / row-end 2;
+      grid-column: col-start 4 / col-start 4;
+      margin-right: 2rem;
+    }
+  }
+}

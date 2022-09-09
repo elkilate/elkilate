@@ -1,0 +1,38 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/helpers';
+
+@import 'base/base-admin';
+@import 'base/typo-admin';
+@import 'base/utilities';
+
+// @import "components/modal";
+@import 'components/invoice-card';
+@import 'components/nav';
+@import 'components/product';
+@import 'components/sales';
+
+@import 'layout/header-admin';
+@import 'layout/footer-admin';
+
+@import 'pages/addcurrency';
+@import 'pages/admcomments';
+@import 'pages/adminset';
+@import 'pages/admsearch';
+@import 'pages/addproduct';
+@import 'pages/addproducttype';
+@import 'pages/admodels';
+@import 'pages/invoices';
+@import 'pages/invoice';
+@import 'pages/mineralset';
+@import 'pages/producttypes';
+@import 'pages/removemodel';
+@import 'pages/rmallmodels';
+@import 'pages/salesset';
+@import 'pages/searchsale';
+@import 'pages/setprice';
+@import 'pages/shippingFees';
+@import 'pages/signinset';
+@import 'pages/saledetails';
+@import 'pages/stockset';
+@import 'pages/updproducts';

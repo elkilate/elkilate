@@ -1,0 +1,59 @@
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mt-fix {
+  @include respond(phone-l) {
+    margin-top: 0 !important;
+  }
+}
+
+.text {
+  &--g {
+    color: darken($color-primary, 10%);
+  }
+
+  &-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.select-toggler {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 50%;
+  right: 0%;
+  transform: translate(0%, -50%);
+  fill: $color-primary;
+  z-index: 1000;
+
+  @include respond(b4) {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+}
+.pos {
+  &-r {
+    position: relative;
+  }
+}
+.dropdown-arrow {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  fill: $color-primary;
+  width: 15px;
+  height: 15px;
+  transform: translateY(-50%);
+}
+
+.d-flex {
+  display: flex;
+}
+
+.hidden {
+  display: none !important;
+}

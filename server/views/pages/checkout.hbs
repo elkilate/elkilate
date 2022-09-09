@@ -1,0 +1,210 @@
+{{#> layouts/default currPage='checkout'}}
+
+{{#*inline "header-block"}}
+{{> includes/ch-header}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="checkout">
+  <h3 class="h--3 checkout__heading">Proporciona la informacion solicitada</h3>
+  <div class="checkout__notice">
+    <p class="title">Envios a todo México</p>
+    <p class="title">Envio gratis en todo Durango Capital</p>
+  </div>
+  {{!-- User Info Recolection --}}
+  <form class="form checkout__form" id="checkoutForm" novalidate>
+    <div class="form__title">Informacion general</div>
+    <div class="form__group form__group--2">
+      <label for="firstName" class="form__label">Nombre(s)</label>
+      <input type="text" name="firstName" id="firstName" class="form__control form__control--inp" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group form__group--2">
+      <label for="lastName" class="form__label">Apellidos</label>
+      <input type="text" name="lastName" id="lastName" class="form__control form__control--inp" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group">
+      <label for="phone" class="form__label">Numero telefonico</label>
+      <input type="number" name="phone" id="phone" class="form__control form__control--inp" maxlength="10" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group">
+      <label for="email" class="form__label">Correo Electronico</label>
+      <input type="email" name="email" id="email" class="form__control form__control--inp" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__title">Domicilio de entrega</div>
+    <div class="form__group form__group--2">
+      <label for="street" class="form__label">Calle</label>
+      <input type="text" name="street" id="street" class="form__control form__control--inp" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group form__group--2">
+      <label for="col" class="form__label">Colonia</label>
+      <input type="text" name="col" id="col" class="form__control form__control--inp" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group form__group--3">
+      <label for="extNumber" class="form__label">Numero Exterior</label>
+      <input type="number" name="extNumber" id="extNumber" class="form__control form__control--inp" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group form__group--3">
+      <label for="intNumber" class="form__label">Numero Interior</label>
+      <input type="text" name="intNumber" id="intNumber" class="form__control form__control--inp">
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group form__group--3">
+      <label for="postalCode" class="form__label">Codigo Postal</label>
+      <input type="number" name="postalCode" id="postalCode" class="form__control form__control--inp" pattern="[0-9]{5}" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group">
+      <label for="state" class="form__label">Estado</label>
+      <input type="text" name="state" id="state" class="form__control form__control--inp" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group">
+      <label for="city" class="form__label">Ciudad o Municipio</label>
+      <input type="text" name="city" id="city" class="form__control form__control--inp" required>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group">
+      <label for="references" class="form__label">Referencias</label>
+      <input type="text" name="references" id="references" class="form__control form__control--inp">
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    {{!-- <div class="form__group">
+      <input type="checkbox" id="saveData" name="saveData" class="form__control form__control--chk" />
+      <label for="saveData" class="form__label">Guardar datos para futuras compras</label>
+    </div> --}}
+    <div class="form__group">
+      <input type="checkbox" name="pickUp" id="pickUp" class="form__control form__control--chk" value="pickUp">
+      <label for="pickUp" class="form__label">Deseo recoger mi compra en sucursal.</label>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group">
+      <input type="checkbox" name="invoice" id="invoice" class="form__control form__control--chk">
+      <label for="invoice" class="form__label">Requiero facturar.</label>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__subform hidden" id="invoice-form">
+      <div class="form__title">Datos de Faturación</div>
+      <div class="form__group">
+        <label for="business_name" class="form__label">Nombre o Razón social</label>
+        <input type="text" name="business_name" id="business_name" class="form__control form__control--inp">
+      <span class="form__isvalid">&nbsp;</span>
+      </div>
+      <div class="form__group">
+        <label for="rfc" class="form__label">RFC:</label>
+        <input type="text" name="rfc" id="rfc" class="form__control form__control--inp">
+      <span class="form__isvalid">&nbsp;</span>
+      </div>
+      <div class="form__group">
+        <label for="invoicing_address" class="form__label">Dirección:</label>
+        <input type="text" name="invoicing_address" id="invoicing_address" class="form__control form__control--inp">
+      <span class="form__isvalid">&nbsp;</span>
+      </div>
+      <div class="form__group">
+        <label for="invoicing_email" class="form__label">Correo Electrónico:</label>
+        <input type="text" name="invoicing_email" id="invoicing_email" class="form__control form__control--inp">
+      <span class="form__isvalid">&nbsp;</span>
+      </div>
+      <div class="form__group">
+        <label for="invoicing_phone" class="form__label">Número Telefónico:</label>
+        <input type="text" name="invoicing_phone" id="invoicing_phone" class="form__control form__control--inp">
+      <span class="form__isvalid">&nbsp;</span>
+      </div>
+      <div class="form__group">
+        <label for="cfdi" class="form__label">Uso de CFDI:</label>
+        <select name="cfdi" id="cfdi" class="form__control form__control--sel">
+          <option value>-- Seleccionar CFDI --</option>
+          <option value="g01">G01 - Adquisición de mercancias</option>
+          <option value="g02">G02 - Devoluciones, descuentos o bonificaciones</option>
+          <option value="g03">G03 - Gastos en general</option>
+          <option value="i01">I01 - Construcción</option>
+          <option value="i02">I02 - Mobiliario y equipo de oficina por inversiones</option>
+          <option value="i03">I03 - Equipo de transporte</option>
+          <option value="i04">I04 - Equipo de computo y accesorios</option>
+          <option value="i05">I05 - Dados, troqueles, moldes, matrices y herramental</option>
+          <option value="i06">I06 - Comunicaciones telefónicas</option>
+          <option value="i07">I07 - Comunicaciones satelitales</option>
+          <option value="i08">I08 - Otra maquinaria y equipo</option>
+          <option value="d01">D01 - Honorarios médicos, dentales y gastos hospitalarios</option>
+          <option value="d02">D02 - Gastos médicos por incapacidad o discapacidad</option>
+          <option value="d03">D03 - Gastos funerales</option>
+          <option value="d04">D04 - Donativos</option>
+          <option value="d05">D05 - Intereses por créditos hipotecarios</option>
+          <option value="d06">D06 - Aportaciones voluntarias SAR</option>
+          <option value="d07">D07 - Primas por seguros de gastos médicos</option>
+          <option value="d08">D08 - Gastos de transportación escolar obligatoria</option>
+          <option value="d09">D09 - Depósitos en cuentas para el ahorro, primas con base</option>
+          <option value="d10">D10 - Pagos por servicios educativos (colegiaturas)</option>
+          <option value="p01">P01 - Por definir</option>
+        </select>
+      <span class="form__isvalid">&nbsp;</span>
+      </div>
+    </div>
+    <div class="form__group">
+      <input type="checkbox" id="acceptAgreement" name="acceptAgreement"
+        class="form__control form__control--chk agreeCheck" value="agreed" required/>
+      <label for="acceptAgreement" class="form__label">He leido y acepto los <a href="/terminos">terminos y condiciones</a>.</label>
+      <span class="form__isvalid">&nbsp;</span>
+    </div>
+    <div class="form__group d-flex">
+      <button class="form__btn" id="submitForm">Forma de pago</button>
+    </div>
+  </form>
+  {{!-- Payment --}}
+  <select name="payMethod" id="payMethod" class="method__select hidden">
+    <option value="null">-- Selecciona tu metodo de pago --</option>
+    <option value="paypal">Paypal</option>
+    <option value="card">Tarjeta de Credito/Debito</option>
+  </select>
+  {{!-- Stripe Payment Form --}}
+  <form id="payment-form" class="method method__card">
+    <div id="card-element">
+      <!--Stripe.js injects the Card Element-->
+    </div>
+    <button id="submit" class="stripePay">
+      <div class="spinner hidden" id="spinner"></div>
+      <span id="button-text">Pagar</span>
+    </button>
+    <p id="card-error" role="alert"></p>
+  </form>
+  {{!-- Paypal Payment Button --}}
+  <form action="/api/payment-intents/paypal" method="POST" id="paypalMethod" class="method method__paypal">
+    <input type="hidden" name="saleId" id="saleId">
+    <button class="method__button" id="paypalPay" type="submit">Pagar Con PAYPAL</button>
+  </form>
+  {{> includes/components/ch-summary}}
+</div>
+<div class="checkout__popup" id="confirmation-popup">
+  <div class="popup">
+    <svg class="popup__icon">
+      <use href="/img/SVG/check-circle-solid.svg#check"></use>
+    </svg>
+    <p class="popup__heading">
+      ¡Compra exitosa!
+    </p>
+    <p class="popup__text">Tu compra por <span id="total">$</span> fue completada.</p>
+    <p class="popup__text">¡Agradecemos tu preferencia!</p>
+    <p class="popup__small">Si no has sido redirigido automaticamente <a href class="popup__link">haz click en este link</a>.</p>
+  </div>
+</div>
+{{!-- {{> includes/components/ctc-button link='https://api.whatsapp.com/send?phone=526183188452' iconId='i-whatsapp'}} --}}
+{{/inline}}
+
+{{#*inline "footer-block"}}
+<div class="ch-footer">
+
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="https://js.stripe.com/v3/" defer></script>
+<script src="/js/checkout.js" type="module" defer></script>
+{{/inline}}
+
+{{/layouts/default}}

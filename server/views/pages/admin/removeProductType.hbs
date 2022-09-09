@@ -1,0 +1,51 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container apdt">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-2 py-5">Editar Nuevo Tipo de Prenda.</h1>
+    </div>
+  </div>
+
+  {{#if err}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <span>{{err}}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+  {{/if}}
+
+  {{#with type}}
+  <div class="row">
+    <div class="col-6 m-auto">
+      <form action="/admin/product/type/remove/{{_id}}?_method=DELETE" method="POST" class="apdtForm">
+        <div class="row mb-3">
+          <div class="col">
+            <p class="apdtForm__notice">¿Esta seguro de que desea eliminar este tipo de prenda?</p>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-auto m-auto">
+            <p class="apdtForm__detail"><span class="title">Nombre:</span> {{name}}</p>
+          </div>
+          <div class="col-auto m-auto">
+            <p class="apdtForm__detail"><span class="title">Codigo:</span> {{code}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-auto apdtForm__submit">
+            <button type="submit" class="btn btn-danger btn-lg">Eliminar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {{/with}}
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

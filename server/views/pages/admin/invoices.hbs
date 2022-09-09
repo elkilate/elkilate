@@ -1,0 +1,168 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container invs mb-5 full-height">
+  {{#each errors}}
+  <div class="alert alert-danger alert-dismissible fade show my-4" role="alert">
+    {{this}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/each}}
+  {{#if success}}
+  <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+    {{success}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col my-3">
+      <h1 class="display-3 py-4 ps-3">Facturas</h1>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-sm-6">
+      <div class="card" id="pending-invoices">
+        <div class="card-header h3">Facturas pendientes ({{pendingInvoicings.length}})</div>
+        <div class="card-body">
+          {{#unless pendingInvoicings}}
+          <p class="text-center align-middle fs-1 mt-2">No hay facturas pendientes</p>
+          {{/unless}}
+          {{#each pendingInvoicings}}
+          <div class="card invoice-card{{#unless @last}} mb-3{{/unless}}" data-id="{{this._id}}">
+            <div class="card-body container">
+              <div class="row mb-2">
+                <div class="col-8 d-flex">
+                  <h5 class="card-title fs-4 my-auto">
+                    <a href="/admin/invoice/{{this._id}}" class="text-decoration-none">{{this.invoice.business_name}}</a>
+                  </h5>
+                </div>
+                <div class="col-4">
+                  <p class="card-text text-end fs-4 fw-bold">${{priceToString this.payment.total}}</p>
+                </div>
+              </div>
+              <div class="row mb-2 text-center">
+                <div class="col-6">
+                  <p class="card-text fs-5">{{this.customer.name}} {{this.customer.lastname}}</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text fs-5 text-uppercase"><strong>RFC:</strong> {{this.invoice.RFC}}</p>
+                </div>
+              </div>
+              <div class="row text-center">
+                <div class="col-4">
+                  <p class="card-text fs-5 text-uppercase"><strong>CFDI:</strong> {{this.invoice.CFDI}}</p>
+                </div>
+                <div class="col-4">
+                  <p class="card-text fs-5"><strong>EMAIL:</strong> {{this.invoice.email}}</p>
+                </div>
+                <div class="col-4">
+                  <p class="card-text fs-5"><strong>Telefóno:</strong> {{this.invoice.phone}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" id="pending-invoices">
+        <div class="card-header h3">Facturas entregadas ({{deliveredInvoicings.length}})</div>
+        <div class="card-body">
+          {{#unless deliveredInvoicings}}
+          <p class="text-center align-middle fs-1 mt-2">No hay facturas entregadas</p>
+          {{/unless}}
+          {{#each deliveredInvoicings}}
+          <div class="card invoice-card{{#unless @last}} mb-3{{/unless}}" data-id="{{this._id}}">
+            <div class="card-body container">
+              <div class="row mb-2">
+                <div class="col-8 d-flex">
+                  <h5 class="card-title fs-4 my-auto">{{this.invoice.business_name}}</h5>
+                </div>
+                <div class="col-4">
+                  <p class="card-text text-end fs-4 fw-bold">${{priceToString this.payment.total}}</p>
+                </div>
+              </div>
+              <div class="row mb-2 text-center">
+                <div class="col-6">
+                  <p class="card-text fs-5">{{this.customer.name}} {{this.customer.lastname}}</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text fs-5 text-uppercase"><strong>RFC:</strong> {{this.invoice.RFC}}</p>
+                </div>
+              </div>
+              <div class="row text-center">
+                <div class="col-4">
+                  <p class="card-text fs-5 text-uppercase"><strong>CFDI:</strong> {{this.invoice.CFDI}}</p>
+                </div>
+                <div class="col-4">
+                  <p class="card-text fs-5"><strong>EMAIL:</strong> {{this.invoice.email}}</p>
+                </div>
+                <div class="col-4">
+                  <p class="card-text fs-5"><strong>Telefóno:</strong> {{this.invoice.phone}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <div class="card" id="pending-invoices">
+        <div class="card-header h3">Todas las facturas ({{allInvoicings.length}})</div>
+        <div class="card-body">
+          {{#unless allInvoicings}}
+          <p class="text-center align-middle fs-1 mt-2">No hay facturas pendientes</p>
+          {{/unless}}
+          {{#each allInvoicings}}
+          <div class="card invoice-card{{#unless @last}} mb-3{{/unless}}" data-id="{{this._id}}">
+            <div class="card-body container">
+              <div class="row mb-2">
+                <div class="col-8 d-flex">
+                  <h5 class="card-title fs-4 my-auto">{{this.invoice.business_name}}</h5>
+                </div>
+                <div class="col-4">
+                  <p class="card-text text-end fs-4 fw-bold">${{priceToString this.payment.total}}</p>
+                </div>
+              </div>
+              <div class="row mb-2 text-center">
+                <div class="col-6">
+                  <p class="card-text fs-5">{{this.customer.name}} {{this.customer.lastname}}</p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text fs-5 text-uppercase"><strong>RFC:</strong> {{this.invoice.RFC}}</p>
+                </div>
+              </div>
+              <div class="row text-center">
+                <div class="col-4">
+                  <p class="card-text fs-5 text-uppercase"><strong>CFDI:</strong> {{this.invoice.CFDI}}</p>
+                </div>
+                <div class="col-4">
+                  <p class="card-text fs-5"><strong>EMAIL:</strong> {{this.invoice.email}}</p>
+                </div>
+                <div class="col-4">
+                  <p class="card-text fs-5"><strong>Telefóno:</strong> {{this.invoice.phone}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/invoices.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

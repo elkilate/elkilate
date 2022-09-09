@@ -1,0 +1,144 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container mn py-3">
+  {{#if successMsg}}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <span>{{successMsg}}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  <div class="row my-5">
+    <div class="col-9">
+      <h1 class="display-2">Minerales</h1>
+    </div>
+    <div class="col-3 d-flex">
+      <form action="/admin/minerals/update-rates" method="post" class="m-auto d-flex">
+        <button class="btn btn-lg btn-primary m-auto" id="updateRatesBtn" type="submit">Actualizar precios
+          ahora</button>
+      </form>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-6">
+      {{#with gold}}
+      <div class="mnMineral">
+        <p class="mnMineral__heading">{{this.title}} ({{this.currencyCode}})</p>
+        <div class="mnMineral__rate">
+          <div class="title">Precio por gramo:</div>
+          <div class="value">${{priceToString this.rateGram}}</div>
+        </div>
+        <div class="mnMineral__rate">
+          <div class="title">Precio por onza:</div>
+          <div class="value">${{priceToString this.rateOunce}}</div>
+        </div>
+        <div class="mnMineral__updated">
+          <div class="title">Actualizado:</div>
+          {{this.lastUpdated}}
+        </div>
+      </div>
+      {{/with}}
+    </div>
+    <div class="col-md-6">
+      {{#with silver}}
+      <div class="mnMineral">
+        <p class="mnMineral__heading">{{this.title}} ({{this.currencyCode}})</p>
+        <div class="mnMineral__rate">
+          <div class="title">Precio por gramo:</div>
+          <div class="value">${{priceToString this.rateGram}}</div>
+        </div>
+        <div class="mnMineral__rate">
+          <div class="title">Precio por onza:</div>
+          <div class="value">${{priceToString this.rateOunce}}</div>
+        </div>
+        <div class="mnMineral__updated">
+          <div class="title">Actualizado:</div>
+          {{this.lastUpdated}}
+        </div>
+      </div>
+      {{/with}}
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-9">
+      <h5 class="display-5">Monedas</h5>
+    </div>
+    <div class="col-3 mt-3 d-flex">
+      <a href="/admin/currency/add" class="btn btn-lg btn-primary m-auto">Añadir moneda</a>
+    </div>
+  </div>
+  {{#if currencies}}
+  <div class="row">
+    {{#each currencies}}
+    <div class="col-md-4 mb-4">
+      <div class="mnCurrency container">
+        <div class="row">
+          <div class="col-auto m-auto mb-0">
+            <div class="mnCurrency__heading">{{this.name}}</div>
+          </div>
+          <div class="col-auto m-auto mt-0">
+            <p class="mnCurrency__updated">Actualizado: {{this.lastUpdated}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 d-flex">
+            <div class="mnCurrency__rate m-auto">
+              <div class="title">Compra:</div>
+              <div class="value">${{priceToString this.buyRate}}</div>
+            </div>
+          </div>
+          <div class="col-6 d-flex">
+            <div class="mnCurrency__rate m-auto">
+              <div class="title">Venta:</div>
+              <div class="value">${{priceToString this.sellRate}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex">
+            <form action="/admin/currency/remove/{{this._id}}?_method=delete" method="POST" class="m-auto">
+              <button class="btn btn-danger mnCurrency__update-btn" type="submit">
+                Eliminar Moneda
+              </button>
+            </form>
+          </div>
+          <div class="col d-flex">
+            <button class="btn btn-secondary mnCurrency__update-btn" type="button" data-bs-toggle="collapse"
+              data-bs-target="#updateForm_{{this._id}}" aria-expanded="false" aria-controls="updateForm_{{this._id}}">
+              Actualizar Precios
+            </button>
+          </div>
+        </div>
+        <form action="/admin/currency/update/{{this._id}}?_method=patch" method="POST"
+          class="row mnCurrency__form collapse" id="updateForm_{{this._id}}">
+          <div class="row gx-2 gy-1 align-items-center">
+            <div class="col-auto">
+              <label for="buyRate" class="visually-hidden">Precio de Compra</label>
+              <input type="text" name="buyRate" id="buyRate" class="form-control" placeholder="Precio compra">
+            </div>
+            <div class="col-auto">
+              <label for="sellRate" class="visually-hidden">Precio de Venta</label>
+              <input type="text" name="sellRate" id="sellRate" class="form-control" placeholder="Precio venta">
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-primary" type="submit">Actualizar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/minerals.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

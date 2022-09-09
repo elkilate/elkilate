@@ -1,0 +1,28 @@
+.updProducts {
+  min-height: calc(100vh - 4rem);
+
+  &__notice {
+    font-size: 1.6rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__loadmore {
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+
+  .product {
+
+    &__list {
+      margin: 0 auto;
+    }
+
+    &__bigBox {
+      margin: 0 auto;
+    }
+  }
+}

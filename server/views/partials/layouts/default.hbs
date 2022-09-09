@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="El Kilate">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/reset.css">
+    <link rel="shortcut icon" type="image/png" href="/img/icon/favicon.ico">
+    {{#> head-block}}
+    {{!-- Custom head content per page --}}
+    <link type="text/css" rel="stylesheet" href="/css/style.css" title="mainSS" defer>
+    {{/head-block}}
+
+    <title>
+        {{#if title}}
+        {{title}}
+        {{else}}
+        EL KILATE | EL VERDADERO VALOR DEL ORO
+        {{/if}}
+    </title>
+</head>
+
+<body {{#if hasBodyClass}} class="body" {{/if}} data-page="{{currPage}}">
+    {{#> header-block}}
+    {{!-- Custom header per page --}}
+    {{/header-block}}
+
+    {{#> content-block}}
+    {{!-- Custom content per page  --}}
+    {{/content-block}}
+
+    <div class="modal__wrapper modal__wrapper--m" id="modalWrapper"></div>
+    {{#if cookieAccepted}}
+        {{> includes/components/notice content='Esta pagina utiliza cookies. Al continuar navegando aceptas...'}}
+    {{/if}}
+
+    {{#> footer-block}}
+    {{!-- 
+            includes/footer partial is the default content, 
+            but it can be overriden.
+        --}}
+    {{> includes/footer}}
+    {{/footer-block}}
+
+    {{#> ctc-block}}
+    {{!-- {{> includes/components/ctc-button link='https://api.whatsapp.com/send?phone=526183188452&text=Hola!' iconId='i-whatsapp'}} --}}
+    {{/ctc-block}}
+
+    <script defer>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        let device = getCookie('device');
+        if (device == null || device == undefined) {
+            device = uuidv4();
+        }
+        document.cookie = `device=${device};domain=;path=/;SameSite=lax;Expires=${new Date(2025, 11, 31).toUTCString()}`;
+    </script>
+
+    {{#> scripts-block}}
+    {{!-- Custom scripts per page --}}
+    {{> includes/scripts/base}}
+    {{/scripts-block}}
+
+</body>
+
+</html> 

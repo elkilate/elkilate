@@ -1,0 +1,71 @@
+.ctc {
+  --icon-dims: 45px;
+  --btn-padd: 14px;
+  --btn-b: 15px;
+  --btn-r: 35px;
+  --tooltip-r: 120px;
+  --tooltip-b: calc(var(--btn-b) + calc(calc(var(--icon-dims)/2) + calc(var(--btn-padd)/2)));
+
+  @include respond(lap) {
+    --icon-dims: 35px;
+    --btn-padd: 10px;
+    --btn-b: 28px;
+    --btn-r: 32.5px;
+  }
+
+  @include respond(b3) {
+    --btn-r: 45px;
+  }
+
+  @include respond(phone-l) {
+    --btn-r: 25px;
+    --btn-b: 5px;
+  }
+
+  @include respond(phone-m) {
+    --btn-r: 18px;
+  }
+
+  @include respond(phone-s) {
+    --icon-dims: 30px;
+    --btn-r: 16px;
+  }
+
+  &-btn {
+    position: fixed;
+    bottom: var(--btn-b); right: var(--btn-r);
+    z-index: 7000;
+    background-color: #24c55f;
+    border-radius: 50%;
+    display: flex;
+    padding: var(--btn-padd);
+    @include shadow-standard;
+    
+    &:hover {
+      background-color:  #25d366;
+
+      & ~ .ctc-tooltip {
+        visibility: visible;
+      }
+    }
+  }
+
+  &-icon {
+    width: var(--icon-dims);
+    height: var(--icon-dims);
+    margin: auto;
+  }
+
+  &-tooltip {
+    position: fixed;
+    z-index: 7000;
+    bottom: calc(var(--tooltip-b) - 1px); right: var(--tooltip-r);
+    background-color: #333;
+    color: #fff;
+    border-radius: 6px;
+    padding: 1px 1rem;
+    visibility: hidden;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+}

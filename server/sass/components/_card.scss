@@ -1,0 +1,211 @@
+// .card {
+//   width: 100%;
+//   // height: 50vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-evenly;
+//   padding: 12rem 0;
+//   position: relative;
+
+//   @include respond(b1) {
+//     padding: 10rem 0;
+//   }
+//   @include respond(tab) {
+//     padding-top: 14rem;
+//     padding-bottom: 12rem;
+//   }
+
+//   &:nth-of-type(odd) {
+//     background-color: $color-primary;
+//   }
+
+//   &:nth-of-type(even) {
+//     background-color: #313131;
+//   }
+
+//   &__img {
+//     width: 23rem;
+//     height: 23rem;
+//     border-radius: 50%;
+
+//     @include respond(b1) {
+//       width: 20rem;
+//       height: 20rem;
+//     }
+
+//     @include respond(tab-land) {
+//       width: 19rem;
+//       height: 19rem;
+//     }
+
+//     @include respond(tab) {
+//       position: absolute;
+//       top: -9rem;
+//       box-shadow: 0 0 0px .5rem #313131;
+
+//       &--e {
+//         box-shadow: 0 0 0px .5rem $color-primary;
+//       }
+//     }
+//   }
+
+//   &__p {
+//     display: block;
+//     width: 45%;
+//     font-size: 1.7rem;
+//     line-height: 150%;
+//     word-spacing: 8px;
+//     text-align: justify;
+
+//     @include respond(b1) {
+//       font-size: 1.5rem;
+//     }
+//     @include respond(tab) {
+//       width: 70%;
+//     }
+//   }
+
+//   &--sin {
+//     color: #313131;
+//     font-weight: 400;
+//   }
+
+//   &--hc {
+//     flex-direction: column;
+//     padding: 20rem 0 10rem;
+
+//     @include respond(b1) {
+//       padding: 14rem 0 12rem;
+//     }
+
+//     @include respond(tab-land) {
+//       padding-top: 15rem;
+//       padding-bottom: 8rem;
+//     }
+
+//     .card__img {
+//       position: absolute;
+//       top: -9rem;
+//       box-shadow: 0 0 0px 2rem #313131;
+
+//       @include respond(b1) {
+//         box-shadow: 0 0 0 1rem #313131;
+//         margin-top: 0;
+//       }
+
+//       @include respond(tab-land) {
+//         top: -8rem;
+//       }
+
+//       @include respond(tab) {
+//         box-shadow: 0 0 0 .5rem #313131;
+//       }
+//     }
+//   }
+// }
+
+.row {
+  margin: 0 auto;
+  display: flex;
+  // max-width: 98%;
+  justify-content: space-around;
+  align-items: center;
+  padding: 3rem 0;
+  flex-wrap: wrap;
+
+  & .col-1-of-3 {
+    flex: 0 1 calc(33% - 1rem);
+    text-align: center;
+    // background-color: red;
+
+    @include respond(tab) {
+      flex: 0 1 calc(50% - 1rem);
+    }
+
+    @include respond(phone-m) {
+      flex: 0 1 calc(100% - 1rem);
+    }
+  }
+}
+
+.cards {
+  background-color: $color-primary;
+  transition: all 0.4s;
+  padding-bottom: 3rem;
+
+  & h3 {
+    font-size: 5rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  & .card {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    height: 40rem;
+    width: 40rem;
+    border: solid 1.5rem #313131;
+    border-radius: 100rem;
+    padding: 2rem 4rem;
+    cursor: pointer;
+    position: relative;
+    box-shadow: $shadow;
+
+    transition: all 0.4s;
+
+    @include respond(tab) {
+      margin-bottom: 3rem;
+    }
+
+    &__content {
+      opacity: 0;
+    }
+
+    &:hover > .card__content,
+    &:active > .card__content {
+      opacity: 1 !important;
+    }
+  }
+}
+
+.card-1 {
+  background-image: url('../img/Mine_1.jfif');
+  background-position: center top;
+  background-size: cover;
+
+  &:hover,
+  &:active {
+    background-image: linear-gradient(rgba(black, 0.4), rgba(black, 0.4)),
+      url('../img/Mine_1.jfif');
+    transform: scale(1.1) translateY(5%);
+  }
+}
+
+.card-2 {
+  background-image: url('../img/Mine_1.jpg');
+  background-position: center top;
+  background-size: cover;
+
+  &:hover,
+  &:active {
+    background-image: linear-gradient(rgba(black, 0.4), rgba(black, 0.4)),
+      url('../img/Mine_1.jpg');
+    transform: scale(1.1) translateY(5%);
+  }
+}
+
+.card-3 {
+  background-image: url('../img/Mine_2.jfif');
+  background-position: center top;
+  background-size: cover;
+
+  &:hover,
+  &:active {
+    background-image: linear-gradient(rgba(black, 0.4), rgba(black, 0.4)),
+      url('../img/Mine_2.jfif');
+    transform: scale(1.1) translateY(5%);
+  }
+}

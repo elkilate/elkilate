@@ -1,0 +1,30 @@
+.apdt {
+  min-height: calc(100vh - 4rem);
+
+  &Form {
+
+    label {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    &__submit {
+      margin: auto;
+      margin-right: 0;
+    }
+
+    &__notice {
+      font-size: 2rem;
+      color: red;
+    }
+
+    &__detail {
+      font-size: 2rem;
+
+      .title {
+        font-weight: 600;
+        margin-right: 2rem;
+      }
+    }
+  }
+}

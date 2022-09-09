@@ -1,0 +1,71 @@
+/* TESTING 1*/
+.section-slider {
+  grid-row: 2;
+  grid-column: full-start / full-end;
+}
+.section-featured {
+  grid-row: 4;
+  grid-column: center-start / center-end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
+  grid-gap: 7rem;
+  margin-bottom: 15rem;
+}
+.section-testimonials {
+  grid-row: 5;
+  grid-column: full-start / full-end;
+  background-image: linear-gradient($color-b, rgba($color-b, 0.42)),
+    url(../../img/testimonial1.png);
+  height: 50rem;
+  background-size: cover;
+  background-attachment: fixed;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(30rem, 1fr));
+  column-gap: 2rem;
+  justify-content: center;
+  position: relative;
+
+  @include respond(b2-66) {
+    column-gap: 0;
+  }
+  @include respond(b4) {
+    grid-template-columns: repeat(3, minmax(8rem, 1fr));
+  }
+  @include respond(b7) {
+    grid-template-columns: repeat(3, minmax(10rem, 1fr));
+    grid-template-rows: 11.72rem;
+  }
+}
+.footer {
+  grid-row: 6;
+  grid-column: full-start / full-end;
+  background-color: $color-secondary-d;
+}
+.section-gallery {
+  grid-column: center-start / center-end;
+  color: $color-b;
+
+  @include respond(tab) {
+    grid-column: full-start / full-end;
+  }
+}
+.container {
+  display: grid;
+  grid-column: full-start / full-end;
+  grid-template-rows: 50vh;
+  grid-template-columns:
+    [full-start] minmax(8rem, 1fr)
+    [center-start] repeat(8, [col-start] minmax(min-content, 16rem) [col-end])
+    [center-end]
+    minmax(6rem, 1fr) [full-end];
+}
+.section-details {
+  display: grid;
+  grid-column: center-start / center-end;
+  grid-template-columns: repeat(2, minmax(50%, 1fr));
+  margin: 4rem 0;
+
+  @include respond(tab) {
+    grid-column: full-start / full-end;
+  }
+}

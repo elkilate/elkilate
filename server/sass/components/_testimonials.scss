@@ -1,0 +1,153 @@
+.testimonial{
+    &__header{
+        grid-column: 1 / -1;                
+        margin-top: 2rem;
+        // background-position: right center;
+
+        @include respond(b7){
+            grid-row: 1;
+        }
+
+        h4{
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            display: block;
+            text-align: center; 
+            letter-spacing: 1rem;
+                       
+            &::after{                
+                content: "";
+                display: block;
+                width: 50%;                
+                height: 2px;
+                background-color: $color-primary-l;
+                margin: 0 auto;
+                margin-top: 1rem; 
+            }
+
+            @include respond(b1){
+                font-size: 2.2rem;
+            }
+            @include respond(b2-66){
+                font-size: 2rem;
+            }
+            @include respond(b4) {
+                font-size: 2.6rem;
+            }
+            @include respond(b7) {
+                padding: 0 2rem;
+                font-size: 2rem;
+            }
+            @include respond(b7-7){
+                font-size: 1.8rem;
+            }
+        }
+    }
+    &__group{
+        padding: 2rem;
+        @include respond(phone-l){
+            display: none;
+            grid-column: 1 / -1;
+            width: 80%;
+            justify-self: center;
+            align-self: center;
+        }
+
+        &.active{
+            display: block;
+        }
+    }
+    &__img{
+        vertical-align: middle;
+        height: 8rem;
+        border-radius: 50%;
+        margin-right: 1rem;
+
+        @include respond(b1){
+            height: 6rem;
+        }
+        @include respond(b3){
+            height: 6rem;
+        }
+        
+    }
+    &__cite{
+        font-size: 2rem;
+        margin-top: 2.5rem;
+        display: block;
+        color: $color-primary;
+        cursor: pointer;
+
+        @include respond(b1){
+            font-size: 1.4rem;
+        }
+        @include respond(b3){
+            font-size: 1.6rem;
+        }
+
+    }
+    &__bq{
+        padding: 3%;
+        font-style: italic;
+        line-height: 135%;
+        position: relative;
+        margin-top: 4rem;
+        font-size: 2.5rem;
+        &::before{
+            content: "\201C";
+            font-size: 500%;
+            display: block;
+            position: absolute;
+            top:-5px;
+            left:-3px;
+            color: $color-primary;
+
+            @include respond(b2){
+                font-size: 400%;
+            }
+            @include respond(b3){
+                font-size: 400%;
+            }
+            @include respond(b4){
+                font-size: 300%;
+            }
+        }
+
+        @include respond(b1){
+            font-size: 2rem;
+        }
+        @include respond(b3){
+            font-size: 2rem;
+        }
+        @include respond(b4) {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__controls {
+        position: absolute;
+        width: 100%;
+        bottom: 25%;
+
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+
+        @include respond(phone-l) {
+            display: flex;
+        }
+    }
+
+    &__svg {
+        width: 5rem;
+        height: 5rem;
+        fill: #fff;
+        transform: none;
+        transition: transform .3s ease-in;
+        
+        &:hover {
+            cursor: pointer !important;
+            transform: scale(1.1);
+        }
+    }
+}

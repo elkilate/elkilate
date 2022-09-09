@@ -1,0 +1,58 @@
+{{#> layouts/default hasBodyClass=true currPage="store"}}
+
+{{#*inline "header-block"}}
+{{> includes/header isStore=true}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="stSelector{{#unless typePicked}} show{{/unless}}">
+    <a href="/" class="stSelector__heading">
+        <img src="/img/icon/fLogo_tr.svg" alt="Logo El Kilate" class="stSelector__img">
+        <div class="stSelector__title"><p class="deco-g">El</p> <p class="deco-g">Kilate</p></div>
+    </a>
+    <div class="stSelector__choice stSelector__choice--l" data-ctg="gold">
+        <img src="/img/gold_256.png" alt="Joyeria de Oro"> {{!-- store_choice_gold.jpg --}}
+        <p>Joyeria de Oro</p>
+    </div>
+    <div class="stSelector__choice stSelector__choice--r" data-ctg="silver">
+        <img src="/img/silver_256.png" alt="Joyeria de Plata"> {{!-- store_choice_gold.jpg --}}
+        <p>Joyeria de Plata</p>
+    </div>
+</div>
+<div class="banner stBanner" id="top">
+    <div class="banner__title">El verdadero valor del oro.</div>
+</div>
+<div class="stType">
+    <div class="stType__option stType__option--g{{#if typeIsGold}} selected{{/if}}" data-ctg="gold">
+        <div class="stType__value stType__value--desk">Joyeria de oro</div>
+        <div class="stType__value stType__value--mob">Oro</div>
+    </div>
+    <div class="stType__option stType__option--s{{#if typeIsSilver}} selected{{/if}}" data-ctg="silver">
+        <div class="stType__value stType__value--desk">Joyeria de plata</div>
+        <div class="stType__value stType__value--mob">Plata</div>
+    </div>
+</div>
+<div class="stFilter" data-karat-filter-container>
+    <div class="stFilter__option" data-karat-opt="10K">10K</div>
+    <div class="stFilter__option" data-karat-opt="14K">14K</div>
+    <div class="stFilter__option" data-karat-opt="18K">18K</div>
+</div>
+{{!-- {{> includes/components/filters}} --}}
+<section class="section-gallery gallery">
+    <ul class="gallery__list" id="p_wrapper" data-gold="{{goldRates}}" data-silver="{{silverRate}}"><!-- Content retrived through JS --></ul>
+    <p class="nomore">No hay mas productos para mostrar</p>
+</section>
+<div class="return-btn">
+    <span class="icon"></span>
+</div>
+{{/inline}}
+
+{{#*inline "ctc-block"}}
+{{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=526182814235" iconId='i-whatsapp'}}
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/store.js" type="module" defer></script>
+{{/inline}}
+
+{{/layouts/default}}

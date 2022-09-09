@@ -1,0 +1,97 @@
+.shpFee {
+  #feeListCard,
+  #createFeeCard {
+    overflow: hidden;
+
+    .card-header {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .card-body {
+      max-height: 100%;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #333;
+        border: 1px solid #eee;
+        border-radius: 1rem;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #eee;
+        padding: 0.3rem 0.8rem;
+      }
+    }
+  }
+
+  #feeListCard {
+    height: 60vh;
+  }
+
+  #error-display {
+    display: flex;
+    font-size: 1rem;
+    font-weight: 600;
+    color: orangered;
+    height: 2ch;
+    padding: 2ch 0;
+  }
+
+  .form {
+    &-label {
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+
+    &-control {
+      font-size: 1.4rem;
+    }
+  }
+
+  .btn {
+    font-size: 1.4rem;
+  }
+
+  .fee-list {
+    position: relative;
+
+    &__heading {
+      background: #fff;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+    }
+
+    &__title {
+      font-weight: 600;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    &__fee {
+      height: 4rem;
+      border-radius: 7px;
+      background-color: #eee;
+      align-items: center;
+      margin: 1.2rem 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__value {
+      font-size: 1.4rem;
+      text-align: center;
+    }
+  }
+}

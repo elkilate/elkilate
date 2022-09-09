@@ -1,0 +1,48 @@
+*, *::after, *::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  height: 100%;
+  // max-width: 100vw;
+  // overflow-x: hidden;
+
+  @include respond(tab-land){
+      font-size: 56.25%;
+  }
+  @include respond(tab){
+      font-size: 52.1%;
+  }
+  @include respond(phone-l){
+      font-size: 50%;
+  }
+  @include respond(phone-m){
+      font-size: 45%;
+  }
+  @include respond(phone-s){
+      font-size: 40%;
+  }
+  @include respond(big-desk){
+      font-size: 75%;
+  }
+}
+
+body{
+    background-color: #ddd;
+    font-family: $font-primary;
+    color: #333;
+    font-weight: 300;
+    line-height: 1.6;
+    width: 100%;
+    height: 100%;
+
+    .alert {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+}

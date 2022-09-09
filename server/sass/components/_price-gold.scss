@@ -1,0 +1,213 @@
+.precios {
+    grid-column: center-start / center-end;
+    padding: 2rem 0;
+
+    @include respond(tab) {
+        grid-column: full-start / full-end;
+    }
+    @include respond(b6){
+        padding: 0;
+    }
+    
+
+    &__box {
+        display: grid;
+        grid-template-columns: 25% 75%;
+
+        @include respond(b4) {
+            grid-template-columns: 35% 65%;
+        }
+        @include respond(b6) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    & > .heading-44 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-align: center;
+        background-color: $color-primary;
+        color: #f00;
+        padding: 0.5rem 1rem;
+        width: 25%;
+        text-transform: uppercase;
+
+        @include respond(lap) {
+            width: 33%;
+        }
+        @include respond(b3){
+            margin: 0;   
+        }
+        @include respond(tab-land) {
+            font-size: 1.8rem;
+        }
+        @include respond(tab) {
+            font-size: 1.6rem;
+        }
+        @include respond(b5) {
+            font-size: 1.4rem;
+        }
+        @include respond(b6) {
+            width: 100%;
+            font-size: 2rem;
+        }
+    }
+
+    .box {
+        &__controls,
+        &__price {
+            background-color: #333;
+            padding: 1.4rem 0;
+        }
+        &__controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__control {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            p.title {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            &:not(:last-of-type) {
+                margin-right: 5rem;
+            }
+        }
+        &__select {
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 0;
+            background-color: transparent;
+            border: 1px solid $color-primary;
+            border-bottom: 2px solid $color-primary-d;
+            color: $color-primary;
+            padding: 10px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            @include respond(b3) {
+                padding: 5px;
+            }
+            @include respond(phone-l) {
+                font-size: 1.2rem;
+            }
+            &:hover,
+            &:focus {
+                color: #c0392b;
+                background-color: $color-w;
+                border-bottom-color: #dcdcdc;
+            }
+        }
+        &__price {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            grid-column: 2 / 3;
+            &-c,
+            &-v {
+                h4 {
+                    font-size: 3rem;
+                }
+            }
+        }
+        &__notice {
+            grid-column: 1 / -1;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background-color: #444;
+            padding: 1rem 0;
+            display: flex;
+            overflow: hidden;
+            height: 4rem;
+            position: relative;
+            
+            @include respond(b2) {
+                height: 3.5rem;
+                font-size: 1.1rem;    
+            }
+            @include respond(b6) {
+                font-size: 1rem;
+                height: 3rem;
+            }
+
+            a:link,
+            a:visited {
+                color: #fff;
+                text-decoration: none;
+            }
+
+            a:hover,
+            a:active {
+                color: $color-primary;
+            }
+        }
+
+        .txtToScroll {
+            margin: 0 auto;
+            text-transform: uppercase;
+            animation: horScroll 20s linear infinite;
+            width: 100%;
+            position: absolute;
+
+            &--1{
+                left: 0;
+            }
+            &--2 {
+                left: 50%;
+
+                @include respond(lap) {
+                    left: 55%;
+                }
+                @include respond(b4) {
+                    left: 70%;
+                }
+                @include respond(b5) {
+                    left: 85%;
+                }
+                @include respond(b6) {
+                    left: 100%;
+                }
+            }
+            &--3 {
+                left: 100%;
+
+                @include respond(lap) {
+                    left: 105%;
+                }
+                @include respond(b3) {
+                    left: 110%;
+                }
+                @include respond(b4) {
+                    left: 140%;
+                }
+                @include respond(b5) {
+                    left: 170%;
+                }
+                @include respond(b6) {
+                    left: 200%;
+                }
+            }
+            &--4 {
+                left: 150%;
+
+                @include respond(lap) {
+                    left: 155%;
+                }
+                @include respond(b3) {
+                    left: 165%;
+                }
+                @include respond(tab) {
+                    left: 205%;
+                }
+                @include respond(b6) {
+                    left: 215%;
+                }
+            }
+        }
+    }
+}

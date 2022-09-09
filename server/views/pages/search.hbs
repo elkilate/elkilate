@@ -1,0 +1,53 @@
+{{#> layouts/default}}
+
+{{#*inline "header-block"}}
+{{> includes/header isStore=true}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="scContainer">
+  <h1 class="sc__heading h--1">Buscar...</h1>
+  {{#unless noResult}}
+  <p class="sc__result">Resultados para "{{query}}":</p>
+  {{/unless}}
+  {{#if noResult}}
+  <h2 class="sc__nores h--2">No se han encontrado resultados.</h2>
+  {{/if}}
+  <div class="sc__content">
+    {{#each models}}
+    <div class="sc__product scProduct">
+      <img src="{{this.thumbImg}}" alt="{{this.name}}" class="scProduct__thumb"
+        onclick="document.getElementById('sLink-{{this.code}}').click()">
+      <button class="scProduct__atc" data-product="{{this.firstProduct._id}}">
+        <span class="text">Agregar al carrito</span>
+        <svg>
+          <use href="/img/sprite.svg#shopping-cart"></use>
+        </svg>
+      </button>
+      <a href="/articulo/{{this._id}}" class="scProduct__title" id="sLink-{{this.code}}">{{this.description}}</a>
+      <div class="scProduct__price">
+        <svg>
+          <use href="/img/sprite.svg#credit"></use>
+        </svg>
+        {{#if this.isUnique}}
+        <p>{{priceToString this.firstProduct.price}} MXN</p>
+        {{else}}
+        <p>{{getPriceByKarat ../prices this.karat this.firstProduct.weight}} MXN</p>
+        {{/if}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "ctc-block"}}
+{{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=526182814235&text='Ingrese su mensaje
+aqui.'" iconId='i-whatsapp'}}
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/search.js" type="module" defer></script>
+{{/inline}}
+
+{{/layouts/default}}

@@ -1,0 +1,199 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "header-block"}}
+{{> includes/header_admin}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container addproduct">
+  <h1 class="display-2 mt-5">Editar Modelo</h1>
+  {{#if err}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{err}}
+    <button class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar" type="button"></button>
+  </div>
+  {{/if}}
+  {{#if success}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{success}}
+    <button class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar" type="button"></button>
+  </div>
+  {{/if}}
+  <form class="add-product-form" id="updateModelForm" action="/admin/model/update/{{model._id}}?_method=PATCH"
+    method="POST">
+    <input type="hidden" name="galleryString" id="galleryString" value="{{galleryToString}}">
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <label for="modelName" class="form-label">Titulo</label>
+        <input type="text" class="form-control" name="modelName" id="modelName" value="{{model.name}}">
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <label for="modelType" class="form-label">Tipo de prenda</label>
+        <select name="modelType" id="modelType" class="form-select">
+          {{#with selectedType}}
+          <option value="{{this.code}}">{{this.name}} (Actual)</option>
+          {{/with}}
+          {{#each types}}
+          <option value="{{this.code}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="modelCode" class="form-label">Modelo</label>
+        <div class="input-group">
+          <span class="input-group-text" id="typeCode">{{parseItemCode model.code "type"}}-</span>
+          <input type="text" value="{{parseItemCode model.code 'model'}}" class="form-control" name="modelCode"
+            id="modelCode">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="modelCategory" class="form-label">Categoria</label>
+        <select name="modelCategory" id="modelCategory" class="form-select">
+          {{#with selectedCategory}}
+          <option value="{{value}}">{{name}} (Actual)</option>
+          {{/with}}
+          <option value="gold">Joyeria de Oro</option>
+          <option value="silver">Joyeria de Plata</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <label for="modelDescription" class="form-label">Descripcion</label>
+        <textarea name="modelDescription" id="modelDescription" rows="1"
+          class="form-control">{{model.description}}</textarea>
+      </div>
+      <div class="col-md-4">
+        <label for="modelKarat" class="form-label">Kilataje</label>
+        {{!-- <input type="text" class="form-control" id="modelKarat"> --}}
+        <select name="modelKarat" id="modelKarat" class="form-select">
+          <option>Ninguno.</option>
+          {{#if model.karat}}
+          <option value="{{model.karat}}" selected>{{model.karat}} (Actual)</option>
+          {{/if}}
+          <option value="10K">10K</option>
+          <option value="14K">14K</option>
+          <option value="18K">18K</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-auto">
+        <h5 class="display-5">Productos relacionados ({{model.products.length}})</h5>
+      </div>
+      <div class="col-auto my-auto ml-auto me-4">
+        <a href="/admin/product/add" class="btn btn-primary btn-lg">Agregar Producto</a>
+      </div>
+      <div class="col-12">
+        <p class="addproduct__wg">Peso de los productos disponibles: <span class="value">{{getModelAvailableWeight
+            model}} gr</span></p>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="addproduct__children">
+          <div class="addproduct__childlist">
+            {{#each model.products}}
+            <a href="/admin/product/{{#if ../uniques}}unique/{{/if}}edit/{{this._id}}"
+              class="addproduct__child{{#unless this.available}} addproduct__child--na{{/unless}}">{{this.itemCode}}</a>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto">
+        <h5 class="display-5">Imagenes</h5>
+      </div>
+      <div class="col-auto my-auto ms-auto me-4">
+        <button class="btn btn-primary btn-lg my-auto" type="button" data-bs-toggle="modal"
+          data-bs-target="#uploadImgsModal" id="toggleModal">Subir Imagenes</button>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-12 mt-4 gallery" id="imageDisplay">
+        {{#each model.gallery}}
+        <img src="{{this}}" alt="{{this}}" class="img-fluid gallery__img">
+        {{/each}}
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <label for="mainImage" class="form-label">Imagen principal</label>
+        <select name="mainImage" id="mainImage" class="form-select">
+          {{#with model.mainImg}}
+          <option value="{{this}}" data-first="true">{{parseImgName this}} (Actual)</option>
+          {{/with}}
+          {{#each model.gallery}}
+          <option value="{{this}}">{{parseImgName this}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="thumbImage" class="form-label">Imagen para miniatura</label>
+        <select name="thumbImage" id="thumbImage" class="form-select">
+          {{#with model.thumbImg}}
+          <option value="{{this}}" data-first="true">{{parseImgName this}} (Actual)</option>
+          {{/with}}
+          {{#each model.gallery}}
+          <option value="{{this}}">{{parseImgName this}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <h4 class="display-5 mb-5">Ajustes de visibilidad</h4>
+      <div class="col-md-4">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" name="mainPage" id="mainPage" checked={{model.mainPage}}
+            value="true">
+          <label for="mainPage" class="form-check-label">Mostrar en pagina principal</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" name="available" id="available" checked={{model.available}}
+            value="true">
+          <label for="available" class="form-check-label">Mostrar como disponible</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary btn-lg ml-auto" type="submit" id="submitAddProduct">Guardar cambios</button>
+    </div>
+  </form>
+
+  <form id="uploadImagesForm">
+    <input type="hidden" name="galleryTitle" id="galleryTitle" value="{{model.code}}">
+    <div class="modal fade" id="uploadImgsModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Subir Imagenes</h5>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="file" class="form-control" name="gallery" id="gallery" multiple>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" id="closeModal">Cerrar</button>
+            <button class="btn btn-primary" type="submit">Subir Imagenes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/updateModel.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

@@ -1,0 +1,151 @@
+{{#> layouts/default hasBodyClass=true currPage='index'}}
+
+{{#*inline "header-block"}}
+{{> includes/header}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+
+<div class="section-slider">
+    <div class="slider-wrapper">
+        <div class="slider">
+            <input type="radio" name="slider" class="trigger" id="one" checked="checked" />
+            <div class="slide">
+                <figure class="slide__figure">
+                    <div class="slide__img slide__img1"></div>
+                    <div class="hero-text-box">
+                        <h2 class="heading-snd" style="font-style: normal;"><span style="font-size: larger; font-style: italic;">5%</span> de <span style="font-family: 'Playfair Display'; color: #f7b46d;">Descuento</span> <br> en tus
+                            <span style="font-family: 'Playfair Display'; color: #f7b46d;">Compras</span> en linea
+                        </h2>
+                        <a class="btn btn__main" href="#featured">Conocelo!</a>
+                    </div>
+                </figure><!-- .slide-figure -->
+            </div><!-- .slide -->
+            <input type="radio" name="slider" class="trigger" id="two" />
+            <div class="slide">
+                <figure class="slide__figure">
+                    <div class="slide__img slide__img2"></div>
+                    <div class="hero-text-box">
+                        <h2 class="heading-snd"> Envio <span style="font-family: 'Playfair Display'"><span
+                                    style="color: #f7b46d;">Gratis</span></span> a<br> todo
+                            <span style="font-family: 'Playfair Display'; color: #f7b46d;">Durango capital</span>
+                        </h2>
+                        <a class="btn btn__main" href="#featured">Conocelo!</a>
+                    </div>
+                </figure><!-- .slide-figure -->
+            </div><!-- .slide -->
+            <input type="radio" name="slider" class="trigger" id="three" />
+            <div class="slide">
+                <figure class="slide__figure">
+                    <div class="slide__img slide__img3"></div>
+                    <div class="hero-text-box">
+                        <h2 class="heading-snd">Tenemos el <br>
+                            <span style="font-family: 'Playfair Display'"><span style="color: #f7b46d;">Mejor
+                                    Precio</span></span> nacional
+                        </h2>
+                        <a class="btn btn__main" href="#featured">Conocelo!</a>
+                    </div>
+                </figure><!-- .slide-figure -->
+            </div><!-- .slide -->
+        </div><!-- .slider -->
+        <ul class="slider-nav">
+            <li class="slider-nav__item"><label class="slider-nav__label" for="one"></label></li>
+            <li class="slider-nav__item"><label class="slider-nav__label" for="two"></label></li>
+            <li class="slider-nav__item"><label class="slider-nav__label" for="three"></label></li>
+        </ul><!-- .slider-nav -->
+    </div><!-- .slider-wrapper -->
+</div>
+
+<div class="sticky-container">
+    <ul class="nav-snd">
+        <li class="nav-snd__item">
+            <form action="/buscar" method="GET" class="control search-bar-form">
+                <input type="checkbox" class="search-bar-form__checkbox" id="search-toggle">
+                <input type="text" class="search-bar-form__input" placeholder="Busca en toda la tienda...."
+                    maxlength="128" autocomplete="off" name="searchQuery" id="searchBar">
+                <label for="search-toggle" class="search-bar-form__button">
+                    <svg>
+                        <use href="/img/sprite.svg#search"></use>
+                    </svg>
+                </label>
+            </form>
+        </li>
+        <li class="nav-snd__item">
+            <a href="/carrito">
+                <svg>
+                    <use href="/img/sprite.svg#shopping-cart"></use>
+                </svg>
+            </a>
+        </li>
+    </ul>
+    <div class="sticky-container__nav">
+        <ul class="sticky-container__list">
+            <li class="sticky-container__item"><a href="/tienda" class="navLink">Inicio</a></li>
+            <li class="sticky-container__item"><a href="/tienda" class="navLink" data-type="AC">Anillos de Compromiso</a></li>
+            <li class="sticky-container__item"><a href="/tienda" class="navLink" data-type="AR">Argollas</a></li>
+            <li class="sticky-container__item"><a href="/tienda" class="navLink" data-type="DIAMANTES">Diamantes</a></li>
+            <li class="sticky-container__item"><a href="/tienda" class="navLink" data-type="B">Broqueles</a></li>
+            <li class="sticky-container__dropdown">
+                <div class="sticky-container__drop-toggle" data-stickydrop-toggle>
+                    <span class="text">Ver más</span>
+                    <span class="arr">&or;</span>
+                </div>
+                <ul class="sticky-container__drop-list" data-stickydrop-list>
+                   {{#each types}}
+                        <li class="sticky-container__item sticky-container__drop-item" data-stickydrop-item>
+                            <a href="/tienda" class="navLink" data-type="{{code}}">{{name}}</a>
+                        </li>
+                   {{/each}}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<section class="section-featured" id="featured">
+    <div class="simple-head">
+        <h4 class="simple-tittle">Productos Destacados</h4>
+        {{!-- {{mineralRates}} --}}
+    </div>
+    {{#each models}}
+    <div class="featured">
+        <img src="{{this.mainImg}}" alt="{{this.title}}" class="featured__img">
+        <div class="featured__btn">
+            <button class="btnf addToCart" data-product-id="{{this.firstProduct._id}}"
+                data-code="{{this.firstProduct.itemCode}}">Agregar al carrito
+                <svg>
+                    <use href="/img/sprite.svg#shopping-cart"></use>
+                </svg>
+            </button>
+        </div>
+        <h3 class="featured__name"><a href="/articulo/{{this._id}}">{{this.description}}</a></h3>
+        <div class="featured__price">
+            <svg>
+                <use href="/img/sprite.svg#credit"></use>
+            </svg>
+            <h4 class="featured__price-h4">
+                {{#if this.firstProduct.price}}
+                {{priceToString this.firstProduct.price}}
+                {{else}}
+                {{getPriceByKarat ../prices this.karat this.firstProduct.weight}}
+                {{/if}} MXN
+            </h4>
+        </div>
+    </div>
+    {{/each}}
+</section>
+
+{{!-- {{> includes/components/testimonials}} --}}
+{{/inline}}
+
+{{#*inline "ctc-block"}}
+{{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=6182816253&text=Hola buenas"
+iconId='i-whatsapp'}}
+{{/inline}}
+
+{{#*inline 'scripts-block'}}
+<script src="/js/main.js" type="module" defer></script>
+
+{{/inline}}
+
+{{/layouts/default}}

@@ -1,0 +1,234 @@
+.stSelector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 98%,
+    rgba($color-b, 0.44) 100%
+  );
+  background-color: #465;
+  z-index: 8000;
+  grid-template-columns:
+    [full-start] 1fr [center-start] repeat(
+      2,
+      [col-start] minmax(min-content, 40%) [col-end]
+    )
+    [center-end] 1fr [full-end];
+  grid-template-rows: 15rem calc(100vh - 15rem);
+  display: none;
+
+  @include respond(b3) {
+    grid-template-columns:
+      [full-start] 1fr [center-start] repeat(2, [col-start] 48% [col-end])
+      [center-end] 1fr [full-end];
+  }
+
+  @include respond(tab) {
+    grid-template-columns:
+      [full-start] 1fr [center-start] minmax(min-content, 80%)
+      [center-end] 1fr [full-end];
+    grid-template-rows: 15rem repeat(2, calc(calc(100vh - 15rem) * 0.45));
+  }
+
+  &.show {
+    display: grid;
+  }
+
+  &__heading {
+    grid-column: full-start / full-end;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+
+    &:link,
+    &:visited {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  &__img {
+    width: 8rem;
+    height: 8rem;
+    margin: 0 auto;
+  }
+  &__title {
+    font-size: 4rem;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 3px;
+
+    @include respond(b1) {
+      font-size: 3.5rem;
+    }
+
+    p {
+      display: inline-block;
+    }
+  }
+  &__choice {
+    width: 70%;
+    height: 80%;
+    margin: auto;
+    background-color: $color-primary-l;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #465;
+    font-size: 5rem;
+    font-weight: 700;
+    transform: scale(1);
+    transition: transform 0.5s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+      background-color: $color-primary;
+      animation: txtColorTransition 0.5s cubic-bezier(0.87, 0.13, 0.35, 0.77)
+        forwards;
+    }
+
+    @include respond(b2) {
+      font-size: 4.3rem;
+    }
+    @include respond(b3) {
+      font-size: 4rem;
+      width: 80%;
+    }
+    @include respond(tab) {
+      font-size: 3.4rem;
+      height: 90%;
+    }
+
+    &--l {
+      grid-column: col-start 1 / col-end 1;
+    }
+    &--r {
+      grid-column: col-start 2 / col-end 2;
+    }
+
+    @include respond(tab) {
+      &--l,
+      &--r {
+        grid-column: center-start / center-end;
+      }
+    }
+
+    img {
+      border-radius: 50%;
+
+      @include respond(b2) {
+        height: 18rem;
+        width: 18rem;
+      }
+    }
+  }
+}
+.stBanner {
+  grid-column: full-start / full-end;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  height: 15vh;
+}
+.stType {
+  grid-column: full-start / full-end;
+  width: 100%;
+  height: 10rem;
+  display: flex;
+
+  &__option {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    color: $color-w;
+    font-size: 2.4rem;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.4s linear, font-size 0.2s ease;
+
+    &:hover {
+      cursor: pointer;
+      font-size: 2.8rem;
+    }
+
+    &:active {
+      font-size: 2.6rem;
+    }
+
+    &--g {
+      background-color: $color-primary-l;
+      &:hover {
+        background-color: darken($color-primary-l, 10%);
+      }
+      &.selected {
+        font-size: 2.8rem;
+        background-color: darken($color-primary-l, 10%);
+      }
+    }
+    &--s {
+      background-color: $color-silver;
+      &:hover {
+        background-color: darken($color-silver, 10%);
+      }
+      &.selected {
+        font-size: 2.8rem;
+        background-color: darken($color-silver, 10%);
+      }
+    }
+  }
+
+  &__value {
+    margin: auto;
+
+    &--desk {
+      @include respond(tab) {
+        display: none;
+      }
+    }
+
+    &--mob {
+      display: none;
+
+      @include respond(tab) {
+        display: block;
+      }
+    }
+  }
+}
+.stFilter {
+  display: flex;
+  grid-column: full-start / full-end;
+  width: 100%;
+  color: #333;
+  font-weight: 400;
+  background-color: whitesmoke;
+  padding: 0 20rem;
+
+  &__option {
+    padding: 2rem 0;
+    font-size: 2rem;
+    text-align: center;
+    width: 33%;
+    margin-right: 0.5rem;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.active {
+      background-color: #333;
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+}
+.deco-g {
+  &::first-letter {
+    color: $color-primary;
+  }
+}

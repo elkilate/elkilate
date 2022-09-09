@@ -1,0 +1,56 @@
+{{#>layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container cur py-3">
+  {{#if errMsg}}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span>{{errMsg}}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  <div class="row my-5">
+    <h1 class="display-2">Añadir Moneda</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      <form action="/admin/currency/add" method="post" class="curForm">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="name" id="name" required>
+          </div>
+          <div class="col-md-6">
+            <label for="code" class="form-label">Codigo</label>
+            <input type="text" name="code" id="code" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="buyRate" class="form-label">Precio compra</label>
+            <input type="number" class="form-control" name="buyRate" id="buyRate" required>
+          </div>
+          <div class="col-md-6">
+            <label for="sellRate" class="form-label">Precio venta</label>
+            <input type="number" class="form-control" name="sellRate" id="sellRate" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 offset-md-9">
+            <button class="btn btn-lg btn-primary w-100" type="submit">Añadir</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

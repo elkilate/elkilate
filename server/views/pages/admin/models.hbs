@@ -1,0 +1,81 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "header-block"}}
+{{> includes/header_admin}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container admodels">
+    {{#if msg}}
+    <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+        El producto ha sido agregado correctamente.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}}
+    {{#if err}}
+    <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+        {{err}}
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    {{/if}}
+    {{#if deleted}}
+    <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+        {{deleted}}
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    {{/if}}
+    <div class="row py-5">
+        <div class="products col-md-7 mr-auto">
+            <h1 class="products__title my-3 p-4 pt-1">Modelos</h1>
+            <ul class="products__list" id="productListContainer">
+                {{#each models}}
+                <li class="product__box">
+                    <img src="{{this.thumbImg}}" alt="{{this.name}}" class="product__thumb">
+                    <a href="/admin/model/edit/{{this._id}}" class="product__title">{{this.name}} ({{this.products.length}})</a>
+                    <p class="product__model">{{this.code}}</p>
+                    <ul class="product__actions">
+                        <li class="action">
+                            <a href="/admin/model/edit/{{this._id}}">Editar</a>
+                        </li>
+                        <li class="action action--r">
+                            <a href="/admin/model/remove/{{this._id}}">Eliminar</a>
+                        </li>
+                    </ul>
+                </li>
+                {{/each}}
+            </ul>
+            <p class="nomore{{#unless models.length}} show{{/unless}}" id="nomoreTag">No hay mas modelos para mostrar.
+            </p>
+            <button class="btn btn-secondary btn-lg products__seemore {{#unless models.length}} disabled{{/unless}}"
+                id="loadMore">Ver más</button>
+        </div>
+        <div class="actions col-md-4 ml-auto p-4">
+            <h3 class="actions__title mb-4">Modelos</h3>
+            <div class="actions__links">
+                <a href="/admin/model/add" class="btn btn-primary actions__link">Añadir Modelo.</a>
+                <a href="/admin/model/search" class="btn btn-primary actions__link">Buscar Modelo.</a>
+                <a href="/admin/model/edit" class="btn btn-primary actions__link">Editar Modelo.</a>
+                <a href="/admin/model/remove" class="btn btn-danger actions__link">Eliminar Modelo.</a>
+                <a href="/admin/models/remove-all" class="btn btn-danger actions__link">Eliminar Todos.</a>
+            </div>
+            <hr>
+            <h3 class="actions__title mb-4">Productos</h3>
+            <div class="actions__links">
+                <a href="/admin/product/add" class="btn btn-primary actions__link">Añadir Producto</a>
+                <a href="/admin/product/edit" class="btn btn-primary actions__link">Editar Producto</a>
+                <a href="/admin/product/delete" class="btn btn-danger actions__link">Eliminar Producto</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/models.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

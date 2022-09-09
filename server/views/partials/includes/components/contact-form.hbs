@@ -1,0 +1,39 @@
+<div id="contact" class="contact {{#if isMine}}contact--m{{/if}}">
+    <div class="contact-form">
+        <form action="/api/send-contact-mail" method="POST" class="form" autocomplete="off">
+            <h5 class="heading-5">ENVIANOS UN MENSAJE</h5>
+            <input type="hidden" name="contactEmail" value="{{mail}}">
+            <input type="hidden" name="page" value="{{page}}">
+            <div class="form__group">
+                <input type="text" class="form__input" placeholder="Nombre" name="name" id="name" required>
+            </div>
+            <div class="form__group">
+                <input type="email" class="form__input" placeholder="Correo Electronico" name="email" id="email" required>
+            </div>
+            <div class="form__group">
+                <input type="text" class="form__input" placeholder="Asunto" name="subject" id="subject" required>
+            </div>
+            <div class="form__group">
+                <input type="text" class="form__input" placeholder="Mensaje" name="message" id="message" required>
+            </div>
+            <div class="form__group">
+                <button class="btn-form">ENVIAR &rarr;</button>
+            </div>
+        </form>
+        <div class="info">
+            <h5 class="heading-5">CONTACTANOS</h5>
+            <div class="group-text">
+                <p class="group-text__tittle">Corporativo</p>
+                <p class="group-text__text">Negrete #117</p>
+            </div>
+            <div class="group-text">
+                <p class="group-text__tittle">Correo</p>
+                <p class="group-text__text">joyeriaelkilatenegrete@hotmail.com</p>
+            </div>
+            <div class="group-text">
+                <p class="group-text__tittle">Llamanos</p>
+                <p class="group-text__text">618 111 2223</p>
+            </div>
+        </div>
+    </div>
+</div>

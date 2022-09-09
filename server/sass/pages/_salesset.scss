@@ -1,0 +1,61 @@
+.sls {
+  min-height: calc(100vh - 4rem);
+
+  &All {
+    &__list {
+      height: 30rem;
+    }
+
+    &__sale {
+      width: 100%;
+      margin: auto;
+      margin-top: 0;
+    }
+
+    &__row {
+      height: 52rem;
+    }
+  }
+
+  &Actions {
+    &__list {
+      background-color: #fff;
+      border-radius: 1rem;
+      min-height: 30rem;
+    }
+  }
+
+  &All,
+  &Today,
+  &Week,
+  &Month {
+    &__list {
+      background-color: #fff;
+      border: 1rem solid #fff;
+      border-radius: 1rem;
+      max-height: 100%;
+      grid-template-rows: 100%;
+      grid-row: 1 / 3;
+
+      & > a {
+        font-size: 1.4rem;
+      }
+    }
+
+    &__details {
+      font-size: 1.4rem;
+      text-align: center;
+      padding: 0.5rem 0;
+      display: flex;
+
+      .title,
+      .value {
+        margin: auto 0;
+      }
+    }
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}

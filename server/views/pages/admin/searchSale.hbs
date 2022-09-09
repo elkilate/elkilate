@@ -1,0 +1,52 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container srs">
+  <div class="row my-4">
+    <h1 class="display-2">Buscar venta.</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      {{#> includes/components/admSearchBar action="/admin/sale/search"}}
+      {{#*inline "bar-label"}}
+      <label for="searchQuery" class="form-label h--5">Buscar una venta</label>
+      <p class="indication">(Puede buscar ventas por nombre del cliente, correo electronico o direccion (colonia, calle o codigo postal)).</p>
+      {{/inline}}
+      {{/includes/components/admSearchBar}}
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-8 m-auto">
+      {{#if noResult}}
+      <p class="h--4">No se han encontrado resultados...</p>
+      {{/if}}
+      <div class="srsSearch">
+        <div class="srsSearch__content py-3">
+          {{#each orders}}
+          <div class="srsSearch__sale py-3 px-4">
+            <a href="/admin/sale/{{this.sale._id}}" class="title">{{this.address.street}} No.{{this.address.extNumber}}, {{this.address.neighborhood}} {{this.address.postalCode}}</a>
+            <div class="date">Fecha: {{this.sale.patLocaleString}}</div>
+            <div class="id">{{this.sale._id}}</div>
+            <div class="customer">
+              <div class="customer-name">Nombre: {{this.customer.firstName}} {{this.customer.lastName}}</div>
+              <div class="customer-email">Email: {{this.customer.email}}</div>
+            </div>
+            <div class="contents">
+              <div class="contents-weight">Peso: {{this.sale.weight}}gr</div>
+              <div class="contents-earnings">Costo: ${{priceToString this.sale.totalPayed}}</div>
+            </div>
+            <a href="/admin/sale/{{this.sale._id}}" class="btn btn-lg btn-primary mt-auto">Detalles</a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

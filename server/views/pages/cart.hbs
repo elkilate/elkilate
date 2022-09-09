@@ -1,0 +1,68 @@
+{{#> layouts/default currPage='cart'}}
+
+{{#*inline "header-block"}}
+{{> includes/header isStore=true}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+{{#if cartUpdated}}
+<div class="cart__updated">
+  <div class="msg">El carrito fue actualizado exitosamente.</div>
+  <div class="close" id="closeUpdated">&times;</div>
+</div>
+{{/if}}
+<div class="cart-content">
+  {{#if products}}
+  <div class="cart">
+    <div class="cart__head">
+      <h1 class="h--2 cart__heading" style="color: black;">Carrito</h1>
+      <p>Precio</p>
+    </div>
+    {{#each products}}
+    <div class="cart__product product">
+      <img src="{{this.thumbImg}}" alt="{{this.title}}" class="product__thumb">
+      <p class="product__title">{{this.title}}</p>
+      <span class="product__code">{{this.code}}</span>
+      <p class="product__price">$ {{priceToString this.unitPrice}}</p>
+      <div class="product__controls">
+        {{!-- <label class="cart-select-wrapper">
+          <select name="itemQuantity_{{this.code}}" class="product__select"
+            data-item-id="{{this.sku}}">
+            {{{genQtyOptions this.quantity}}}
+          </select>
+          <svg class="dropdown-arrow">
+            <use href='/img/sprite.svg#triangle-down'></use>
+          </svg>
+        </label> --}}
+        <button class="product__btn product__btn--link rmvBtn" data-item-id="{{this.sku}}">Eliminar</button>
+        {{!-- <button class="product__btn product__btn--link">Editar</button> --}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="summary">
+    <div class="summary__header h--3">Resumen</div>
+    <div class="summary__body">
+      <div class="summary__detail">
+        <p class="name">Subtotal:</p>
+        <p class="amount">$ {{priceToString cart.totalPrice}}</p>
+      </div>
+    </div>
+    <div class="summary__footer">
+      <a href="/carrito/pago" class="summary__btn">Pagar</a>
+    </div>
+  </div>
+  {{else}}
+  <div class="cart-no-content">
+    <p class="h--2">Tu carrito esta vacio</p>
+    <p>Encuentra con que llenarlo <a href="/joyeria">aqui</a></p>
+  </div>
+  {{/if}}
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/cart.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/default}}

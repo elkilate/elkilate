@@ -1,0 +1,217 @@
+@mixin centerE {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin center($xy: xy) {
+  @if $xy == xy {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%);
+  } @else if $xy == x {
+    left: 50%;
+    right: auto;
+    transform: transform(translateX(-50%));
+  } @else if $xy == y {
+    top: 50%;
+    bottom: auto;
+    transform: transform(translateY(-50%));
+  }
+}
+
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin shadow-standard {
+  box-shadow: 1px 1px 4px 5px rgba(0, 0, 0, 0.15);
+}
+
+@mixin shadow-pressed {
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.15);
+}
+
+// tab-filter size
+$tab-filter-height: 50px;
+// breakpoints
+$S: 480px;
+$M: 768px;
+$L: 1170px;
+
+//gallery mq
+@mixin MQ($canvas) {
+  @if $canvas == S {
+    @media only screen and (min-width: $S) {
+      @content;
+    }
+  } @else if $canvas == M {
+    @media only screen and (min-width: $M) {
+      @content;
+    }
+  } @else if $canvas == L {
+    @media only screen and (min-width: $L) {
+      @content;
+    }
+  }
+}
+@mixin respond($breakpoint) {
+  //BREAKPOINTS CHROME CHECK GOLD ONLY
+  @if $breakpoint == phone-s {
+    @media (max-width: 20em) {
+      @content;
+    }
+  }
+  @if $breakpoint == phone-m {
+    @media (max-width: 23.4375em) {
+      @content;
+    }
+  }
+  @if $breakpoint == phone-l {
+    @media (max-width: 26.5625em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab {
+    @media (max-width: 48em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 64em) {
+      @content;
+    }
+  }
+  @if $breakpoint == lap {
+    @media (max-width: 90rem) {
+      @content;
+    }
+  }
+  @if $breakpoint == desk-70 {
+    @media (min-width: 73.125em) {
+      @content;
+    }
+  }
+  @if $breakpoint == big-desk {
+    @media (min-width: 90em) {
+      @content;
+    }
+  }
+  //BREAKPOINTS WHEN ACCUALLY BREAK GOLD ONLY
+  @if $breakpoint == b1 {
+    @media (max-width: 108.125em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b2 {
+    @media (max-width: 98.125em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b2-66 {
+    @media (max-width: 85.375em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b3 {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b4 {
+    @media (max-width: 55.625em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b5 {
+    @media (max-width: 41.875em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b6 {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b6-41 {
+    @media (max-width: 33.8125em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b7 {
+    @media (max-width: 26.4375em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b7-7 {
+    @media (max-width: 25.4375em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b8 {
+    @media (min-width: 98.1875em) {
+      @content;
+    }
+  }
+  @if $breakpoint == b10 {
+    @media (max-width: 1177px) {
+      @content;
+    }
+  }
+}
+
+@mixin overlay($content) {
+  position: relative;
+
+  &::after {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: $content;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in, font-size 0.3s ease-in;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin thinScrollBar {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #ccc;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #ccc;
+    border: 0.5px #ccc;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #333;
+  }
+}

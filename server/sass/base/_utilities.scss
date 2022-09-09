@@ -1,0 +1,44 @@
+/* Margin */
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+/* Dims */
+.full-height {
+  min-height: calc(100vh - 4rem);
+}
+
+/* Text */
+.text {
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--justify {
+    text-align: justify;
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--bold {
+    font-weight: bold;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &--column {
+    flex-direction: column;
+  }
+}

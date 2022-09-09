@@ -1,0 +1,61 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container pdSearch">
+  <div class="row">
+    <div class="col">
+      {{#if uniques}}
+      <h1 class="display-2 py-4">Eliminar Producto Único</h1>
+      {{else}}
+      <h1 class="display-2 py-4">Eliminar Producto</h1>
+      {{/if}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 my-3 pdSearch__content">
+      {{#unless product}}
+      <p class="pdSearch__notice mb-2">Ingrese la busqueda que desea realizar</p>
+      {{#if uniques}}
+      {{> includes/components/admSearchBar action="/admin/product/unique/search"}}
+      {{else}}
+      {{> includes/components/admSearchBar action="/admin/product/search" extraClasses="my-3"}}
+      {{/if}}
+      <ul class="products__list" id="productListContainer">
+        {{#each products}}
+        <li class="product__bigBox my-5">
+          <img src="{{this.parentModel.thumbImg}}" alt="{{this.parentModel.name}}" class="product__thumb">
+          <a href="/admin/product/{{#if ../uniques}}unique/{{/if}}edit/{{this._id}}"
+            class="product__title product__title--big">{{this.parentModel.name}}</a>
+          <p class="product__model product__model--big">{{this.itemCode}}</p>
+          <a href="/admin/product/{{#if ../uniques}}unique/{{/if}}delete/{{this._id}}"
+            class="btn btn-danger product__btn">Eliminar</a>
+        </li>
+        {{/each}}
+      </ul>
+      {{/unless}}
+      {{#with product}}
+      <p class="display-5">Esta seguro de que desea eliminar este producto?</p>
+      <form method="POST" action="/admin/product/{{#if ../uniques}}unique/{{/if}}delete/{{this._id}}?_method=DELETE"
+        class="rmConfirm">
+        <img src="{{this.parentModel.thumbImg}}" alt="{{this.parentModel.name}}" class="img-fluid rmConfirm__img">
+        <p class="rmConfirm__title">{{this.parentModel.name}}</p>
+        <p class="rmConfirm__model">{{this.itemCode}}</p>
+        <a href="/admin/product/{{#if ../uniques}}unique/{{/if}}delete"
+          class="btn btn-lg btn-primary btn-cancel">Cancelar</a>
+        <button type="submit" class="btn btn-lg btn-danger btn-confirm">Confirmar</button>
+      </form>
+      {{/with}}
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

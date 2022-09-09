@@ -1,0 +1,70 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container pdtp">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-2 py-5">Tipos de prenda</h1>
+    </div>
+  </div>
+
+  {{#if err}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <span>{{err}}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+  {{/if}}
+
+  {{#if success}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <span>{{success}}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+  {{/if}}
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="pdtpTypes">
+        <div class="pdtpTypes__list">
+          {{#each types}}
+          <div class="pdtpTypes__type mb-5">
+            <div class="row mb-4">
+              <div class="col-6 name">{{this.name}}</div>
+              <div class="col-6 code">Codigo: {{this.code}}</div>
+            </div>
+            <div class="row actions">
+              <div class="col-auto editBtn">
+                <a href="/admin/product/type/edit/{{this._id}}" class="btn btn-primary btn-lg">Editar</a>
+              </div>
+              <div class="col-auto removeBtn">
+                <a href="/admin/product/type/remove/{{this._id}}" class="btn btn-danger btn-lg">Eliminar</a>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="pdtpActions py-4">
+        <div class="row mb-4">
+          <div class="col">
+            <h2 class="pdtpActions__title px-4">Acciones</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-auto m-auto">
+            <a href="/admin/product/type/add" class="btn btn-primary btn-lg">Añadir Nuevo Tipo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

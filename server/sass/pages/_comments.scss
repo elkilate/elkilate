@@ -1,0 +1,140 @@
+.coms {
+  --grid-middle-column-width: 100rem;
+  margin-bottom: 5rem;
+  display: grid;
+  color: #333;
+  grid-template-columns:
+    1fr [center-start] minmax(
+      -webkit-min-content,
+      var(--grid-middle-column-width)
+    )
+    [center-end] 1fr;
+  grid-template-columns:
+    1fr [center-start] minmax(min-content, var(--grid-middle-column-width))
+    [center-end] 1fr;
+  grid-template-rows: 10rem;
+
+  @include respond(b3) {
+    --grid-middle-column-width: 85rem;
+  }
+
+  @include respond(tab) {
+    --grid-middle-column-width: 80vw;
+  }
+
+  &__row {
+    --row-gutter-x: 1.5rem;
+    --row-gutter-y: 0;
+    grid-column: center-start / center-end;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--row-gutter-y) * -1);
+    margin-right: calc(var(--row-gutter-x) * -2);
+    margin-left: calc(var(--row-gutter-x) * -2);
+
+    & > * {
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 100%;
+      padding-right: calc(var(--row-gutter-x) / 2);
+      padding-left: calc(var(--row-gutter-x) / 2);
+      margin-top: var(--row-gutter-y);
+    }
+  }
+
+  &__col {
+    flex: 1 0 0%;
+
+    @for $i from 1 to 9 {
+      &--#{$i} {
+        flex: 0 0 auto;
+        width: percentage($i / $grid-columns);
+      }
+    }
+  }
+
+  &__header {
+    font-size: 5rem;
+    padding: 0 2rem;
+    align-self: center;
+  }
+
+  &__paraph {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1.2rem;
+  }
+
+  &__gallery {
+    --gallery-grid-columns: 3;
+    display: grid;
+    grid-template-columns: repeat(
+      var(--gallery-grid-columns),
+      [col-start] 1fr [col-end]
+    );
+    grid-auto-rows: 25rem;
+    column-gap: 3rem;
+    row-gap: 5rem;
+    margin-bottom: 3rem;
+
+    @include respond(b4) {
+      --gallery-grid-columns: 2;
+    }
+
+    @include respond(tab) {
+      --gallery-grid-columns: 1;
+    }
+  }
+
+  &__pagination {
+    margin: 0 auto;
+  }
+
+  &__popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(#333, 0.15);
+    z-index: 3000;
+    display: none;
+
+    &.show {
+      display: flex;
+    }
+
+    .popup {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin: auto;
+      justify-content: center;
+
+      &__icon {
+        --size: 15rem;
+
+        height: var(--size);
+        width: var(--size);
+        margin: 1.5rem auto;
+        fill: $color-secondary-l;
+      }
+
+      &__small {
+        margin-top: 1rem;
+      }
+
+      #close {
+        color: $color-secondary-d;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: font-size 0.2s linear;
+
+        &:hover {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}

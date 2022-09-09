@@ -1,0 +1,63 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="admin container py-5">
+  <h1 class="admin__heading">Panel de Administracion</h1>
+  <p class="admin__greeting my-3 px-3">Bienvenido {{user}}.</p>
+  <div class="row my-5">
+
+    <div class="col-md-6 models py-3">
+      <div class="models__heading h--4 px-3">
+        <span class="title">Modelos</span>
+        <a href="/admin/models" class="all">Ver todos</a>
+      </div>
+      <ul class="models__list">
+        {{#each models}}
+        <li class="model">
+          <img src="{{this.thumbImg}}" alt="{{this.name}}" class="model__thumb">
+          <a href="/admin/model/edit/{{this._id}}" class="model__title">{{this.name}} <span class="text-success">({{this.products.length}})</span></a>
+          <p class="model__code">{{this.code}}</p>
+          <ul class="model__actions">
+            <li class="action">
+              <a href="/admin/model/edit/{{this._id}}">Editar</a>
+            </li>
+            <li class="action action--r">
+              <a href="/admin/model/remove/{{this._id}}">Eliminar</a>
+            </li>
+          </ul>
+        </li>
+        {{/each}}
+      </ul>
+      
+    </div>
+
+    <div class="col-md-5 sales sales-default p-3">
+      <div class="sales__heading h--4 px-2">
+        <span class="title">Ventas</span>
+        <a href="/admin/sales" class="all">Ver todas</a>
+      </div>
+      <div class="sales__container">
+        {{#each sales}}
+        <a href="/admin/sale/{{this._id}}" class="sales__sale py-3 px-4 mb-4">
+          <div class="customer">
+            <span class="title">Cliente: </span><span class="value">{{this.customer.name}}
+              {{this.customer.lastname}}</span>
+          </div>
+          <div class="content">
+            <span class="title">Cantidad (gr):</span> <span class="value">{{priceToString this.contents.weight}}</span>
+          </div>
+          <div class="content">
+            <span class="title">Cantidad($):</span> <span class="value">${{priceToString this.payment.total}}</span>
+          </div>
+          <div class="date">
+            <span class="title">Fecha:</span> <span class="value">{{numberToLocaleDateString this.payment.pat}}</span>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{/layouts/admin}}

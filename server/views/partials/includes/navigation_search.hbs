@@ -1,0 +1,48 @@
+<nav class="navigation">
+    <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+    <label for="navi-toggle" class="navigation__button navigation__button--p">
+        <span class="navigation__icon">&nbsp;</span>
+    </label>
+    <div class="navigation__background navigation__background--p">&nbsp;</div>
+    <nav class="navigation__nav navigation__nav--p">
+        <ul class="nav-main nav-main--p{{#unless isGold}} hidden{{/unless}}" id="nav-gold">
+            <li><a class="l-p navLink" href data-home="true">Inicio</a></li>
+            <li><a class="l-p navLink" href data-type="AC">Anillos de Compromiso</a></li>
+            <li><a class="l-p navLink" href data-type="AR">Argollas</a></li>
+            <li><a class="l-p navLink" href data-type="ES">Esclavas</a></li>
+            <li><a class="l-p navLink" href data-type="CA">Cadenas</a></li>
+            <li><a class="l-p navLink" href data-type="DIAMANTES">Diamantes</a></li>
+            <li><a class="l-p navLink" href data-type="B">Broqueles</a></li>
+        </ul>
+        <ul class="nav-main nav-main--p{{#unless isSilver}} hidden{{/unless}}" id="nav-silver">
+            <li><a class="l-p navLink" href data-home="true">Inicio</a></li>
+            <li><a class="l-p navLink" href data-type="ACP">Anillos de Compromiso</a></li>
+            <li><a class="l-p navLink" href data-type="AP">Argollas</a></li>
+            <li><a class="l-p navLink" href data-type="ESP">Esclavas</a></li>
+            <li><a class="l-p navLink" href data-type="CP">Cadenas</a></li>
+            <li><a class="l-p navLink" href data-type="AROP">Aros</a></li>
+            <li><a class="l-p navLink" href data-type="ARRAP">Arracadas</a></li>
+        </ul>
+        <ul class="nav-snd nav-snd--p">
+            <li class="nav-snd__item">
+                <form action="/buscar" method="GET" class="control search-bar-form">
+                    <input type="checkbox" class="search-bar-form__checkbox" id="search-toggle">
+                    <input type="text" class="search-bar-form__input" placeholder="Busca en toda la tienda...."
+                        maxlength="128" autocomplete="off" name="searchQuery" id="searchBar">
+                    <label for="search-toggle" class="search-bar-form__button">
+                        <svg>
+                            <use href="/img/sprite.svg#search"></use>
+                        </svg>
+                    </label>
+                </form>
+            </li>
+            <li class="nav-snd__item">
+                <a href="/carrito">
+                    <svg>
+                        <use href="/img/sprite.svg#shopping-cart"></use>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</nav>

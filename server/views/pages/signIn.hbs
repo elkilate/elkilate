@@ -1,0 +1,37 @@
+{{#> layouts/default}}
+
+{{#*inline "header-block"}}
+  {{> includes/header}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="signin">
+  <h1 class="h--1 signin__title">Iniciar Sesion</h1>
+  <form action="/iniciar-sesion" method="POST" class="signin__form">
+    <div class="signin__form-group">
+      <label for="name" class="signin__form-label">Nombre de Usuario</label>
+      <input type="text" class="signin__form-control" name="name" id="name">
+    </div>
+    <div class="signin__form-group">
+      <label for="pass" class="signin__form-label">Contraseña</label>
+      <input type="password" class="signin__form-control" name="pass" id="pass">
+    </div>
+    <div class="signin__form-group signin__form-group--ml">
+      <button class="signin__form-btn" type="submit">Iniciar</button>
+    </div>
+    {{#if errMsg}}
+    <div class="signin__error-msg">{{errMsg}}</div>
+    {{/if}}
+  </form>
+</div>
+{{/inline}}
+
+{{#*inline "footer-block"}}
+
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/default}}

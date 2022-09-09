@@ -1,0 +1,42 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "header-block"}}
+{{> includes/header_admin}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container allModels">
+  <div class="row py-3 mb-4">
+    <div class="col-auto">
+      <h1 class="display-2">Todos los modelos</h1>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="display-5">Modelos</h4>
+        </div>
+        <div class="card-body">
+          {{#each models}}
+          <div class="Model mb-4">
+            <h5 class="card-title">{{this.name}} ({{getModelAvailableWeight this}} gr)</h5>
+            <p class="card-text">{{this.products.length}} | {{this.productCount}}</p>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

@@ -1,0 +1,43 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "header-block"}}
+{{> includes/header_admin}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container updProducts">
+  <div class="row mb-5">
+    <div class="col-md-12 mt-3 updProducts__content">
+      {{#if uniques}}
+      <h1 class="display-2 py-4">Editar modelo unico.</h1>
+      {{> includes/components/admSearchBar action="/admin/model/unique/search"}}
+      {{else}}
+      <h1 class="display-2 py-4">Editar modelo.</h1>
+      {{> includes/components/admSearchBar action="/admin/model/search"}}
+      {{/if}}
+      <p class="updProducts__notice mt-4 mb-2">Seleccione el modelo que desea editar:</p>
+      <ul class="products__list">
+        {{#each models}}
+        <li class="product__bigBox my-5">
+          <img src="{{this.thumbImg}}" alt="{{this.name}}" class="product__thumb">
+          <a href="/admin/model/{{#if ../uniques}}unique/{{/if}}edit/{{this._id}}" class="product__title product__title--big">{{this.name}}  <span class="count">({{this.products.length}})</span> <span class="wg">({{getModelAvailableWeight this}} gr)</span></a>
+          <p class="product__model product__model--big">{{this.code}}</p>
+          <a href="/admin/model/{{#if ../uniques}}unique/{{/if}}edit/{{this._id}}" class="btn btn-primary product__btn">Editar</a>
+        </li>
+        {{/each}}
+      </ul>
+      {{!-- <p class="btn btn-secondary btn-lg updProducts__loadmore mt-4">Ver más</p> --}}
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

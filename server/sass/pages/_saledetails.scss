@@ -1,0 +1,132 @@
+.sl {
+  min-height: calc(100vh - 4rem);
+
+  &Controls,
+  &Details,
+  &Contents {
+    &__heading {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    &__subheading {
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+  }
+
+  &Details {
+    background-color: #fff;
+    border-radius: 4px;
+
+    &__detail {
+      font-size: 1.4rem;
+      font-weight: 300;
+      display: flex;
+
+      .title {
+        font-style: italic;
+        color: #666;
+        font-weight: 600;
+      }
+
+      .value {
+        max-width: 80%;
+        margin-left: auto;
+        text-align: end;
+
+        &.capitalize {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  &Contents {
+    background-color: #fff;
+    border-radius: 4px;
+
+    &__content {
+      max-height: 35rem;
+      overflow-y: auto;
+    }
+
+    &__item {
+      display: grid;
+      grid-template-columns: [full-start] repeat(5, [col-start] 20% [col-end]) [full-end];
+      grid-template-rows: [top] repeat(3, calc(100% / 3)) [bot];
+      background-color: #eee;
+      border-radius: 7px;
+      height: 10rem;
+      overflow: hidden;
+      font-size: 1.2rem;
+
+      & > * {
+        margin: auto;
+
+        .sub {
+          font-weight: 600;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+
+      .thumbImg {
+        max-width: 100%;
+        grid-column: col-start 1 / col-end 1;
+        grid-row: top / bot;
+      }
+
+      .title {
+        grid-column: col-start 2 / col-end 3;
+        grid-row: 1 / 2;
+        text-align: center;
+        max-width: 80%;
+        max-height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .code {
+        grid-column: col-start 4 / col-end 4;
+        grid-row: 1 / 2;
+        font-weight: 600;
+      }
+
+      .price {
+        grid-column: col-start 5 / col-end 5;
+        grid-row: 1 / 2;
+        font-weight: 600;
+      }
+
+      .wg,
+      .sz,
+      .category,
+      .qty {
+        margin: unset;
+      }
+
+      .wg {
+        grid-column: col-start 2 / col-end 3;
+        grid-row: 2 / 3;
+      }
+
+      .sz {
+        grid-column: col-start 4 / col-end 5;
+        grid-row: 2 / 3;
+      }
+
+      .qty {
+        grid-row: 3 / 4;
+        grid-column: col-start 2 / col-end 3;
+      }
+
+      .category {
+        grid-row: 3 / 4;
+        grid-column: col-start 4 / col-end 5;
+      }
+    }
+  }
+}

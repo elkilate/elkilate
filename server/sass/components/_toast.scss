@@ -1,0 +1,38 @@
+.toast {
+  position: fixed;
+  z-index: 7000;
+  top: 2rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: $color-primary-l;
+  color: #333;
+  font-size: 1.5rem;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  width: 0;
+  opacity: 0;
+  transition: width 1s ease-out, opacity .3s ease-in;
+  overflow: hidden;
+
+  &.visible {
+    opacity: 1;
+    width: 35%;
+  }
+
+  &__msg {
+    color: green;
+    font-weight: 600;
+    margin: auto;
+    margin-left: 0;
+  }
+
+  &__dismiss {
+    font-weight: 700;
+    font-size: 2rem;
+    margin: auto;
+    margin-right: 0;
+    cursor: pointer;
+
+  }
+}

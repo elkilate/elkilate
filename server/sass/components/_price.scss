@@ -1,0 +1,170 @@
+.price {
+  position: relative;
+  background-color: rgba(0,0,0,.55);
+  display: grid;
+  grid-template-columns: minmax(2.7rem, 1fr) [center-start] repeat(3, [col-start] minmax(min-content, 35rem) [col-end]) [center-end] minmax(2.7rem, 1fr);
+  padding-bottom: 8rem;
+
+  @include respond(tab) {
+    width: 100%;
+    grid-template-columns: [center-start] repeat(2, [col-start] 50% [col-end]) [center-end];
+    padding-bottom: 12rem;
+  }
+
+  &__heading {
+    grid-column: center-start / center-end;
+    font-size: 4rem;
+    align-self: flex-end;
+    justify-self: flex-end;
+    padding-top: 3rem;
+    margin-bottom: 1.5rem;
+
+    @include respond(tab) {
+      justify-self: center;
+      text-align: center;
+      padding-bottom: 1.2rem;
+    }
+  }
+
+  &__p {
+    grid-column: center-start / center-end;
+    justify-self: center;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+  }
+
+  &__sub {
+    grid-column: center-start / center-end;
+    justify-self: flex-end;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-top: .5rem;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    padding: 2rem 0;
+    border-bottom: 2px solid $color-primary;
+
+    &--m {
+      grid-column: col-start 1 / col-end 1;
+
+      @include respond(tab) {
+        display: none;
+      }
+    }
+
+    &--p {
+      grid-column: col-start 2 / col-end 2;
+
+      @include respond(tab) {
+        grid-column: col-start 1 / col-end 1;
+      }
+    }
+
+    &--b {
+      grid-column: col-start 3 / col-end 3;
+
+      @include respond(tab) {
+        grid-column: col-start 2 / col-end 2;
+      }
+    }
+
+    &--s {
+      grid-column: col-start 4 / col-end 4;
+
+      @include respond(tab) {
+        grid-column: col-start 3 / col-end 3;
+      }
+    }
+  }
+
+  &__selector,
+  &__title {
+    background-color: rgba($color-primary, .35);
+  }
+
+  &__selector {
+    grid-column: center-start / center-end;
+    display: none !important;
+
+    @include respond(tab) {
+      display: flex !important;
+    }
+  }
+
+  &__table {
+    grid-column: center-start / center-end;
+    display: grid;
+    grid-template-columns: repeat(3, [col-start] 33.33% [col-end]);
+    justify-items: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 1.7rem 0;
+    background-color: rgba($color-b, .4);
+
+    @include respond(tab) {
+      grid-template-columns: repeat(2, [col-start] 50% [col-end]);
+      display: none;
+      padding: 3rem 0;
+
+      &.active {
+        display: grid;
+      }
+    }
+  }
+
+  &__metal {
+
+    @include respond(tab) {
+      display: none;
+    }
+  }
+
+  &__name {
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &__img {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+  }
+
+  &__buy,
+  &__sell {
+    font-size: 2.3rem;
+  }
+  
+  &__label {
+    width: 4rem;
+    position: relative;
+    display: block;
+  }
+
+  &__select {
+    width: 100%;
+    border: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2.3rem;
+    border-radius: 4px;
+    position: relative;
+    background-color: #fff;
+    padding: 0 5px;
+
+    @include respond(b4) {
+      font-size: 1.25rem;
+      height: 3rem;
+    }
+
+    @include respond(phone-l) {
+      padding: 0;
+    }
+  }
+}

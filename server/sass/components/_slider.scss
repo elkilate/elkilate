@@ -1,0 +1,133 @@
+.trigger {
+  display: none;
+}
+
+.slider-wrapper {
+  position: relative;
+  height: 85vh;
+
+  img {
+    max-width: 100%;
+    vertical-align: middle;
+  }
+
+  @include respond(b3) {
+    height: 78vh;
+  }
+
+  @include respond(b4) {
+    height: 65vh;
+  }
+
+  @include respond(b6) {
+    height: 75vh;
+  }
+}
+
+.slide {
+  background-color: black;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 5000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  // display: flex;
+  // align-items: center;
+
+  &__img {
+    // filter: brightness(50%);
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+
+    // &:nth-child(1) {
+    //   background-position: center center;
+    //   background-image: linear-gradient(rgba(black, 0.6), rgba(black, 0.6)), url("/img/slider2.jpg");
+    // }
+
+    // &:nth-child(2) {
+    //   background-position: left center;
+    //   background-image: linear-gradient(rgba(black, 0.6), rgba(black, 0.6)), url("/img/slider1.jpg");
+    // }
+  }
+
+  &__img1 {
+    
+    background-image: linear-gradient(rgba(black, 0.6), rgba(black, 0.6)), url("/img/slider2.jpg");
+  }
+
+  &__img2 {
+    
+    background-image: linear-gradient(rgba(black, 0.6), rgba(black, 0.6)), url("/img/slider1.jpg");
+  }
+
+  &__img3 {
+    background-position: right center;
+    background-image: linear-gradient(rgba(black, 0.6), rgba(black, 0.6)), url("/img/slider3.jpg");
+  }
+
+  &__figure {
+    height: 100%;
+    position: relative;
+    margin: 0;
+  }
+
+  &__p {
+    font-size: 1.4rem;
+    color: #333;
+  }
+}
+
+.trigger:checked+.slide {
+  z-index: 6000;
+  opacity: 1;
+}
+
+.slider-nav {
+  width: 100%;
+  text-align: center;
+  margin: 1rem 0;
+  position: absolute;
+  z-index: 6000;
+  top: 90%;
+
+  &__item {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    background-color: $color-w;
+    display: block;
+    height: 2.5rem;
+    line-height: 2rem;
+    width: 2.5rem;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    backface-visibility: hidden;
+    transition: background-color 0.25s, color 0.25s ease-in-out;
+  }
+
+  &__label:checked {
+    border: 5px solid rgba($color-primary, 0.69);
+  }
+
+  &__label:hover,
+  &__label:active,
+  &__label:focus {
+    background-color: $color-primary-l;
+    border: 5px solid rgba($color-primary, 0.69);
+    color: black;
+  }
+}

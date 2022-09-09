@@ -1,0 +1,51 @@
+.static-table {
+  margin: 0 auto;
+  background-color: #333;
+  width: 100%;
+  padding-top: 2rem;
+
+  &__data {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: 17.5%;
+    font-size: 1.2rem;
+    
+    &:first-of-type {
+      margin-top: 3rem;
+    }
+  }
+
+  &--last {
+    padding-bottom: 14rem;
+  }
+
+  .title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1.3rem;
+  }
+
+  table {
+    width: 65%;
+    margin: 0 auto;
+
+    @include respond(b6) {
+      width: 95%;
+    }
+    @include respond(phone-l) {
+      width: 100%;
+    }
+    td,
+    th {
+      padding: 1rem;
+      border: 2px solid #fff;
+    }
+    th {
+      font-size: 2rem;
+    }
+    td {
+      text-align: center;
+      font-size: 1.7rem;
+    }
+  }
+}

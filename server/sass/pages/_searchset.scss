@@ -1,0 +1,134 @@
+.sc {
+  &Container {
+    min-height: calc(100vh - 10rem);
+    display: grid;
+    background-color: #ddd;
+    grid-template-columns: [full-start] 1fr [center-start] repeat(
+        6,
+        [col-start] minmax(min-content, 18rem) [col-end]
+      ) [center-end] 1fr [full-end];
+    grid-template-rows: min-content min-content;
+    grid-auto-rows: max-content;
+  }
+
+  &__heading {
+    grid-column: center-start / center-end;
+    grid-row: 1;
+    margin-top: 2rem;
+    color: #333;
+  }
+
+  &__result {
+    grid-column: center-start / center-end;
+    grid-row: 2;
+    color: #333;
+    font-size: 1.6rem;
+  }
+
+  &__content {
+    grid-column: center-start / center-end;
+    display: grid;
+    grid-template-columns: repeat(4, [col-start] 22.5% [col-end]);
+    column-gap: calc(10% / 3);
+    row-gap: 3rem;
+    margin: 3rem 0;
+  }
+
+  &__product {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 0.5rem;
+  }
+
+  &__nores {
+    color: #777;
+    grid-column: center-start / center-end;
+    display: inline-block;
+    margin: 3rem auto;
+  }
+
+  &Product {
+    &__thumb {
+      max-width: 100%;
+      cursor: pointer;
+    }
+
+    &__atc {
+      display: flex;
+      background-color: $color-primary;
+      border: 2px solid $color-primary;
+      border-radius: 2rem;
+      height: 3rem;
+      margin-top: 2rem;
+      cursor: pointer;
+      transform: scale(1);
+      transition: transform 50ms linear;
+
+      &:active {
+        border-color: darken($color-primary, 15%);
+        transform: scale(0.94);
+        outline: none;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      .text {
+        margin: auto;
+        margin-right: 0.5rem;
+        color: #333;
+        font-size: 1.4rem;
+      }
+
+      svg {
+        width: 1.7rem;
+        height: 1.7rem;
+        margin: auto;
+        margin-left: 0;
+        fill: #333;
+      }
+    }
+
+    &__title {
+      font-size: 1.4rem;
+      color: #333;
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      margin: auto;
+      text-decoration: none;
+      text-align: center;
+      transition: color 0.5s ease;
+
+      &:hover {
+        color: red;
+      }
+    }
+
+    &__price {
+      margin-top: auto;
+      display: flex;
+
+      svg {
+        width: 3rem;
+        height: 3rem;
+        fill: red;
+        margin: auto;
+        margin-right: 0;
+      }
+
+      p {
+        font-size: 2rem;
+        margin: auto;
+        margin-right: 4rem;
+        color: red;
+        font-weight: 400;
+      }
+    }
+  }
+}

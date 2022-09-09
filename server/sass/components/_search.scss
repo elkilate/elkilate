@@ -1,0 +1,91 @@
+.search-bar-form{
+    display: flex;
+    align-items: center;
+    width: 25rem;
+
+    @include respond(lap) {
+        width: 16rem;
+    }
+    @include respond(phone-l) {
+        width: 28rem;
+    }
+
+    &__checkbox{
+        display: none;
+    }
+    &__button{
+        z-index: 2000;
+        margin-left: -3.4rem;
+        cursor: pointer;
+
+        @include respond(b4) {
+            margin-left: -3rem;
+        }
+        
+        svg{
+            width: 2.5rem;
+            fill: $color-grey-dark-2;
+            transition: all .2s;
+        }       
+    }
+    &__input{
+        background-color: $color-grey-light-1;
+        
+        padding: 1.2rem 2rem;
+        border: none; 
+        border-radius: 5rem; 
+        font-size: 1.6rem;
+        color: $color-grey-dark-2;
+        height: 100%;      
+        z-index: 1500;
+        opacity: 0;
+        width: 0;         
+        //width: 100%;
+        transition: all .8s;
+
+        &::placeholder {
+            font-size: 1.4rem;
+            text-overflow: ellipsis;
+        }
+        
+        @include respond(b3) {
+            font-size: 1.4rem;
+        }
+        @include respond(b4) {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    &--p {
+        
+        @include respond(b3) {
+            width: 22rem;
+        }
+        @include respond(b4) {
+            width: 18rem;
+        }
+        @include respond(tab) {
+            width: 16rem;
+        }
+    }
+
+    &__input:focus{
+         outline: none;
+         box-shadow: 0 1rem 2rem rgba($color-b, .2); 
+    }
+    &__checkbox:checked ~ &__input {
+        opacity: 1; 
+        width: 100%;
+    }
+    &__checkbox:checked ~ &__button {
+        svg{
+            fill: $color-b;
+        }
+        &:hover{
+            svg{fill: $color-grey-light-2;} 
+            
+        }
+    }
+
+}

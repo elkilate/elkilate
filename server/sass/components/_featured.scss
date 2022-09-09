@@ -1,0 +1,218 @@
+.simple-head {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+
+  .simple-tittle {
+    font-size: 4.6rem;
+    color: $color-grey-light-2;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-column-gap: 1.5rem;
+    align-items: center;
+    font-weight: 400;
+
+    &::before,
+    &::after {
+      content: '';
+      height: 1px;
+      display: block;
+      background-color: currentColor;
+    }
+
+    @include respond(tab-land) {
+      margin-top: -7rem;
+      font-size: 3.8rem;
+    }
+
+    @include respond(tab) {
+      font-size: 3.4rem;
+    }
+
+    @include respond(b4) {
+      font-size: 2.8rem;
+    }
+  }
+}
+
+.featured {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0.5rem 0;
+  box-shadow: $shadow-light;
+  transition: box-shadow linear 0.1s;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: $shadow;
+  }
+
+  &__img {
+    width: 100%;
+    // margin-bottom: 2.5rem;
+  }
+
+  &__disc {
+    font-size: 1.8rem;
+    height: 5.5rem;
+    width: 5.5rem;
+    border-radius: 50%;
+    background-color: red;
+    color: $color-w;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__btn {
+    // position: absolute;
+    // margin-top: 90%;
+    // width: 100%;
+
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+    @include respond(big-desk) {
+      width: 95%;
+    }
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+
+      @include respond(big-desk) {
+        width: 1.35rem;
+        height: 1.35rem;
+        margin-left: 0.7rem;
+      }
+    }
+  }
+
+  &__name {
+    font-size: 1.6rem;
+    font-weight: 300;
+    width: 100%;
+    display: flex;
+
+    & a:visited,
+    & a:link {
+      text-decoration: none;
+      color: $color-b;
+      transition: all 0.5s;
+      text-align: center;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    & a:hover,
+    & a:active {
+      transform: red;
+      color: red;
+    }
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+
+    svg {
+      height: 3.5rem;
+      width: 3.5rem;
+      margin-left: -3rem;
+      fill: red;
+
+      @include respond(big-desk) {
+        width: 2.7rem;
+        height: 2.7rem;
+        margin-left: -1.8rem;
+      }
+    }
+
+    &-h4 {
+      font-size: 3.5rem;
+      color: red;
+      font-weight: 300;
+
+      @include respond(big-desk) {
+        font-size: 2.65rem;
+      }
+    }
+  }
+
+  &__zoom {
+    position: absolute;
+    width: 10rem;
+    height: 10rem;
+    pointer-events: none;
+    z-index: 5000;
+    // visibility: hidden;
+    border: 2px solid $color-primary-l;
+
+    &.show {
+      visibility: visible;
+    }
+  }
+
+  &__lens {
+    position: absolute;
+    border: 1px solid #c0c0c0;
+    width: 60px;
+    height: 60px;
+    visibility: hidden;
+
+    &.show {
+      visibility: visible;
+    }
+  }
+}
+
+.featured {
+  &__nav {
+    grid-column: 1 / -1;
+    background-color: $color-b;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 7rem;
+
+    @include respond(tab) {
+      // width: 100vw;
+      // margin-left: 50%;
+      // transform: translate(-50%);
+      // display: none;
+      flex-direction: column;
+    }
+
+    @include respond(b6) {
+      justify-content: space-around;
+
+      & > .nav-snd {
+        flex: 1;
+      }
+    }
+
+    & > .nav-snd {
+      padding-right: 2rem;
+
+      @include respond(tab) {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    & > .nav-main {
+      display: flex !important;
+      flex-direction: row;
+    }
+  }
+}

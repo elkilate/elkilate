@@ -1,0 +1,61 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container ramd">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-2 py-5">Eliminar todos los modelos.</h1>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col">
+      <p class="ramd__confirmation">¿Realmente desea eliminar todos los modelos de la base de datos?</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p class="ramd__notice">Se eliminaran:</p>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="ramdCount">
+        <p class="ramdCount__title">Modelos disponibles:</p>
+        <p class="ramdCount__qty ramdCount__qty--a">{{availableModelCount}}</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="ramdCount">
+        <p class="ramdCount__title">Modelos no disponibles:</p>
+        <p class="ramdCount__qty ramdCount__qty--na">{{unavailableModelCount}}</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="ramdCount">
+        <p class="ramdCount__title">Productos disponibles:</p>
+        <p class="ramdCount__qty ramdCount__qty--a">{{availableProductCount}}</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="ramdCount">
+        <p class="ramdCount__title">Productos no disponibles:</p>
+        <p class="ramdCount__qty ramdCount__qty--na">{{unavailableProductCount}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row my-4">
+    <div class="col py-4">
+      <form action="/admin/models/remove-all?_method=DELETE" method="POST" class="ramdForm">
+        <a href="/admin/model/remove" class="btn btn-primary btn-lg ramdForm__cancel">Cancelar</a>
+        <button class="btn btn-danger btn-lg ramdForm__remove" type="submit">Eliminar todos</button>
+      </form>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

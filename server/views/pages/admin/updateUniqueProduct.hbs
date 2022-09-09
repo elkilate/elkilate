@@ -1,0 +1,92 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "header-block"}}
+{{> includes/header_admin}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container addproduct">
+  {{#if err}}
+  <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+    No se ha podido agregar el producto. {{err}}.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  {{#if msg}}
+  <div class="alert alert-info alert-dimissible fade show mt-3" role="alert">
+    {{msg}}.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  {{#if success}}
+  <div class="alert alert-success alert-dimissible fade show mt-3" role="alert">
+    Se ha agregado el producto correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  <h1 class="display-2 my-5">Actualizar Producto Único</h1>
+  <form action="/admin/product/unique/update/{{product._id}}?_method=PATCH" method="POST" class="add-product-form" id="addProductForm">
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <label for="parentModel" class="form-label">Modelo</label>
+        <select class="form-select" name="parentModel" id="parentModel" required>
+          {{#with parentSelected}}
+          <option value="{{_id}}" data-code="{{code}}" selected>{{name}} ({{code}}) (Actual)</option>
+          {{/with}}
+          {{#each models}}
+          <option value="{{this._id}}" data-code="{{this.code}}">{{this.name}}
+            ({{this.code}})</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="itemCode" class="form-label">Codigo de producto</label>
+        <div class="input-group">
+          <span class="input-group-text" id="modelCode">{{product.parentModel.code}}-</span>
+          <input type="text" class="form-control" name="itemCode" id="itemCode" value="{{parseItemCode product.itemCode "code"}}" required>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="karat" class="form-label">Kilataje</label>
+        <input type="text" class="form-control" id="karat" name="karat" value="{{product.karat}}" required>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <label for="weight" class="form-label">Peso (Gr)</label>
+        <input type="text" class="form-control" id="weight" name="weight" value="{{product.weight}}" required>
+      </div>
+      <div class="col-md-4">
+        <label for="size" class="form-label">Longitud</label>
+        <input type="text" class="form-control" id="size" name="size" value="{{product.size}}" required>
+      </div>
+      <div class="col-md-4">
+        <label for="price" class="form-label">Precio</label>
+        <input type="text" name="price" id="price" class="form-control" value="{{product.price}}" required>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <h4 class="display-5 mb-5">Ajustes de visibilidad</h4>
+      <div class="col-md-4">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" name="available" id="available" value="true" {{#if product.available}}checked{{/if}}>
+          <label for="available" class="form-check-label">Mostrar como disponible</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary btn-lg ml-auto" type="submit" id="submitAddProduct">Actualizar</button>
+    </div>
+  </form>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/addProduct.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

@@ -1,0 +1,123 @@
+.sales {
+  height: 20rem;
+  display: grid;
+  position: relative;
+  grid-template-rows: 4rem calc(100% - 4rem);
+
+  &-default {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-radius: 2rem;
+  }
+
+  &__container {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+  }
+
+  &__heading {
+    display: flex;
+    .all {
+      margin: auto;
+      margin-right: 0;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid transparent;
+
+      &::after {
+        content: '\279F';
+        margin-left: 0.5rem;
+        transition: margin-left 0.3s ease-in-out;
+      }
+
+      &:hover {
+        border-bottom: 1px solid #333;
+        cursor: pointer;
+
+        &::after {
+          margin-left: 1.2rem;
+        }
+      }
+    }
+  }
+
+  &__sale {
+    background-color: $color-primary;
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    position: relative;
+    text-decoration: none;
+
+    .customer,
+    .content,
+    .date {
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        font-weight: 600;
+      }
+    }
+
+    .date {
+      .value {
+        text-transform: capitalize;
+      }
+    }
+
+    &:hover {
+      color: #fff;
+    }
+
+    &::after {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: 'Ver Detalles';
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba($color: #000000, $alpha: 0.6);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.3s ease-in, font-size 0.3s ease-in;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      &::after {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  &__no-content {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    font-size: 3.5rem;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+  }
+}

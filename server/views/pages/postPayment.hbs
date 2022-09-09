@@ -1,0 +1,74 @@
+{{#> layouts/default currPage='postpage'}}
+
+{{#*inline "header-block"}}
+{{> includes/ch-header}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="postPay">
+  <h1 class="h--1">¡Compra exitosa!</h1>
+  <p class="postPay__thanks">Gracias por su compra. Dentro de las proximos 24hrs recibira un correo con el numero de
+    guia.</p>
+  <p class="postPay__thanks">Refrescar la pagina lo llevara de vuelta a la pagina de Carrito.</p>
+  {{#with sale}}
+  <div class="postPay__data">
+    <h4 class="h--4">Revisar orden</h4>
+    <p class="orderId"><strong>ID:</strong> {{!-- 3f5b4d3504744106418e09e648aeb038 --}}{{_id}}</p>
+    <p class="clientName"><strong>Nombre del Cliente:</strong> {{customer.name}}
+      {{customer.lastname}}{{!-- Jane Doe --}}{{!-- {{clientName}} --}}</p>
+    <p class="email"><strong>E-Mail:</strong> {{customer.email}}{{!-- jDoe.1939@mail.com --}}</p>
+    <p class="phone"><strong>Numero Telefonico:</strong> {{customer.phone}}{{!-- (555) 657-1390 --}}</p>
+    {{#unless shipment}}
+    <p><strong>Envio:</strong> Sin envio (recoger en sucursal)</p>
+    {{/unless}}
+    {{#if shipment}}
+    <strong class="title">Direccion de envio:</strong>
+    <div class="shipping">
+      <p class="street"><strong>Calle:</strong> {{customer.address.street}}{{!-- Lirios --}}</p>
+      <p class="neighborhood"><strong>Col. o Fracc:</strong> {{customer.address.nbhood}}{{!-- Los Campos --}}</p>
+      <p class="extnumber"><strong>Numero exterior:</strong> {{customer.address.extNumber}}{{!-- 456 --}}</p>
+      {{#if customer.address.intNumber}}
+      <p class="intnumber"><strong>Numero interior:</strong> {{customer.address.intNumber}}{{!-- 456 --}}</p>
+      {{/if}}
+      <p class="postalcode"><strong>Codigo Postal:</strong> {{customer.address.zip}}{{!-- 34170 --}}</p>
+      <p class="state"><strong>Estado:</strong> {{customer.address.state}}{{!-- Durango --}}</p>
+      <p class="city"><strong>Ciudad o Municipio:</strong> {{customer.address.city}}{{!-- Durango --}}</p>
+      {{#if customer.address.refs}}
+      <p class="references"><strong>Referencias:</strong> {{customer.address.refs}}{{!-- 34170 --}}</p>
+      {{/if}}
+    </div>
+    {{/if}}
+    <strong class="title">Contenido de la orden:</strong>
+    <div class="content">
+      {{#each contents.items}}
+      <div class="item">
+        <img src="{{this.thumbImg}}" alt="{{this.title}}" class="item__thumb">
+        <p class="item__name">{{this.title}}</p>
+        <p class="item__code">{{this.code}}</p>
+        <p class="item__price">Precio: $ {{priceToString this.price}}</p>
+      </div>
+      {{/each}}
+    </div>
+    <div class="summary"></div>
+  </div>
+  {{/with}}
+  <div class="note">Si hay algun problema con los datos de arriba, por favor contactenos lo antes posible enviando el ID
+    de su orden y los cambios a realizar.</div>
+  <a href="/" class="postPay__goBack">Volver al inicio.</a>
+</div>
+{{/inline}}
+
+{{#*inline "ctc-block"}}
+{{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=526182814235&text='Hola buenas, tengo una
+duda respecto a mi orden. ID: <Agregue el ID de su orden aqui>'" iconId='i-whatsapp'}}
+  {{/inline}}
+
+  {{#*inline "footer-block"}}
+
+  {{/inline}}
+
+  {{#*inline "scripts-block"}}
+
+  {{/inline}}
+
+  {{/layouts/default}}

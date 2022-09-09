@@ -1,0 +1,43 @@
+<div class="ch-summary" {{#if orderId}}data-order-id="{{orderId}}"{{/if}}>
+    <div class="ch-summary__title">Resumen de compra</div>
+    <div class="ch-summary__body">
+        <div class="ch-summary__detail">
+            <p class="name">Subtotal:</p>
+            <p class="amount" id="subTotal" data-value="{{subtotal}}">$ {{subtotalStr}}</p>
+        </div>
+        {{#if discount}}
+        <div class="ch-summary__detail">
+            <p class="name">Descuento (-5%)**:</p>
+            <p class="amount" id="discount" data-value="{{discount}}">-$ {{discountStr}}</p>
+        </div>
+        {{/if}}
+        <div class="ch-summary__detail hidden" id="shipmentfee">
+            <p class="name">Costo de Envio:</p>
+            <p class="amount" id="shipfee-tag" data-value="{{fee}}">$ {{feeStr}}</p>
+        </div>
+        <div class="ch-summary__total">
+            <p class="name total">Total:</p>
+            <p class="amount" id="total" data-value="{{total}}">$ {{totalStr}}</p>
+        </div>
+        <div class="ch-summary__delivery" hidden>
+            <div class="ch-summary__heading">Entrega a domicilio</div>
+            <div class="ch-summary__arrival" id="ship-time">De 3 a 5 dias habiles*</div>
+            <p class="ch-summary__notice">*La fecha de entrega puede cambiar por la disponibilidad del producto, tu
+                ubicacion o la forma de pago.</p>
+        </div>
+        <div class="ch-summary__delivery">
+            <div class="ch-summary__notice">**El descuento es del 5% sobre el precio de cada articulo</div>
+        </div>
+        {{#each products}}
+        <div class="item">
+            <img src="{{this.thumbImg}}" alt="{{this.title}}" class="item__img">
+            <div class="item__body">
+                <div class="title text-ellipsis">{{this.title}}</div>
+                <div class="quantity">Cantidad: {{this.quantity}}</div>
+                <div class="total">Total: $ {{this.itemPrice}}</div>
+            </div>
+            <div class="item__del" data-item-id="{{this.sku}}">&times;</div>
+        </div>
+        {{/each}}
+    </div>
+</div>

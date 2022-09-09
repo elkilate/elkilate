@@ -1,0 +1,224 @@
+<header class='header'>
+  <a class='header__title' href='/'>
+    <img
+      src='/img/icon/fLogo_tr.svg'
+      alt='elkilate-logo'
+      class='header__logo'
+    />
+    <span class='text'>El Kilate</span>
+  </a>
+  <nav class='nav header__nav'>
+    <div class='nav-link'>
+      <a href='/admin'>Inicio</a>
+    </div>
+    <div class='nav-link'>
+      <a
+        class='dropdown-toggle header__toggle-btn'
+        type='button'
+        data-bs-toggle='dropdown'
+        aria-expanded='false'
+      >
+        Inventario
+      </a>
+      <ul class='dropdown-menu dropdown-menu-dark'>
+        <li><a
+            href='/admin/stock'
+            class='dropdown-item header__link'
+          >Administrar inventario</a></li>
+        <li>
+          <hr class='dropdown-divider' />
+        </li>
+        <li>
+          <h6 class='dropdown-header'>Modelos</h6>
+        </li>
+        <li><a
+            href='/admin/model/search'
+            class='dropdown-item header__link'
+          >Buscar Modelo</a></li>
+        <li><a href='/admin/models' class='dropdown-item header__link'>Ver
+            Modelos</a></li>
+        <li><a href='/admin/model/add' class='dropdown-item header__link'>Añadir
+            Modelo</a></li>
+        <li><a
+            href='/admin/model/edit'
+            class='dropdown-item header__link'
+          >Editar Modelo</a></li>
+        <li><a
+            href='/admin/model/remove'
+            class='dropdown-item header__link'
+          >Eliminar Modelo</a></li>
+        <li>
+          <hr class='dropdown-divider' />
+        </li>
+        {{! <li><a href="/admin/products" class="dropdown-item header__link">Ver Productos</a></li> }}
+        <li>
+          <h6 class='dropdown-header'>Productos</h6>
+        </li>
+        <li><a
+            href='/admin/product/search'
+            class='dropdown-item header__link'
+          >Buscar Producto</a></li>
+        <li><a
+            href='/admin/product/add'
+            class='dropdown-item header__link'
+          >Añadir Producto</a></li>
+        <li><a
+            href='/admin/product/edit'
+            class='dropdown-item header__link'
+          >Editar Producto</a></li>
+        <li><a
+            href='/admin/product/delete'
+            class='dropdown-item header__link'
+          >Eliminar Producto</a></li>
+        <li>
+          <hr class='dropdown-divider' />
+        </li>
+        <li>
+          <h6 class='dropdown-header'>Modelos Únicos</h6>
+        </li>
+        <li><a
+            href='/admin/models/unique/'
+            class='dropdown-item header__link'
+          >Ver Modelos Únicos</a></li>
+        <li><a
+            href='/admin/model/unique/search'
+            class='dropdown-item header__link'
+          >Buscar Modelo</a></li>
+        <li><a
+            href='/admin/model/unique/add'
+            class='dropdown-item header__link'
+          >Añadir Modelo Único</a></li>
+        <li><a
+            href='/admin/model/unique/edit'
+            class='dropdown-item header__link'
+          >Editar Modelo Único</a></li>
+        <li><a
+            href='/admin/model/unique/remove'
+            class='dropdown-item header__link'
+          >Eliminar Modelo Único</a></li>
+        <li>
+          <hr class='dropdown-divider' />
+        </li>
+        <li>
+          <h6 class='dropdown-header'>Productos Únicos</h6>
+        </li>
+        <li><a
+            href='/admin/product/unique/search'
+            class='dropdown-item header__link'
+          >Buscar Producto Único</a></li>
+        <li><a
+            href='/admin/product/unique/add'
+            class='dropdown-item header__link'
+          >Añadir Producto Único</a></li>
+        <li><a
+            href='/admin/product/unique/edit'
+            class='dropdown-item header__link'
+          >Editar Producto Único</a></li>
+        <li><a
+            href='/admin/product/unique/delete'
+            class='dropdown-item header__link'
+          >Eliminar Producto Único</a></li>
+        <li>
+          <hr class='dropdown-divider' />
+        </li>
+        <li>
+          <h6 class='dropdown-header'>Tipos de Prenda</h6>
+        </li>
+        <li><a
+            href='/admin/product/types'
+            class='dropdown-item header__link'
+          >Ver Tipos de Prenda</a></li>
+        <li><a
+            href='/admin/product/type/add'
+            class='dropdown-item header__link'
+          >Añadir Tipo de Prenda</a></li>
+        <li>
+          <hr class='dropdown-divider' />
+        </li>
+        <li>
+          <h6 class='dropdown-header'>Precios</h6>
+        </li>
+        <li><a
+            href='/admin/prices/set/gold'
+            class='dropdown-item header__link'
+          >Cambiar precio de la mercancia de oro</a></li>
+        <li><a
+            href='/admin/prices/set/silver'
+            class='dropdown-item header__link'
+          >Cambiar precio de la mercancia de plata</a></li>
+      </ul>
+    </div>
+    <div class='nav-link'>
+      <a
+        class='dropdown-toggle header__toggle-btn'
+        type='button'
+        data-bs-toggle='dropdown'
+        aria-expanded='false'
+      >Envios</a>
+      <ul class='dropdown-menu dropdown-menu-dark'>
+        <li><a
+            href='/admin/shipping-fees'
+            class='dropdown-item header__link'
+          >Administrar cuotas</a></li>
+      </ul>
+    </div>
+    <div class='nav-link'>
+      <a
+        class='dropdown-toggle header__toggle-btn'
+        type='button'
+        data-bs-toggle='dropdown'
+        aria-expanded='false'
+      >
+        Ventas
+      </a>
+      <ul class='dropdown-menu dropdown-menu-dark'>
+        <li>
+          <h6 class='dropdown-header'>Ventas</h6>
+        </li>
+        <li><a href='/admin/sales' class='dropdown-item header__link'>Ver ventas</a></li>
+        <li><a
+            href='/admin/sale/search'
+            class='dropdown-item header__link'
+          >Buscar ventas</a></li>
+        <li><a
+            href='/admin/sale/search-date'
+            class='dropdown-item header__link'
+          >Buscar ventas por fecha</a></li>
+        <li>
+          <h6 class='dropdown-header'>Facturas</h6>
+        </li>
+        <li><a href='/admin/invoices' class='dropdown-item header__link'>Ver
+            Facturas</a></li>
+        <li><a
+            href='/admin/invoice/search'
+            class='dropdown-item header__link'
+          >Buscar Facturas</a></li>
+        <li><a
+            href='/admin/invoice/search-date'
+            class='dropdown-item header__link'
+          >Buscar Facturas por fecha</a></li>
+        <li>
+          <h6 class='dropdown-header'>Comentarios</h6>
+        </li>
+        <li><a
+            href='/admin/comments'
+            class='dropdown-item header__link'
+          >Administrar comentarios</a></li>
+      </ul>
+    </div>
+    <div class='nav-link'>
+      <a href='/admin/minerals'>Minerales</a>
+      {{! <a class="dropdown-toggle header__toggle-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Minerales
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li>
+          <a href="/admin/minerals" class="dropdown-item header__link">Administar Minerales</a>
+        </li>
+      </ul> }}
+    </div>
+    <div class='nav-link'>
+      <a href='/salir' class='header__link'>Salir</a>
+    </div>
+  </nav>
+</header>

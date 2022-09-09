@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/png" href="/img/icon/favicon.ico">
+
+  <title>
+    {{#if customTitle}}
+    {{customTitle}}
+    {{else}}
+    ADMIN | El Kilate
+    {{/if}}
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  {{#> head-block}}
+  <link rel="stylesheet" href="/css/admin.css">
+  {{/head-block}}
+</head>
+
+<body>
+  {{#> header-block}}
+  {{> includes/header_admin}}
+  {{/header-block}}
+
+  {{#> content-block}}
+
+  {{/content-block}}
+
+  {{#> footer-block}}
+  {{> includes/footer_admin}}
+  {{/footer-block}}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+
+  {{#> scripts-block}}
+
+  {{/scripts-block}}
+</body>
+
+</html>

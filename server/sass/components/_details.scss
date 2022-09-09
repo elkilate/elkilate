@@ -1,0 +1,215 @@
+.details {
+  padding: 2rem 0;
+
+  @include respond(tab-land) {
+    grid-column: 1 / -1;
+  }
+
+  &__tittle {
+    text-align: center;
+    border-bottom: 1px solid $color-grey-light-1;
+    .overview {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+      svg {
+        height: 2.5rem;
+        width: 2.5rem;
+        margin-right: 0.5rem;
+        fill: $color-primary;
+      }
+      p {
+        margin-top: 0.5rem;
+        color: $color-primary-d;
+      }
+    }
+    .price {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      background-color: transparent;
+      display: flex;
+      padding: 0;
+      .cost,
+      .weight,
+      .size {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin: auto;
+        display: flex;
+
+        .value {
+          font-weight: 400;
+          margin-left: 1rem;
+        }
+      }
+      .cost {
+        color: red;
+        display: inline;
+      }
+      .weight,
+      .size {
+        color: #333;
+      }
+    }
+  }
+  &__select {
+    padding: 2rem;
+    color: $color-b;
+    border-bottom: 1px solid $color-grey-light-1;
+    select {
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 0;
+      background-color: transparent;
+      border: 1px solid $color-primary;
+      color: $color-primary;
+      padding: 10px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 10px;
+      &:hover,
+      &:focus {
+        color: $color-primary-l;
+        background-color: $color-w;
+        border-bottom-color: #dcdcdc;
+      }
+    }
+
+    .form {
+      &__group {
+        margin-bottom: 3rem;
+
+        h5.heading-5 {
+          margin-bottom: 1rem;
+        }
+      }
+      &__input {
+        padding: 1rem;
+        border: none;
+        border-bottom: 1px solid $color-primary;
+        width: 70%;
+      }
+    }
+  }
+  &__products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: unset;
+    align-items: unset;
+    row-gap: 2rem;
+    max-height: 30vh;
+    overflow-y: auto;
+  }
+  &__product {
+    width: 8.3rem;
+    height: 2.7rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin-right: 2rem;
+  }
+  &__radio {
+    display: none;
+
+    &:checked + label {
+      font-weight: 600;
+      border-color: #333;
+    }
+  }
+  &__icons {
+    display: flex;
+    padding: 2rem;
+    align-items: center;
+
+    @include respond(tab) {
+      justify-content: center;
+    }
+
+    .icon {
+      &:not(:last-child) {
+        margin-right: 4rem;
+
+        @include respond(lap) {
+          margin-right: 2.7rem;
+        }
+        @include respond(b6-41) {
+          margin-right: 2rem;
+        }
+      }
+
+      @include respond(tab-land) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &__text {
+        width: min-content;
+        color: $color-primary-d;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.5rem;
+
+        @include respond(lap) {
+          font-size: 1.4rem;
+        }
+        @include respond(b6-41) {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    svg {
+      height: 5rem;
+      width: 5rem;
+      fill: $color-primary-d;
+
+      @include respond(lap) {
+        height: 4rem;
+        width: 4rem;
+      }
+      @include respond(b6-41) {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+
+  &__info {
+    .desc {
+      padding: 2rem;
+      border-bottom: 1px solid $color-grey-light-1;
+
+      .description {
+        &__inf {
+          margin-top: 1rem;
+          transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          .desc-group {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            padding: 0.5rem;
+            &__name {
+              margin-right: 1.5rem;
+              color: $color-b;
+              font-weight: 700;
+              display: inline-block;
+              width: 8rem;
+              font-size: 1.5rem;
+            }
+            &__desc-name {
+              display: inline-block;
+              font-size: 1.5rem;
+              hyphens: auto;
+              width: 100%;
+              color: $color-b;
+            }
+          }
+        }
+      }
+    }
+  }
+}

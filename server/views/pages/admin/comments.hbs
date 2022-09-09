@@ -1,0 +1,257 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="adcom container mb-5 full-height">
+  <div class="row my-5">
+    <h1 class="display-2">Administrar Comentarios</h1>
+  </div>
+  {{#if success}}
+  <div class="row">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{success}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+  </div>
+  {{/if}}
+  {{#if error}}
+  <div class="row">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>ERROR!</strong> {{error}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+  </div>
+  {{/if}}
+  <div class="row mb-4">
+    <div class="col-sm-6">
+      <div class="card adcom-container">
+        <div class="card-header fs-2 fw-bold">Nuevos comentarios</div>
+        <div class="card-body container px-5 ">
+          {{#each newComments}}
+          <div class="row {{#unless @last}}mb-3{{/unless}}">
+            <div class="card" style="height: 12rem;">
+              <div class="card-body row align-items-center">
+                <div class="col-3">
+                  <h5 class="card-title">{{this.name}}</h5>
+                  <h6 class="card-subtitle text-muted mb-2">{{this.city}}</h6>
+                  <p class="card-subtitle text-capitalize fw-bold">{{numberToLocaleDateString this.date}}</p>
+                </div>
+                <div class="col-3 fs-5 text-center">
+                  <p class="card-text mb-1">Aprovado</p>
+                  <p class="card-text fw-bold">{{#if this.approved}}Sí{{else}}No{{/if}}</p>
+                </div>
+                <div class="col-3 comment h-100 d-flex">
+                  <p class="card-text fs-6 comment-label my-auto">
+                    {{this.summary}}
+                  </p>
+                  <p class="card-text fs-5 fw-bold comment-content">
+                    {{this.content}}
+                  </p>
+                </div>
+                <div class="col-3 d-flex flex-column h-100 justify-content-around align-items-center">
+                  <button type="button" class="btn btn-success w-75 approve-btn" data-id="{{this._id}}" title="Aprobar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#check"></use>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-warning w-75 reject-btn" data-id="{{this._id}}" title="Rechazar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#times"></use>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-danger w-75 delete-btn" data-id="{{this._id}}" title="Eliminar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#trash-bin"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+          {{#unless newComments}}
+          <div class="row">
+            <div class="card-text fs-3 fw-bold text-center py-5">No hay comentarios nuevos</div>
+          </div>
+          {{/unless}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card adcom-container">
+        <div class="card-header fs-2 fw-bold">Comentarios aprovados</div>
+        <div class="card-body container px-5">
+          {{#each approvedComments}}
+          <div class="row {{#unless @last}}mb-3{{/unless}}">
+            <div class="card border-success text-success" style="height: 12rem;">
+              <div class="card-body row align-items-center">
+                <div class="col-3">
+                  <h5 class="card-title">{{this.name}}</h5>
+                  <h6 class="card-subtitle text-muted mb-2">{{this.city}}</h6>
+                  {{#if this.date}}
+                  <p class="card-subtitle text-capitalize fw-bold">{{numberToLocaleDateString this.date}}</p>
+                  {{/if}}
+                </div>
+                <div class="col-3 fs-5 text-center">
+                  <p class="card-text mb-1">Aprovado</p>
+                  <p class="card-text fw-bold">{{#if this.approved}}Sí{{else}}No{{/if}}</p>
+                </div>
+                <div class="col-3 comment h-100 d-flex">
+                  <p class="card-text fs-6 comment-label my-auto">
+                    {{this.summary}}
+                  </p>
+                  <p class="card-text fs-5 fw-bold comment-content">
+                    {{this.content}}
+                  </p>
+                </div>
+                <div class="col-3 d-flex flex-column h-100 justify-content-around align-items-center">
+                  <button type="button" class="btn btn-success w-75 approve-btn" data-id="{{this._id}}" title="Aprobar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#check"></use>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-warning w-75 reject-btn" data-id="{{this._id}}" title="Rechazar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#times"></use>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-danger w-75 delete-btn" data-id="{{this._id}}" title="Eliminar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#trash-bin"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+          {{#unless approvedComments}}
+          <div class="row">
+            <div class="card-text fs-3 fw-bold text-center py-5">No hay comentarios aprovados</div>
+          </div>
+          {{/unless}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card adcom-container">
+        <div class="card-header fs-2 fw-bold">Comentarios Rechazados</div>
+        <div class="card-body container px-5 ">
+          {{#each rejectedComments}}
+          <div class="row {{#unless @last}}mb-3{{/unless}}">
+            <div class="card border-danger text-danger" style="height: 12rem;">
+              <div class="card-body row align-items-center">
+                <div class="col-3">
+                  <h5 class="card-title">{{this.name}}</h5>
+                  <h6 class="card-subtitle text-muted mb-2">{{this.city}}</h6>
+                  {{#if this.date}}
+                  <p class="card-subtitle text-capitalize fw-bold">{{numberToLocaleDateString this.date}}</p>
+                  {{/if}}
+                </div>
+                <div class="col-3 fs-5 text-center">
+                  <p class="card-text mb-1">Aprovado</p>
+                  <p class="card-text fw-bold">{{#if this.approved}}Sí{{else}}No{{/if}}</p>
+                </div>
+                <div class="col-3 comment h-100 d-flex">
+                  <p class="card-text fs-6 comment-label my-auto">
+                    {{this.summary}}
+                  </p>
+                  <p class="card-text fs-5 fw-bold comment-content">
+                    {{this.content}}
+                  </p>
+                </div>
+                <div class="col-3 d-flex flex-column h-100 justify-content-around align-items-center">
+                  <button type="button" class="btn btn-success w-75 approve-btn" data-id="{{this._id}}" title="Aprobar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#check"></use>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-warning w-75 reject-btn" data-id="{{this._id}}" title="Rechazar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#times"></use>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-danger w-75 delete-btn" data-id="{{this._id}}" title="Eliminar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#trash-bin"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+          {{#unless rejectedComments}}
+          <div class="row">
+            <div class="card-text fs-3 fw-bold text-center py-5">No hay comentarios rechazados</div>
+          </div>
+          {{/unless}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card adcom-container">
+        <div class="card-header fs-2 fw-bold">Todos los comentarios</div>
+        <div class="card-body container px-5 ">
+          {{#each allComments}}
+          <div class="row {{#unless @last}}mb-3{{/unless}}">
+            <div class="card{{#if this.approved}} border-success text-success{{/if}}{{#if this.rejected}} border-danger text-danger{{/if}}" style="height: 12rem;">
+              <div class="card-body row align-items-center">
+                <div class="col-3">
+                  <h5 class="card-title">{{this.name}}</h5>
+                  <h6 class="card-subtitle text-muted mb-2">{{this.city}}</h6>
+                  {{#if this.date}}
+                  <p class="card-subtitle text-capitalize fw-bold">{{numberToLocaleDateString this.date}}</p>
+                  {{/if}}
+                </div>
+                <div class="col-3 fs-5 text-center">
+                  <p class="card-text mb-1">Aprovado</p>
+                  <p class="card-text fw-bold">{{#if this.approved}}Sí{{else}}No{{/if}}</p>
+                </div>
+                <div class="col-3 comment h-100 d-flex">
+                  <p class="card-text fs-6 comment-label my-auto">
+                    {{this.summary}}
+                  </p>
+                  <p class="card-text fs-5 fw-bold comment-content">
+                    {{this.content}}
+                  </p>
+                </div>
+                <div class="col-3 d-flex flex-column h-100 justify-content-around align-items-center">
+                  <button type="button" class="btn btn-success w-75 approve-btn" data-id="{{this._id}}" title="Aprobar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#check"></use>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-warning w-75 reject-btn" data-id="{{this._id}}" title="Rechazar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#times"></use>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-danger w-75 delete-btn" data-id="{{this._id}}" title="Eliminar">
+                    <svg style="width: 1.8rem; height: 1.8rem;">
+                      <use href="/img/sprite.svg#trash-bin"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+          {{#unless allComments}}
+          <div class="row">
+            <div class="card-text fs-3 fw-bold text-center py-5">No hay comentarios</div>
+          </div>
+          {{/unless}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/admcomments.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

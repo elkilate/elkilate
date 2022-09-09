@@ -1,0 +1,75 @@
+{{#> layouts/default}}
+
+  {{#*inline "header-block"}}
+    {{> includes/header}}
+  {{/inline}}
+
+  {{#*inline "content-block"}}
+    <div class="coms">
+      <div class="coms__row">
+        <div class="coms__header">Comentarios</div>
+      </div>
+      <div class="coms__row">
+        <p class="coms__paraph">Enterate de lo que opinan nuestros clientes.</p>
+      </div>
+      <div class="coms__row">
+        <div class="coms__gallery">
+          {{#each comments}}
+            <div class="comment">
+              <div class="comment__customer">{{this.name}}</div>
+              <div class="comment__city">{{this.city}}</div>
+              <div class="comment__date">{{numberToNumericDateString this.date}}</div>
+              <div class="comment__content">
+                <p>{{this.content}}</p>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="coms__row">
+        <div class="coms__col flex">
+          <div class="coms__pagination pagination">
+            <a href="/comentarios/1"
+              class="pagination__btn pagination__first{{#if isFirstPage}} disabled{{/if}}">Primera</a>
+            <a href="/comentarios/{{prev}}"
+              class="pagination__btn pagination__prev{{#unless prevPage}} disabled{{/unless}}">Anterior</a>
+            {{#if truncatePrev}}
+              <a href class="pagination__btn pagination__truncate">...</a>
+            {{/if}}
+            {{#each pages}}
+              <a href="/comentarios/{{.}}" class="pagination__btn pagination__page">{{.}}</a>
+            {{/each}}
+            {{#if truncateNext}}
+              <a href class="pagination__btn pagination__truncate">...</a>
+            {{/if}}
+            <a href="/comentarios/{{next}}"
+              class="pagination__btn pagination__next{{#unless nextPage}} disabled{{/unless}}">Siguiente</a>
+            <a href="/comentarios/{{pageCount}}"
+              class="pagination__btn pagination__last{{#if isLastPage}} disabled{{/if}}">Última</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="coms__popup{{#if success_msg}} show{{/if}}" id="success-popup">
+      <div class="popup">
+        <svg class="popup__icon">
+          <use href="/img/SVG/check-circle-solid.svg#check"></use>
+        </svg>
+        <p class="popup__heading">¡Comentario enviado!</p>
+        <p class="popup__text">Su comentario fue enviado y será revisado para su publicación. Muchas gracias por su
+          preferencia.</p> {{!-- {{success_msg}} --}}
+        <p class="popup__small" id="close">Cerrar</p>
+      </div>
+    </div>
+  {{/inline}}
+
+  {{#*inline "ctc-block"}}
+    {{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=526182814235" iconId='i-whatsapp'}}
+  {{/inline}}
+
+  {{#*inline "scripts-block"}}
+    <script src="/js/comments.js"></script>
+  {{/inline}}
+
+{{/layouts/default}}

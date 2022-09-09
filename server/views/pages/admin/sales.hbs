@@ -1,0 +1,221 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link type="text/css" rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container sls mb-5">
+  {{#if msg}}
+  <div class="alert alert-info alert-dismissible fade show my-4" role="alert">
+    {{msg}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  {{#if err}}
+  <div class="alert alert-danger alert-dismissible fade show my-4" role="alert">
+    {{err}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  {{#if success}}
+  <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+    {{success}}
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  <div class="row">
+    <div class="col my-3">
+      <h1 class="display-3 py-4">Ventas</h1>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col">
+      <p class="h--3">Ventas realizadas el dia de hoy ({{daySaleCount}}).</p>
+      <div class="slsToday__details">
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-6 title">Peso vendido:</dt>
+            <dd class="col-sm-6 value">{{dayWeightSold}}gr</dd>
+          </dl>
+        </div>
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-6 title">Ganancia hoy:</dt>
+            <dd class="col-sm-6 value">${{priceToString dayEarnings}}</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="sales slsToday">
+        {{#unless daySales}}
+        <p class="sales__no-content">Aun no se han registrado ventas.</p>
+        {{/unless}}
+        <div class="slsToday__list sales__container">
+          {{#each daySales}}
+          <a href="/admin/sale/{{this._id}}" class="row slsAll__sale sales__sale py-3 px-4 mb-4">
+            <div class="customer">
+              <span class="title">Cliente:</span>
+              <span class="value">{{this.customer.name}} {{this.customer.lastname}}</span>
+            </div>
+            <div class="content">
+              <span class="title">Cantidad ($):</span>
+              <span class="value">${{priceToString this.payment.total}}</span>
+            </div>
+            <div class="content">
+              <span class="title">Cantidad (gr):</span>
+              <span class="value">{{roundNumber this.contents.weight 2}}gr</span>
+            </div>
+            <div class="date">
+              <span class="title">Fecha:</span>
+              <span class="value">{{numberToLocaleDateString this.payment.pat}}</span>
+            </div>
+          </a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col">
+      <p class="h--3">Ventas realizadas esta semana ({{weekSaleCount}}).</p>
+      <div class="slsWeek__details">
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-6 title">Peso vendido:</dt>
+            <dd class="col-sm-6 value">{{weekWeightSold}}gr</dd>
+          </dl>
+        </div>
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-6 title">Ganancia semana:</dt>
+            <dd class="col-sm-6 value">${{priceToString weekEarnings}}</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="sales slsWeek">
+        {{#unless weekSales}}
+        <p class="sales__no-content">Aun no se han registrado ventas.</p>
+        {{/unless}}
+        <div class="slsWeek__list sales__container">
+          {{#each weekSales}}
+          <a href="/admin/sale/{{this._id}}" class="row slsAll__sale sales__sale py-3 px-4 mb-4">
+            <div class="customer">
+              <span class="title">Cliente:</span>
+              <span class="value">{{this.customer.name}} {{this.customer.lastname}}</span>
+            </div>
+            <div class="content">
+              <span class="title">Cantidad ($):</span>
+              <span class="value">${{priceToString this.payment.total}}</span>
+            </div>
+            <div class="content">
+              <span class="title">Cantidad (gr):</span>
+              <span class="value">{{roundNumber this.contents.weight 2}}gr</span>
+            </div>
+            <div class="date">
+              <span class="title">Fecha:</span>
+              <span class="value">{{numberToLocaleDateString this.payment.pat}}</span>
+            </div>
+          </a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col">
+      <p class="h--3">Ventas realizadas este mes ({{monthSaleCount}}).</p>
+      <div class="slsMonth__details">
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-6 title">Peso vendido:</dt>
+            <dd class="col-sm-6 value">{{monthWeightSold}}gr</dd>
+          </dl>
+        </div>
+        <div class="col-md-6">
+          <dl class="row">
+            <dt class="col-sm-6 title">Ganancia mes:</dt>
+            <dd class="col-sm-6 value">${{priceToString monthEarnings}}</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="sales slsMonth">
+        {{#unless monthSales}}
+        <p class="sales__no-content">Aun no se han registrado ventas.</p>
+        {{/unless}}
+        <div class="slsMonth__list sales__container">
+          {{#each monthSales}}
+          <a href="/admin/sale/{{this._id}}" class="row slsAll__sale sales__sale py-3 px-4 mb-4">
+            <div class="customer">
+              <span class="title">Cliente:</span>
+              <span class="value">{{this.customer.name}} {{this.customer.lastname}}</span>
+            </div>
+            <div class="content">
+              <span class="title">Cantidad ($):</span>
+              <span class="value">${{priceToString this.payment.total}}</span>
+            </div>
+            <div class="content">
+              <span class="title">Cantidad (gr):</span>
+              <span class="value">{{roundNumber this.contents.weight 2}}gr</span>
+            </div>
+            <div class="date">
+              <span class="title">Fecha:</span>
+              <span class="value">{{numberToLocaleDateString this.payment.pat}}</span>
+            </div>
+          </a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="h--3">Todas las ventas ({{saleCount}})</p>
+    <div class="slsAll__details">
+      <div class="col-md-6">
+        <dl class="row">
+          <dt class="col-sm-6 title">Peso vendido:</dt>
+          <dd class="col-sm-6 value">{{totalWeightSold}}gr</dd>
+        </dl>
+      </div>
+      <div class="col-md-6">
+        <dl class="row">
+          <dt class="col-sm-6 title">Ganancia total:</dt>
+          <dd class="col-sm-6 value">${{priceToString totalEarnings}}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="col slsAll sales">
+      {{#unless sales}}
+      <p class="sales__no-content">Aun no se han registrado ventas.</p>
+      {{/unless}}
+      <div class="slsAll__list sales__container{{!-- py-3 px-4 --}}">
+        {{#each sales}}
+        <a href="/admin/sale/{{this._id}}" class="row slsAll__sale sales__sale py-3 px-4 mb-4">
+          <div class="customer">
+            <span class="title">Cliente:</span>
+            <span class="value">{{this.customer.name}} {{this.customer.lastname}}</span>
+          </div>
+          <div class="content">
+            <span class="title">Cantidad ($):</span>
+            <span class="value">${{priceToString this.payment.total}}</span>
+          </div>
+          <div class="content">
+            <span class="title">Cantidad (gr):</span>
+            <span class="value">{{roundNumber this.contents.weight 2}}gr</span>
+          </div>
+          <div class="date">
+            <span class="title">Fecha:</span>
+            <span class="value">{{numberToLocaleDateString this.payment.pat}}</span>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+<script src="/js/sales.js" type="module"></script>
+{{/inline}}
+
+{{/layouts/admin}}

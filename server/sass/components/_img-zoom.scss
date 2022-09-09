@@ -1,0 +1,20 @@
+.zoomable {
+  position: relative;
+
+  &__display {
+    position: absolute;
+    visibility: hidden;
+    background-color: #fff;
+    width: 8rem;
+    height: 8rem;
+    pointer-events: none;
+    z-index: 2000;
+    border-radius: 50%;
+    border: 3px solid $color-primary-l;
+    background-repeat: no-repeat;
+
+    &.show {
+      visibility: visible;
+    }
+  }
+}

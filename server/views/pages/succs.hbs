@@ -1,0 +1,49 @@
+{{#> layouts/default hasBodyClass=true currPage='succs'}}
+
+{{#*inline "header-block"}}
+{{> includes/header}}
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="suc">
+  <div class="suc__header">Sucursales</div>
+  <div class="suc__list">
+    <div class="suc__branch" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7288.08500402023!2d-104.66353527306755!3d24.02956633685416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869bc9ce805fcfa1%3A0x58fa905c37e064d7!2sJoyeria%20el%20Kilate!5e0!3m2!1sen!2smx!4v1624669396275!5m2!1sen!2smx">
+      <p class="kind">Matriz</p>
+      <p class="address">Calle Negrete No. 402 Ote, Zona Centro, 34000. Durango, Dgo.</p>
+      {{!-- <p class="phone">Tel. 618 278 1934</p> --}}
+    </div>
+    <div class="suc__branch" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7288.08500402023!2d-104.66353527306755!3d24.02956633685416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869bb7f05c73bed9%3A0xe403b5b03cd1c5a3!2sJoyer%C3%ADa%20El%20Kilate!5e0!3m2!1sen!2smx!4v1624669550256!5m2!1sen!2smx">
+      <p class="kind">Sucursal</p>
+      <p class="address">Plaza Paseo Durango. Blvd Felipe Pescador No. 1401, 2 Piso. Local A29., 34080. Durango, Dgo.</p>
+      {{!-- <p class="phone">Tel. 618 129 2189</p> --}}
+    </div>
+    <div class="suc__branch" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7288.08500402023!2d-104.66353527306755!3d24.02956633685416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869bc821f5f750cd%3A0x38399d0cd70a92ee!2sJoyeria%20El%20Kilate!5e0!3m2!1sen!2smx!4v1624669530346!5m2!1sen!2smx">
+      <p class="kind">Sucursal</p>
+      <p class="address">Av. 20 de Noviembre No. 105 B, Zona Centro, 34000. Durango, Dgo.</p>
+      {{!-- <p class="phone">Tel. 618 278 1934</p> --}}
+    </div>
+  </div>
+  <div class="suc__map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7288.08500402023!2d-104.66353527306755!3d24.02956633685416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869bc9ce805fcfa1%3A0x58fa905c37e064d7!2sJoyeria%20el%20Kilate!5e0!3m2!1sen!2smx!4v1624669396275!5m2!1sen!2smx"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      width="100%"
+      height="100%"
+      id="map-display"></iframe>
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "ctc-block"}}
+{{> includes/components/ctc-button link="https://api.whatsapp.com/send?phone=6182816253"
+iconId='i-whatsapp'}}
+{{/inline}}
+
+{{#*inline 'scripts-block'}}
+<script src="/js/succs.js" type="module" defer></script>
+{{/inline}}
+
+{{/layouts/default}}

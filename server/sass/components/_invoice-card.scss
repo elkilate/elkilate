@@ -1,0 +1,15 @@
+.invoice-card {
+  position: relative;
+  background-color: $color-primary;
+  color: #fff;
+
+  @include overlay('Ver Detalles');
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: $color-secondary;
+    }
+  }
+}

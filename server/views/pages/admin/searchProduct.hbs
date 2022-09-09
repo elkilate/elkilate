@@ -1,0 +1,51 @@
+{{#> layouts/admin}}
+
+{{#*inline "head-block"}}
+<link rel="stylesheet" href="/css/admin.css">
+{{/inline}}
+
+{{#*inline "content-block"}}
+<div class="container pdSearch">
+  <div class="row">
+    <div class="col-12 my-3 pdSearch__content">
+      {{#if uniques}}
+      <h1 class="display-2 py-4">Buscar Producto</h1>
+      <p class="pdSearch__notice mb-2">Ingrese la busqueda que desea realizar</p>
+      {{> includes/components/admSearchBar action="/admin/product/unique/search" extraClasses="my-3"}}
+      {{else}}
+      <h1 class="display-2 py-4">Buscar Producto</h1>
+      <p class="pdSearch__notice mb-2">Ingrese la busqueda que desea realizar</p>
+      {{> includes/components/admSearchBar action="/admin/product/search" extraClasses="my-3"}}
+      {{/if}}
+      {{#if noResult}}
+      <p class="h--4">No se han encontrado resultados...</p>
+      {{/if}}
+      <ul class="products__list" id="productListContainer">
+        {{#each products}}
+        <li class="product__bigBox my-5">
+          <img src="{{this.parentModel.thumbImg}}" alt="{{this.parentModel.name}}" class="product__thumb">
+          <a href="/admin/product/{{#if ../uniques}}unique/{{/if}}edit/{{this._id}}"
+            class="product__title product__title--big">{{this.parentModel.name}}</a>
+          <p class="product__model product__model--big">{{this.itemCode}}</p>
+          <ul class="product__actions product__actions--big">
+            <li class="action">
+              <a href="/admin/product/{{#if ../uniques}}unique/{{/if}}edit/{{this._id}}">Editar</a>
+            </li>
+            <li class="action action--r">
+              <a href="/admin/product/{{#if ../uniques}}unique/{{/if}}delete/{{this._id}}">Eliminar</a>
+            </li>
+          </ul>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+  </div>
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

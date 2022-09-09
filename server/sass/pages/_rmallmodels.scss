@@ -1,0 +1,48 @@
+.ramd {
+  min-height: calc(100vh - 4rem);
+
+  &__confirmation {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  &__notice {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  &Count {
+
+    &__title {
+      font-size: 2.2rem;
+      text-align: center;
+    }
+
+    &__qty {
+      font-size: 2.6rem;
+      font-weight: 600;
+      text-align: center;
+
+      &--a {
+        color: green;
+      }
+
+      &--na {
+        color: red;
+      }
+    }
+  }
+
+  &Form {
+    width: 100%;
+    display: flex;
+
+    &__cancel {
+      margin-left: auto;
+    }
+
+    &__remove {
+      margin-left: 2rem;
+    }
+  }
+}

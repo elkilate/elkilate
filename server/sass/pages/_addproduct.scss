@@ -1,0 +1,143 @@
+.addproduct {
+  min-height: calc(100vh - 4rem);
+
+  &__children {
+    height: 10rem;
+    // width: 70%;
+    margin: 0 auto;
+    border-radius: 7px;
+    background-color: #fff;
+    justify-content: center;
+    padding: .5rem 0;
+  }
+
+  &__childlist {
+    width: 97%;
+    max-height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &__child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    margin: .5rem 1rem;
+    border: 3px dashed #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #333;
+
+    &:hover {
+      color: $color-primary;
+      border-color: $color-primary;
+    }
+
+    &--na {
+      color: #bbb;
+      border-color: #bbb;
+      opacity: .7;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__wg {
+    font-size: 15px;
+
+    .value {
+      font-weight: 600;
+      margin-left: 1rem;
+    }
+  }
+
+  form {
+    margin: 1rem auto;
+    // width: 80%;
+    // background-color: #ddd;
+    padding: 2rem 1rem;
+    border-radius: 4px;
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .btn#submitAddProduct {
+      width: 14rem;
+    }
+  }
+
+  select,
+  input,
+  textarea {
+    font-size: 1.3rem;
+  }
+
+  label {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .gallery {
+    display: flex;
+    background: #fff;
+    height: 15rem;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    justify-content: space-around;
+
+    &__img {
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      background-color: #ccc;
+      padding: 4px;
+      height: 10rem;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  }
+
+  .ml-auto {
+    margin-left: auto;
+  }
+
+  #uniqueModelDetails {
+    overflow: hidden;
+    height: 0;
+    transition: all 1s ease-out;
+
+    &.show {
+      height: 66px;
+
+      input {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    input {
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 1s;
+    }
+  }
+}

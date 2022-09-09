@@ -1,0 +1,103 @@
+.tyc {
+  color: #333;
+  min-height: 80vh;
+  padding: 2rem 0 4rem;
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr [center-start] minmax(min-content, 1140px) [center-end] 1fr;
+    grid-template-rows: auto;
+    row-gap: 2.5rem;
+
+    @include respond(b3) {
+      grid-template-columns: 1fr [center-start] minmax(min-content, 80%) [center-end] 1fr;
+    }
+  }
+
+  * {
+    grid-column: center-start / center-end;
+  }
+
+  &__heading {
+    font-size: 4rem;
+    font-weight: 600;
+
+    @include respond(phone-l) {
+      font-size: 2.8rem;
+    }
+  }
+
+  &__subheading {
+    font-size: 1.6rem;
+    font-weight: 400;
+
+    @include respond(phone-l) {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__paraph {
+    font-size: 1.6rem;
+    text-align: justify;
+
+    @include respond(phone-l) {
+      font-size: 1.45rem;
+    }
+  }
+
+  &__list {
+    padding-inline-start: 4rem;
+    list-style-type: disc;
+    font-size: 1.4rem;
+    font-weight: 300;
+
+    :not(:last-child) {
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  .concept {
+    font-weight: 400;
+    text-align: center;
+
+    &__title {
+      font-size: 2rem;
+      font-weight: 600;
+
+      @include respond(phone-l) {
+        font-size: 1.8rem;
+      }
+    }
+
+    &__subtitle {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+
+      @include respond(phone-l) {
+        font-size: 1.65rem;
+      }
+    }
+
+    &__content {
+      font-size: 1.6rem;
+      text-align: justify;
+      text-indent: 5ch;
+
+      @include respond(phone-l) {
+        font-size: 1.45rem;
+        text-indent: 3ch;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 1.2rem;
+      }
+    }
+
+    &__notice {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #868686;
+    }
+  }
+}

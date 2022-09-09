@@ -1,0 +1,219 @@
+.product {
+  &__bigBox,
+  &__box {
+    background-color: #fff;
+    border-radius: 7px;
+    display: grid;
+    overflow: hidden;
+    grid-template-rows: 50% 50%;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__box {
+    height: 12rem;
+    grid-template-columns: [full-start] repeat(4, [col-start] 25% [col-end]) [full-end];
+  }
+
+  &__bigBox {
+    height: 15rem;
+    width: 90%;
+    grid-template-columns: [full-start] repeat(4, [col-start] 25% [col-end]) [full-end];
+    grid-template-rows: [top] repeat(2, [col-start] 50% [col-end]) [bot];
+  }
+
+  &__thumb {
+    max-height: 100%;
+    width: auto;
+    grid-column: col-start 1 / col-end 1;
+    grid-row: 1 / -1;
+    margin: auto;
+  }
+
+  &__title,
+  &__price {
+    font-size: 1.6rem;
+    margin: auto;
+  }
+
+  &__title {
+    grid-column: col-start 2 / col-end 3;
+    grid-row: 1;
+    margin-left: 0;
+    color: $color-b;
+    text-decoration: none;
+    cursor: pointer;
+
+    &--big {
+      grid-column: col-start 2 / col-end 3;
+      font-size: 2.4rem;
+      margin: 1rem 0;
+    }
+
+    .count {
+      font-weight: 600;
+      color: green;
+    }
+  }
+
+  &__model {
+    grid-column: col-start 4 / col-end 4;
+    grid-row: 1;
+    margin-top: auto;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: darkcyan;
+    margin: auto;
+    margin-right: 2rem;
+    font-style: italic;
+
+    &--big {
+      grid-column: col-start 4 / col-end 4;
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      margin-right: 4rem;
+    }
+  }
+
+  &__price {
+    margin-right: 2rem;
+    grid-column: col-start 4 / col-end 4;
+    grid-row: 2;
+  }
+
+  &__actions {
+    display: flex;
+    list-style: none;
+    grid-column: col-start 2 / col-end 2;
+
+    &--big {
+      .action {
+        font-size: 1.6rem !important;
+        margin-bottom: 2rem !important;
+        margin-left: 0 !important;
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .action {
+      font-size: 1.2rem;
+      margin: auto;
+      margin-bottom: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &--r {
+        color: red;
+      }
+
+      a {
+        font-size: inherit;
+        color: inherit;
+      }
+    }
+  }
+
+  &__select,
+  &__btn {
+    grid-row: 2;
+    margin: auto;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+  }
+
+  &__select {
+    grid-column: col-start 4 / col-end 4;
+    .selectProduct {
+      display: none;
+    }
+  }
+
+  &__btn {
+    grid-column: col-start 3 / col-end 3;
+    font-size: 1.4rem;
+    width: 90%;
+  }
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+
+  &__list {
+    padding: 0;
+    max-height: 50rem;
+    overflow-y: auto;
+  }
+
+  &__actions {
+    display: flex;
+  }
+
+  &__action {
+    background-color: $color-primary-l;
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      background-color: $color-primary-d;
+    }
+  }
+
+  &__seemore {
+    margin: auto;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  &__container {
+    min-height: calc(100vh - 4rem);
+
+    .actions {
+      margin-left: auto;
+      margin-bottom: auto;
+      background-color: #fff;
+      border-radius: 1.1rem;
+
+      &__title {
+        font-size: 2.6rem;
+      }
+
+      &__links {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &__link {
+        height: 3rem;
+        width: 90%;
+        margin: auto;
+        font-size: 1.5rem;
+
+        &:not(:first-child) {
+          margin-top: 2rem;
+        }
+      }
+    }
+  }
+
+  .nomore {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 1rem auto;
+    display: none;
+
+    &.show {
+      display: inline-block;
+    }
+  }
+}

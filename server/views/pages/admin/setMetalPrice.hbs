@@ -1,0 +1,133 @@
+{{#> layouts/admin}}
+
+{{#*inline "content-block"}}
+<div class="container setPrice py-5">
+  <h1 class="setPrice__heading display-3 mb-5">Cambiar el precio para articulos de {{metalName}}</h1>
+  {{#if success}}
+  <div class="alert alert-success alert-dismissible" role="alert">
+    {{success}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+  {{/if}}
+  {{#if err}}
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    {{err}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+  </div>
+  {{/if}}
+  {{#if isGold}}
+  <div class="setPrice__header">
+    <h2 class="heading">Precios actuales</h2>
+    <div class="setPrice__card card">
+      <div class="card-body">
+        <h5 class="title card-title mb-4">Oro 10K</h5>
+        <p class="value card-text">Precio asignado actualmente: <span class="price">{{#if price10K.value}}$
+            {{priceToString price10K.value}}{{else}}Sin asignar{{/if}}</span></p>
+      </div>
+    </div>
+    <div class="setPrice__card card">
+      <div class="card-body">
+        <h5 class="title card-title mb-4">Oro 14K</h5>
+        <p class="value card-text">Precio asignado actualmente: <span class="price">{{#if price14K.value}}$
+            {{priceToString price14K.value}}{{else}}Sin asignar{{/if}}</span></p>
+      </div>
+    </div>
+    <div class="setPrice__card card">
+      <div class="card-body">
+        <h5 class="title card-title mb-4">Oro 18K</h5>
+        <p class="value card-text">Precio asignado actualmente: <span class="price">{{#if price18K.value}}$
+            {{priceToString price18K.value}}{{else}}Sin asignar{{/if}}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="setPrice__body my-5">
+    <div class="setPrice__card card">
+      <div class="card-body">
+        <h4 class="big-title card-title">10K</h4>
+        <form action="/admin/prices/set/gold/10k?_method=PATCH" method="POST" class="setPrice__karatForm">
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="newPrice10">Precio nuevo</label>
+              <input type="text" name="newPrice" id="newPrice10" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col d-flex">
+              <button class="btn btn-primary ml-auto" type="submit">Actualizar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="setPrice__card card">
+      <div class="card-body">
+        <h4 class="big-title card-title">14K</h4>
+        <form action="/admin/prices/set/gold/14k?_method=PATCH" method="POST" class="setPrice__karatForm">
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="newPrice14">Precio nuevo</label>
+              <input type="text" name="newPrice" id="newPrice14" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col d-flex">
+              <button class="btn btn-primary ml-auto" type="submit">Actualizar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="setPrice__card card">
+      <div class="card-body">
+        <h4 class="big-title card-title">18K</h4>
+        <form action="/admin/prices/set/gold/18k?_method=PATCH" method="POST" class="setPrice__karatForm">
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="newPrice18">Precio nuevo</label>
+              <input type="text" name="newPrice" id="newPrice18" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col d-flex">
+              <button class="btn btn-primary ml-auto" type="submit">Actualizar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  {{else}}
+  <div class="setPrice__header">
+    <div class="setPrice__display display">
+      <p class="display__title">Precio asignado actualmente:</p>
+      {{#if noPriceSet}}
+      <p class="display__value">Sin asignar</p>
+      {{else}}
+      <p class="display__value">${{priceToString currentPrice}}</p>
+      {{/if}}
+    </div>
+    <div class="setPrice__display display">
+      <p class="display__title">Precio actual en el mercado:</p>
+      <p class="display__value">
+        {{#if marketPrice}}
+        ${{priceToString marketPrice}}
+        {{else}}
+        Sin Asignar
+        {{/if}}
+      </p>
+    </div>
+    <div class="setPrice__metalImg">
+      <img src="{{metalImg}}" alt="{{metal}}.png" />
+    </div>
+  </div>
+  {{> includes/components/set-metal-price-form}}
+  {{/if}}
+
+</div>
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+{{/inline}}
+
+{{/layouts/admin}}

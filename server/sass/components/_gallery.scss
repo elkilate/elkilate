@@ -1,0 +1,261 @@
+.gallery {
+  justify-self: center;
+  margin: 5rem -10rem;
+  // min-height: calc(calc(100vh - 15vh) - 20rem);
+
+  // @include respond(big-desk) {
+  //     justify-self: initial;
+  // }
+  @include respond(b3) {
+    margin: 0;
+    margin-top: 8rem;
+    margin-bottom: 10rem;
+  }
+  @include respond(b4) {
+    justify-self: initial;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(min-content, 25rem));
+    min-height: calc(calc(100vh - 15vh) - 20rem);
+    column-gap: 5rem;
+    row-gap: 3rem;
+
+    @include respond(big-desk) {
+      grid-template-columns: repeat(4, minmax(min-content, 25rem));
+      column-gap: 2rem;
+    }
+    @include respond(b3) {
+      grid-template-columns: repeat(3, minmax(min-content, 30rem));
+      column-gap: 3rem;
+    }
+    @include respond(b4) {
+      grid-template-columns: repeat(2, minmax(min-content, 50%));
+      column-gap: 2rem;
+    }
+    @include respond(tab) {
+      display: flex;
+      flex-direction: column;
+    }
+    /* @include respond(b6) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        } */
+  }
+
+  &__list.filtered {
+    & > .prod {
+      display: none;
+    }
+
+    & > .prod.show {
+      display: block;
+    }
+  }
+
+  &__item {
+    border-radius: 4px;
+    height: 100%;
+
+    @include respond(tab) {
+      width: 100%;
+    }
+
+    .item {
+      max-width: 25rem;
+      height: 100%;
+
+      @include respond(b3) {
+        max-width: 30rem;
+      }
+
+      @include respond(b4) {
+        max-width: unset;
+      }
+
+      @include respond(tab) {
+        display: grid;
+        grid-template-columns: repeat(
+          3,
+          [col-start] minmax(min-content, 33%) [col-end]
+        );
+        grid-template-rows: repeat(2, auto);
+      }
+
+      .featured {
+        &__img {
+          max-width: 100%;
+        }
+
+        &__img-link {
+          max-width: 100%;
+
+          @include respond(tab) {
+            grid-row: 1 / -1;
+            grid-column: col-start 1 / col-end 1;
+            align-self: center;
+            justify-self: center;
+          }
+        }
+
+        &__name {
+          margin: auto;
+          max-height: 7.6rem;
+          overflow: hidden;
+          @include respond(tab) {
+            grid-column: col-start 2 / col-end 3;
+            grid-row: 1 / 2;
+            align-self: flex-start;
+            margin-top: 1rem;
+            font-size: 2.5rem;
+            font-weight: 400;
+          }
+          @include respond(b6-41) {
+            font-size: 1.78rem;
+          }
+        }
+        &__btn {
+          margin-top: 2rem;
+
+          .btnf {
+            padding-left: 2rem;
+            padding-right: 2rem;
+
+            @include respond(lap) {
+              font-size: 1.2rem;
+
+              svg {
+                height: 1.15rem;
+                width: 1.15rem;
+                margin-left: 0.375rem;
+                margin-bottom: -0.05rem;
+              }
+            }
+            @include respond(tab) {
+              font-size: 1.4rem;
+
+              svg {
+                height: 1.55rem;
+                width: 1.55rem;
+                margin-left: 0.11rem;
+              }
+            }
+            @include respond(b6-41) {
+              font-size: 1.22rem;
+              svg {
+                height: 1.25rem;
+                width: 1.25rem;
+                margin-left: 0.22rem;
+              }
+            }
+          }
+
+          @include respond(tab) {
+            display: none;
+            grid-column: col-start 3 / col-end 3;
+            grid-row: 2 / 3;
+            align-self: flex-end;
+            justify-self: center;
+            width: 100%;
+
+            button {
+              width: 100%;
+              height: 5rem;
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+              font-weight: 400;
+              font-size: 1.7rem;
+            }
+          }
+          @include respond(b5) {
+            button {
+              font-size: 1.5rem;
+            }
+          }
+          @include respond(phone-l) {
+            button {
+              font-size: 1.1rem;
+            }
+          }
+        }
+        &__price {
+          margin-top: auto;
+
+          @include respond(big-desk) {
+            h4 {
+              font-size: 2rem;
+            }
+          }
+
+          @include respond(lap) {
+            h4 {
+              font-size: 2rem;
+            }
+            svg {
+              height: 2.4rem;
+              width: 2.4rem;
+            }
+          }
+
+          @include respond(b3) {
+            h4 {
+              font-size: 2.8rem;
+            }
+          }
+
+          @include respond(b10) {
+            h4 {
+              font-size: 2rem;
+            }
+          }
+
+          @include respond(tab) {
+            grid-column: col-start 3 / col-end 3;
+            grid-row: 2 / 3;
+            justify-self: flex-end;
+            align-self: flex-end;
+            margin-bottom: 1rem;
+            margin-right: 3rem;
+
+            h4 {
+              font-size: 2.6rem;
+              font-weight: 400;
+            }
+            svg {
+              height: 2.7rem;
+              width: 2.7rem;
+            }
+          }
+
+          @include respond(b5) {
+            h4 {
+              font-size: 2rem;
+            }
+            svg {
+              height: 2.2rem;
+              width: 2.2rem;
+            }
+          }
+
+          @include respond(b6-41) {
+            margin-right: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nomore {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-top: 10rem;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}

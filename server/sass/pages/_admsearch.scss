@@ -1,0 +1,14 @@
+.pdSearch {
+  min-height: calc(100vh - 4rem);
+
+  .product {
+
+    &__list {
+      margin: 0 auto;
+    }
+
+    &__bigBox {
+      margin: 0 auto;
+    }
+  }
+}
