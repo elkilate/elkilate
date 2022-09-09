@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   } else {
     // else assign the type property of filters to be the selected type
     filters['type'] = selectedType;
-    localStorage.removeItem('type'); // Remove any previously saved type
+    //localStorage.removeItem('type'); // Remove any previously saved type
   }
   // DOM Elements
   const modelWrapper = document.getElementById('p_wrapper');
